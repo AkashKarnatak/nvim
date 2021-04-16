@@ -18,6 +18,7 @@ require('treesitter')
 require('lsp')
 require('completion-nvim')
 require('autopairs')
+require('asynctasks')
 
 ------------------- LSP ---------------------
 require('lsp/python-ls')

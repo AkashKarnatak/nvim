@@ -20,4 +20,7 @@ return packer.startup(function()
     use 'nvim-lua/completion-nvim'
     -- Bracket completion
     use 'windwp/nvim-autopairs'
+    -- Task builder
+    use 'skywind3000/asynctasks.vim'
+    use 'skywind3000/asyncrun.vim'
 end)
