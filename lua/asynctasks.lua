@@ -10,3 +10,5 @@ vim.g.asynctasks_extra_config = {
 -- Mappings
 vim.api.nvim_set_keymap('n', '<Leader>kc', ':AsyncTask file-compile<CR>', {noremap = true, silent = true})
 vim.api.nvim_set_keymap('n', '<Leader>kr', ':AsyncTask file-run<CR>', {noremap = true, silent = true})
+vim.api.nvim_set_keymap('n', '<Leader>ko', ':AsyncTask open-repl<CR>', {noremap = true, silent = true})
+vim.api.nvim_set_keymap('n', '<Leader>kt', ':AsyncTask terminal<CR>', {noremap = true, silent = true})
