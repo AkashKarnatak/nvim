@@ -20,4 +20,6 @@ return packer.startup(function()
     use 'nvim-lua/completion-nvim'
     -- Bracket completion
     use 'windwp/nvim-autopairs'
+    -- Tokyonight colorscheme
+    use 'folke/tokyonight.nvim'
 end)

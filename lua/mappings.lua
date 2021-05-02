@@ -43,6 +43,9 @@ vim.api.nvim_set_keymap('o', '0', '$',  {noremap = true, silent = true})
 vim.api.nvim_set_keymap('o', '$', '^',  {noremap = true, silent = true})
 vim.api.nvim_set_keymap('o', '^', '0',  {noremap = true, silent = true})
 
+-- Remap backspace to del in normal mode
+vim.api.nvim_set_keymap('n', '<BS>', '<Del>',  {silent = true})
+
 -- TODO fix this
 -- Terminal window navigation
 --vim.cmd([[

@@ -8,7 +8,8 @@ require('mappings')
 require('settings')
 
 ----------------- Themes --------------------
-require('one-nvim')
+require('tokyonight_config')
+-- require('one-nvim')
 -- require('space-nvim')
 -- require('monokai')
 -- require('zephyr')
