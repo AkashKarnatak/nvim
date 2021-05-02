@@ -8,7 +8,7 @@ vim.g.asynctasks_extra_config = {
 }
 
 -- Mappings
-vim.api.nvim_set_keymap('n', '<Leader>kc', ':AsyncTask file-compile<CR>', {noremap = true, silent = true})
-vim.api.nvim_set_keymap('n', '<Leader>kr', ':AsyncTask file-run<CR>', {noremap = true, silent = true})
-vim.api.nvim_set_keymap('n', '<Leader>ko', ':AsyncTask open-repl<CR>', {noremap = true, silent = true})
-vim.api.nvim_set_keymap('n', '<Leader>kt', ':AsyncTask terminal<CR>', {noremap = true, silent = true})
+vim.api.nvim_set_keymap('n', '<Leader>kc', ':let g:asynctasks_term_rows=winheight(0)*10/25 | AsyncTask file-compile<CR>', {noremap = true, silent = true})
+vim.api.nvim_set_keymap('n', '<Leader>kr', ':let g:asynctasks_term_rows=winheight(0)*10/25 | AsyncTask file-run<CR>', {noremap = true, silent = true})
+vim.api.nvim_set_keymap('n', '<Leader>ko', ':let g:asynctasks_term_rows=winheight(0)*10/25 | AsyncTask open-repl<CR>', {noremap = true, silent = true})
+vim.api.nvim_set_keymap('n', '<Leader>kt', ':let g:asynctasks_term_rows=winheight(0)*10/25 | AsyncTask terminal<CR>', {noremap = true, silent = true})
