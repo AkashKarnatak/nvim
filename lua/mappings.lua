@@ -26,6 +26,12 @@ vim.api.nvim_set_keymap('n', '<C-j>', '<C-w>j', {noremap = true, silent = true})
 vim.api.nvim_set_keymap('n', '<C-k>', '<C-w>k', {noremap = true, silent = true})
 vim.api.nvim_set_keymap('n', '<C-l>', '<C-w>l', {noremap = true, silent = true})
 
+-- resize windows easily
+vim.api.nvim_set_keymap('n', '<M-h>', '<C-w><', {noremap = true, silent = true})
+vim.api.nvim_set_keymap('n', '<M-j>', '<C-w>-', {noremap = true, silent = true})
+vim.api.nvim_set_keymap('n', '<M-k>', '<C-w>+', {noremap = true, silent = true})
+vim.api.nvim_set_keymap('n', '<M-l>', '<C-w>>', {noremap = true, silent = true})
+
 -- Remap 0, $, ^
 vim.api.nvim_set_keymap('n', '0', '$',  {noremap = true, silent = true})
 vim.api.nvim_set_keymap('n', '$', '^',  {noremap = true, silent = true})
