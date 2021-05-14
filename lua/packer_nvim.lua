@@ -20,4 +20,6 @@ return packer.startup(function()
     use 'nvim-lua/completion-nvim'
     -- Bracket completion
     use 'windwp/nvim-autopairs'
+    -- Git integration
+    use { 'lewis6991/gitsigns.nvim', requires = {'nvim-lua/plenary.nvim' }}
 end)
