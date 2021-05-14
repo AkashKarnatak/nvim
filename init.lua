@@ -19,6 +19,7 @@ require('lsp')
 require('completion-nvim')
 require('autopairs')
 require('asynctasks')
+require('gitsign')
 
 ------------------- LSP ---------------------
 require('lsp/python-ls')

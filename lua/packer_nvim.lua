@@ -23,4 +23,6 @@ return packer.startup(function()
     -- Task builder
     use 'skywind3000/asynctasks.vim'
     use 'skywind3000/asyncrun.vim'
+    -- Git integration
+    use { 'lewis6991/gitsigns.nvim', requires = {'nvim-lua/plenary.nvim' }}
 end)
