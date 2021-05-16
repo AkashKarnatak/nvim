@@ -6,11 +6,10 @@ require('telescope').setup {
     sorting_strategy = "ascending",
     prompt_position = "top",
     layout_strategy = "horizontal",
-    layout_defaults = {
-      horizontal = {
-        preview_width = 0.5
-      }
-    },
+    preview_cutoff = 100,
+    -- Preview width percentage is hardcoded in the file
+    -- ~/.local/share/nvim/site/pack/packer/start/telescope.nvim/lua/telescope/pickers/layout_strategies.lua
+    -- at line 143. Change it to the desired value
     mappings = {
       i = {
           ["<C-j>"] = actions.move_selection_next,
