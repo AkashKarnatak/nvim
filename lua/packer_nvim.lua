@@ -27,4 +27,6 @@ return packer.startup(function()
     use { 'lewis6991/gitsigns.nvim', requires = {'nvim-lua/plenary.nvim' }}
     -- Markdown
     use { 'iamcco/markdown-preview.nvim', run = 'cd app && yarn install' }
+    -- Fzf
+    use { 'nvim-telescope/telescope.nvim', requires = {{'nvim-lua/popup.nvim'}, {'nvim-lua/plenary.nvim'}}}
 end)
