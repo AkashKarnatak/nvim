@@ -25,4 +25,6 @@ return packer.startup(function()
     use 'skywind3000/asyncrun.vim'
     -- Git integration
     use { 'lewis6991/gitsigns.nvim', requires = {'nvim-lua/plenary.nvim' }}
+    -- Markdown
+    use { 'iamcco/markdown-preview.nvim', run = 'cd app && yarn install' }
 end)
