@@ -31,4 +31,6 @@ return packer.startup(function()
     use { 'nvim-telescope/telescope.nvim', requires = {{'nvim-lua/popup.nvim'}, {'nvim-lua/plenary.nvim'}}}
     -- Rooter
     use 'ygm2/rooter.nvim'
+    -- Devicons
+    use 'kyazdani42/nvim-web-devicons'
 end)
