@@ -1,3 +1,4 @@
+require'lsp'.set_keybindings()
 local system_name = "Linux"
 
 -- set the path to the sumneko installation; if you previously installed via the now deprecated :LspInstall, use
