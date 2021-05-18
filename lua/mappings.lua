@@ -58,7 +58,7 @@ vim.api.nvim_set_keymap('o', '^', '0',  {noremap = true, silent = true})
 --]])
 
 -- Custom text surround integration
-for i, char in ipairs({'_', '.', ':', ',', ';', '|', '/', '\\', '*', '+', '%'}) do
+for _, char in ipairs({'_', '.', ':', ',', ';', '|', '/', '\\', '*', '+', '%'}) do
     vim.api.nvim_set_keymap('x', 'i'..char, ':<C-u>normal! T'..char..'vt'..char..'<CR>', {noremap = true})
     vim.api.nvim_set_keymap('o', 'i'..char, ':normal vi'..char..'<CR>', {noremap = true})
     vim.api.nvim_set_keymap('x', 'a'..char, ':<C-u>normal! F'..char..'vf'..char..'<CR>', {noremap = true})
@@ -115,7 +115,7 @@ vim.api.nvim_set_keymap('n', '<S-TAB>', ':bprevious<CR>', {noremap = true, silen
 -- map <leader>n <Plug>(miniyank-cycle)
 -- map <leader>N <Plug>(miniyank-cycleback)
 -- ]])
- 
+
 -- Remove highlighting
 vim.api.nvim_set_keymap('n', ';;', ':noh<CR>:<BS>', {noremap = true})
 -- Enter normal mode in terminal
