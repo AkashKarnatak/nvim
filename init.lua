@@ -21,6 +21,7 @@ require('autopairs')
 require('asynctasks')
 require('gitsign')
 require('telescope_')
+require('rooter_')
 
 ------------------- LSP ---------------------
 require('lsp/python-ls')

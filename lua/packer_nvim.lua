@@ -29,4 +29,6 @@ return packer.startup(function()
     use { 'iamcco/markdown-preview.nvim', run = 'cd app && yarn install' }
     -- Fzf
     use { 'nvim-telescope/telescope.nvim', requires = {{'nvim-lua/popup.nvim'}, {'nvim-lua/plenary.nvim'}}}
+    -- Rooter
+    use 'ygm2/rooter.nvim'
 end)
