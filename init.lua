@@ -22,6 +22,7 @@ require('asynctasks')
 require('gitsign')
 require('telescope_')
 require('rooter_')
+require('nvim_tree')
 
 ------------------- LSP ---------------------
 require('lsp/python-ls')
