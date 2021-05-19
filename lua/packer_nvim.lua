@@ -9,7 +9,7 @@ return packer.startup(function()
     use 'tpope/vim-surround'
     -- Vim verbs
     use 'AkashKarnatak/vim-commentary'
-    use 'vim-scripts/replacewithregister'
+    use 'AkashKarnatak/replacewithregister'
     -- Vim nouns
     use 'michaeljsmith/vim-indent-object'
     -- Improves syntax highlighting and indentation
