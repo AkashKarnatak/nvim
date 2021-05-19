@@ -1,4 +1,6 @@
-require'lsp'.set_keybindings()
 require'lspconfig'.pyright.setup{
-  on_attach = require'completion'.on_attach
+  on_attach = function(_, bufnr)
+    require'completion'.on_attach()
+    require'lsp'.on_attach(_, bufnr)
+  end
 }
