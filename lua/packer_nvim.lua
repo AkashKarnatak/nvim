@@ -33,4 +33,6 @@ return packer.startup(function()
     use 'ygm2/rooter.nvim'
     -- Devicons
     use 'kyazdani42/nvim-web-devicons'
+    -- Statusline
+    use 'hoob3rt/lualine.nvim'
 end)

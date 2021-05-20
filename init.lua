@@ -22,6 +22,7 @@ require('asynctasks')
 require('gitsign')
 require('telescope_')
 require('rooter_')
+require('statusline')
 
 ------------------- LSP ---------------------
 require('lsp/python-ls')
