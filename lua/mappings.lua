@@ -64,3 +64,8 @@ vim.api.nvim_set_keymap('c', '<C-h>', '<C-w>', {noremap = true})
 
 -- Ctrl p to next item in jumplist
 vim.api.nvim_set_keymap('n', '<C-p>', '<C-i>', {noremap = true, silent=true})
+
+-- Mappings for vim-commentary
+vim.api.nvim_set_keymap('n', 'cm', 'gc', {silent=true})
+vim.api.nvim_set_keymap('n', 'cmm', 'gcc', {silent=true})
+vim.api.nvim_set_keymap('v', 'cm', 'gc', {silent=true})

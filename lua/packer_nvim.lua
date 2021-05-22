@@ -8,7 +8,7 @@ return packer.startup(function()
     -- Vim actions
     use 'tpope/vim-surround'
     -- Vim verbs
-    use 'AkashKarnatak/vim-commentary'
+    use 'tpope/vim-commentary'
     use 'AkashKarnatak/replacewithregister'
     -- Vim nouns
     use 'michaeljsmith/vim-indent-object'
