@@ -23,5 +23,18 @@ MUtils.completion_confirm=function()
   end
 end
 
+vim.g.autopairs_active = true
+function _G.ToggleAutoPairs()
+  if vim.g.autopairs_active then
+    vim.g.autopairs_active = false
+    require('nvim-autopairs').disable()
+		print('AutoPairs turned off')
+  else
+    vim.g.autopairs_active = true
+    require('nvim-autopairs').enable()
+		print('AutoPairs turned on')
+  end
+end
 
 remap('i' , '<CR>','v:lua.MUtils.completion_confirm()', {expr = true , noremap = true})
+vim.api.nvim_set_keymap('n', '<leader>pp', ':call v:lua.ToggleAutoPairs()<CR>', {noremap = true, silent = true})
