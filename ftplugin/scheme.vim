@@ -1,0 +1,1 @@
+call v:lua.ToggleAutoPairs()
