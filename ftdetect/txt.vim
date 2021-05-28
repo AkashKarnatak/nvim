@@ -1,1 +1,1 @@
-autocmd BufNewFile,BufRead *.txt set spell
+autocmd BufNewFile,BufRead *.txt setlocal spell
