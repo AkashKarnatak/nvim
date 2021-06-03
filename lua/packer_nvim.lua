@@ -35,4 +35,6 @@ return packer.startup(function()
     use 'kyazdani42/nvim-web-devicons'
     -- Statusline
     use 'hoob3rt/lualine.nvim'
+    -- File explorer
+    use 'kyazdani42/nvim-tree.lua'
 end)
