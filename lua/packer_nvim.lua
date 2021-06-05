@@ -17,7 +17,7 @@ return packer.startup(function()
     -- LSP
     use 'neovim/nvim-lspconfig'
     -- Autocompletion
-    use 'nvim-lua/completion-nvim'
+    use 'hrsh7th/nvim-compe'
     -- Bracket completion
     use 'windwp/nvim-autopairs'
     -- Task builder

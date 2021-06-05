@@ -7,19 +7,15 @@ local npairs = require('nvim-autopairs')
 _G.MUtils= {}
 
 vim.g.completion_confirm_key = ""
-
 MUtils.completion_confirm=function()
   if vim.fn.pumvisible() ~= 0  then
     if vim.fn.complete_info()["selected"] ~= -1 then
-      require'completion'.confirmCompletion()
-      return npairs.esc("<c-y>")
+      return vim.fn["compe#confirm"](npairs.esc("<cr>"))
     else
-      vim.api.nvim_select_popupmenu_item(0 , false , false ,{})
-      require'completion'.confirmCompletion()
-      return npairs.esc("<c-n><c-y>")
+      return npairs.esc("<cr>")
     end
   else
-    return npairs.check_break_line_char()
+    return npairs.autopairs_cr()
   end
 end
 

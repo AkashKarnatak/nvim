@@ -16,7 +16,7 @@ require('one-nvim')
 -------------- Extra plugins ----------------
 require('treesitter')
 require('lsp')
-require('completion-nvim')
+require('nvim-compe')
 require('autopairs')
 require('asynctasks')
 require('gitsign')
