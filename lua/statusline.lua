@@ -1,7 +1,7 @@
 vim.o.showmode = false   -- Do not show modes as the bottom like -- INSERT --
 require('lualine').setup{
    options = {
-    theme = 'onedark',
+    theme = 'sonokai',
     -- section_separators = {'', ''},
     -- component_separators = {'', ''},
     section_separators = {'', ''},
@@ -51,9 +51,9 @@ require('lualine').setup{
         -- displays diagnostics from defined severity
         sections = {'error', 'warn', 'info'},
         -- all colors are in format #rrggbb
-        -- color_error = "#ff0000", -- changes diagnostic's error foreground color
-        -- color_warn = "#00ff00", -- changes diagnostic's warn foreground color
-        -- color_info = "#0000ff", -- Changes diagnostic's info foreground color
+        color_error = "#ff6077", -- changes diagnostic's error foreground color
+        color_warn = "#e7c664", -- changes diagnostic's warn foreground color
+        color_info = "#85d3f2", -- Changes diagnostic's info foreground color
         symbols = {error = ' ', warn = ' ', info = ' '}
       },
     },
