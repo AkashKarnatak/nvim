@@ -37,6 +37,17 @@ vim.api.nvim_set_keymap('o', '0', '$',  {noremap = true, silent = true})
 vim.api.nvim_set_keymap('o', '$', '^',  {noremap = true, silent = true})
 vim.api.nvim_set_keymap('o', '^', '0',  {noremap = true, silent = true})
 
+-- Remap g0, g$, g^
+vim.api.nvim_set_keymap('n', 'g0', 'g$',  {noremap = true, silent = true})
+vim.api.nvim_set_keymap('n', 'g$', 'g^',  {noremap = true, silent = true})
+vim.api.nvim_set_keymap('n', 'g^', 'g0',  {noremap = true, silent = true})
+vim.api.nvim_set_keymap('v', 'g0', 'g$h', {noremap = true, silent = true})
+vim.api.nvim_set_keymap('v', 'g$', 'g^',  {noremap = true, silent = true})
+vim.api.nvim_set_keymap('v', 'g^', 'g0',  {noremap = true, silent = true})
+vim.api.nvim_set_keymap('o', 'g0', 'g$',  {noremap = true, silent = true})
+vim.api.nvim_set_keymap('o', 'g$', 'g^',  {noremap = true, silent = true})
+vim.api.nvim_set_keymap('o', 'g^', 'g0',  {noremap = true, silent = true})
+
 -- Custom text surround integration
 for _, char in ipairs({'_', '.', ':', ',', ';', '|', '/', '\\', '*', '+', '%'}) do
     vim.api.nvim_set_keymap('x', 'i'..char, ':<C-u>normal! T'..char..'vt'..char..'<CR>', {noremap = true})
