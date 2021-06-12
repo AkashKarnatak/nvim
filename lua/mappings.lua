@@ -1,13 +1,13 @@
 vim.api.nvim_set_keymap('n', '<Space>', '<NOP>', {noremap = true, silent = true})
 vim.g.mapleader = ' '
 
--- Fuck escape
-vim.api.nvim_set_keymap('',  ';;', '<ESC>', {noremap = true, silent = true})
-vim.api.nvim_set_keymap('!', ';;', '<ESC>', {noremap = true, silent = true})
-vim.api.nvim_set_keymap('x', ';;', '<ESC>', {noremap = true, silent = true})
-vim.api.nvim_set_keymap('s', ';;', '<ESC>', {noremap = true, silent = true})
-vim.api.nvim_set_keymap('l', ';;', '<ESC>', {noremap = true, silent = true})
-vim.api.nvim_set_keymap('c', ';;', '<C-u><BS>', {noremap = true})
+-- -- Fuck escape
+-- vim.api.nvim_set_keymap('',  ';;', '<ESC>', {noremap = true, silent = true})
+-- vim.api.nvim_set_keymap('!', ';;', '<ESC>', {noremap = true, silent = true})
+-- vim.api.nvim_set_keymap('x', ';;', '<ESC>', {noremap = true, silent = true})
+-- vim.api.nvim_set_keymap('s', ';;', '<ESC>', {noremap = true, silent = true})
+-- vim.api.nvim_set_keymap('l', ';;', '<ESC>', {noremap = true, silent = true})
+-- vim.api.nvim_set_keymap('c', ';;', '<C-u><BS>', {noremap = true})
 
 -- Remap omnicomplete keys
 vim.api.nvim_set_keymap('i', '<C-j>', '<C-n>', {noremap = true, silent = true})
@@ -55,9 +55,11 @@ vim.api.nvim_set_keymap('n', '<TAB>', ':bnext<CR>', {noremap = true, silent = tr
 vim.api.nvim_set_keymap('n', '<S-TAB>', ':bprevious<CR>', {noremap = true, silent = true})
 
 -- Remove highlighting
-vim.api.nvim_set_keymap('n', ';;', ':noh<CR>:<BS>', {noremap = true})
+-- vim.api.nvim_set_keymap('n', ';;', ':noh<CR>:<BS>', {noremap = true})
+vim.api.nvim_set_keymap('n', '<Esc>', ':noh<CR>:<BS>', {noremap = true})
 -- Enter normal mode in terminal
-vim.api.nvim_set_keymap('t', ';;', '<C-\\><C-n>', {noremap = true})
+-- vim.api.nvim_set_keymap('t', ';;', '<C-\\><C-n>', {noremap = true})
+vim.api.nvim_set_keymap('t', '<Esc>', '<C-\\><C-n>', {noremap = true})
 -- Map Ctrl-Backspace to delete the previous word in insert mode
 vim.api.nvim_set_keymap('i', '<C-h>', '<C-w>', {noremap = true})
 vim.api.nvim_set_keymap('c', '<C-h>', '<C-w>', {noremap = true})
