@@ -17,7 +17,11 @@ vim.o.showtabline = 2                                    -- Always show tabs
 vim.wo.signcolumn = "yes"                                -- Always show the signcolumn, otherwise it would shift the text each time
 -- vim.o.updatetime = 200                                -- Faster completion
 vim.o.timeoutlen = 500                                   -- By default timeoutlen is 1000 ms
+vim.o.cpoptions = vim.o.cpoptions .. 'y'                 -- Allows yank action to be repeated
 vim.cmd('set ts=2')                                      -- Insert 4 spaces for a tab
 vim.cmd('set sw=2')                                      -- Change the number of space characters inserted for indentation
 vim.cmd('syntax on')                                     -- Enable syntax highlighting
 vim.cmd('command! BD silent! execute "%bd|e#|bd#"')      -- Close all buffers except the active one
+
+-- Jump cursor to the line where last exited nvim
+vim.cmd([[ autocmd BufReadPost * if line("'\"") >= 1 && line("'\"") <= line("$") && &ft !~# 'commit' | exe "normal! g`\"" | endif ]])
