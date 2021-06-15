@@ -1,4 +1,5 @@
 vim.o.hidden = true                                      -- Required to keep multiple buffers open multiple buffers
+vim.opt.foldenable = false                               -- Disable code folding
 vim.wo.wrap = false                                      -- Display long lines as just one line
 vim.o.pumheight = 10                                     -- Makes popup menu smaller
 vim.o.fileencoding = "utf-8"                             -- The encoding written to file

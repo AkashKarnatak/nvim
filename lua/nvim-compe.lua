@@ -33,5 +33,3 @@ vim.api.nvim_set_keymap('i', '<CR>',      'compe#confirm(\'<CR>\')',         {ex
 vim.api.nvim_set_keymap('i', '<C-e>',     'compe#close(\'<C-e\')',           {expr = true, noremap = true, silent = true})
 -- vim.api.nvim_set_keymap('i', '<C-f>',     'compe#scroll({ \'delta\': +4 })', {expr = true, noremap = true, silent = true})
 -- vim.api.nvim_set_keymap('i', '<C-d>',     'compe#scroll({ \'delta\': -4 })', {expr = true, noremap = true, silent = true})
-
-vim.api.nvim_set_keymap('i', '<C-k>', 'pumvisible() ? \'<C-p>\' : \'<cmd>lua vim.lsp.buf.signature_help()<CR>\'', {expr = true, noremap = true, silent = true})
