@@ -6,7 +6,6 @@ vim.o.mouse = "a"                                        -- Enable your mouse
 vim.o.splitbelow = true                                  -- Horizontal splits will automatically be below
 vim.o.splitright = true                                  -- Vertical splits will automatically be to the right
 vim.o.termguicolors = true                               -- set term giu colors most terminals support this
-vim.o.t_Co = "256"                                       -- Support 256 colors
 vim.bo.expandtab = true                                  -- Converts tabs to spaces
 vim.bo.smartindent = true                                -- Makes indenting smart
 vim.wo.number = true                                     -- set numbered lines

@@ -1,5 +1,11 @@
 local packer = require('packer')
 
+packer.init({
+    git = {
+        clone_timeout = 300, -- Timeout, in seconds, for git clones
+    }
+})
+
 return packer.startup(function()
     -- This package need to be present as a plugin otherwise packer will prompt to remove itself
     use 'wbthomason/packer.nvim'
@@ -26,7 +32,7 @@ return packer.startup(function()
     -- Git integration
     use { 'lewis6991/gitsigns.nvim', requires = {'nvim-lua/plenary.nvim' }}
     -- Markdown
-    use { 'iamcco/markdown-preview.nvim', run = 'cd app && yarn install' }
+    use { 'iamcco/markdown-preview.nvim', run = 'cd app && yarn install', ft = {'markdown'} }
     -- Fzf
     use { 'nvim-telescope/telescope.nvim', requires = {{'nvim-lua/popup.nvim'}, {'nvim-lua/plenary.nvim'}}}
     -- Rooter
@@ -35,6 +41,6 @@ return packer.startup(function()
     use 'kyazdani42/nvim-web-devicons'
     -- Statusline
     use 'hoob3rt/lualine.nvim'
-		-- Sonokai theme
+    -- Sonokai theme
     use 'sainnhe/sonokai'
 end)
