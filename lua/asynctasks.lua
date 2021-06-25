@@ -12,3 +12,4 @@ vim.api.nvim_set_keymap('n', '<Leader>kc', ':let g:asynctasks_term_rows=winheigh
 vim.api.nvim_set_keymap('n', '<Leader>kr', ':let g:asynctasks_term_rows=winheight(0)*10/25 | AsyncTask file-run<CR>', {noremap = true, silent = true})
 vim.api.nvim_set_keymap('n', '<Leader>ko', ':let g:asynctasks_term_rows=winheight(0)*10/25 | AsyncTask open-repl<CR>', {noremap = true, silent = true})
 vim.api.nvim_set_keymap('n', '<Leader>kt', ':let g:asynctasks_term_rows=winheight(0)*10/25 | AsyncTask terminal<CR>', {noremap = true, silent = true})
+vim.api.nvim_set_keymap('n', '<Leader>kd', ':let g:asynctasks_term_rows=winheight(0)*10/25 | AsyncTask file-debug<CR>', {noremap = true, silent = true})
