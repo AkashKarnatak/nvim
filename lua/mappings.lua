@@ -55,6 +55,13 @@ for _, char in ipairs({'_', '.', ':', ',', ';', '|', '/', '\\', '*', '+', '%'}) 
     vim.api.nvim_set_keymap('x', 'a'..char, ':<C-u>normal! F'..char..'vf'..char..'<CR>', {noremap = true})
     vim.api.nvim_set_keymap('o', 'a'..char, ':normal va'..char..'<CR>', {noremap = true})
 end
+
+-- << << Text object for CPP
+vim.api.nvim_set_keymap('x', 'io', [[":<C-u>execute \"normal ?<<\\\<CR\>3lv/<<\\\<CR\>2h\"<CR>"]], {expr=true, noremap = true})
+vim.api.nvim_set_keymap('o', 'io', [[":execute \"normal ?<<\\\<CR\>3lv/<<\\\<CR\>2h\"<CR>"]], {expr=true, noremap = true})
+vim.api.nvim_set_keymap('x', 'ao', [[":<C-u>execute \"normal ?<<\\\<CR\>v/<<\\\<CR\>l\"<CR>"]], {expr=true, noremap = true})
+vim.api.nvim_set_keymap('o', 'ao', [[":execute \"normal ?<<\\\<CR\>v/<<\\\<CR\>l\"<CR>"]], {expr=true, noremap = true})
+
 -- Entire file text object
 vim.api.nvim_set_keymap('x', 'ie', ':<C-u>normal! ggvG<CR>', {noremap = true})
 vim.api.nvim_set_keymap('o', 'ie', ':normal ggvG<CR>', {noremap = true})
@@ -82,3 +89,16 @@ vim.api.nvim_set_keymap('n', '<C-p>', '<C-i>', {noremap = true, silent=true})
 vim.api.nvim_set_keymap('n', 'cm', 'gc', {silent=true})
 vim.api.nvim_set_keymap('n', 'cmm', 'gcc', {silent=true})
 vim.api.nvim_set_keymap('v', 'cm', 'gc', {silent=true})
+
+-- Add numbered jumps to jumplist
+vim.api.nvim_set_keymap('n', 'k', [[(v:count > 1 ? "m'" . v:count : '') . 'k']], {expr = true, noremap = true, silent = true})
+vim.api.nvim_set_keymap('n', 'j', [[(v:count > 1 ? "m'" . v:count : '') . 'j']], {expr = true, noremap = true, silent = true})
+
+-- Global find and replace
+vim.api.nvim_set_keymap('n', '<Leader>ss', [[(v:count > 0 ? ":\<C-u>.,.+" . v:count : ":%") . 's/\<<C-r><C-w>\>//g<Left><Left>']], {expr = true, noremap = true})
+
+-- Easy window move
+vim.api.nvim_set_keymap('n', '<Leader>wh', '<C-w>H', {noremap = true, silent=true})
+vim.api.nvim_set_keymap('n', '<Leader>wj', '<C-w>J', {noremap = true, silent=true})
+vim.api.nvim_set_keymap('n', '<Leader>wk', '<C-w>K', {noremap = true, silent=true})
+vim.api.nvim_set_keymap('n', '<Leader>wl', '<C-w>L', {noremap = true, silent=true})
