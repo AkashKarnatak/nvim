@@ -102,3 +102,6 @@ vim.api.nvim_set_keymap('n', '<Leader>wh', '<C-w>H', {noremap = true, silent=tru
 vim.api.nvim_set_keymap('n', '<Leader>wj', '<C-w>J', {noremap = true, silent=true})
 vim.api.nvim_set_keymap('n', '<Leader>wk', '<C-w>K', {noremap = true, silent=true})
 vim.api.nvim_set_keymap('n', '<Leader>wl', '<C-w>L', {noremap = true, silent=true})
+
+-- Show relative file path of the current opened buffer
+vim.api.nvim_set_keymap('n', '<Leader>aa', [[:echo expand('%ph')<CR>]], {noremap = true, silent=true})
