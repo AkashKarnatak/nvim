@@ -6,6 +6,7 @@ vim.g.asynctasks_system = "linux"
 vim.g.asynctasks_extra_config = {
   "~/.config/nvim/utils/tasks.ini"
 }
+vim.g.asyncrun_rootmarks = {'.git', 'Makefile', '_darcs', '.hg', '.bzr', '.svn', 'node_modules', 'CMakeLists.txt'}
 
 -- Mappings
 vim.api.nvim_set_keymap('n', '<Leader>kc', ':let g:asynctasks_term_rows=winheight(0)*10/25 | AsyncTask file-compile<CR>', {noremap = true, silent = true})
@@ -13,3 +14,4 @@ vim.api.nvim_set_keymap('n', '<Leader>kr', ':let g:asynctasks_term_rows=winheigh
 vim.api.nvim_set_keymap('n', '<Leader>ko', ':let g:asynctasks_term_rows=winheight(0)*10/25 | AsyncTask open-repl<CR>', {noremap = true, silent = true})
 vim.api.nvim_set_keymap('n', '<Leader>kt', ':let g:asynctasks_term_rows=winheight(0)*10/25 | AsyncTask terminal<CR>', {noremap = true, silent = true})
 vim.api.nvim_set_keymap('n', '<Leader>kd', ':let g:asynctasks_term_rows=winheight(0)*10/25 | AsyncTask file-debug<CR>', {noremap = true, silent = true})
+vim.api.nvim_set_keymap('n', '<Leader>kb', ':let g:asynctasks_term_rows=winheight(0)*10/25 | AsyncTask project-build<CR>', {noremap = true, silent = true})
