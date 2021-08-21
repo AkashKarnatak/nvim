@@ -43,4 +43,6 @@ return packer.startup(function()
     use 'hoob3rt/lualine.nvim'
     -- Sonokai theme
     use 'sainnhe/sonokai'
+    -- Colorizer
+    use 'norcalli/nvim-colorizer.lua'
 end)
