@@ -81,6 +81,8 @@ vim.api.nvim_set_keymap('t', '<Esc>', '<C-\\><C-n>', {noremap = true})
 -- Map Ctrl-Backspace to delete the previous word in insert mode
 vim.api.nvim_set_keymap('i', '<C-h>', '<C-w>', {noremap = true})
 vim.api.nvim_set_keymap('c', '<C-h>', '<C-w>', {noremap = true})
+vim.api.nvim_set_keymap('i', '<C-Bs>', '<C-w>', {noremap = true})
+vim.api.nvim_set_keymap('c', '<C-Bs>', '<C-w>', {noremap = true})
 
 -- Ctrl p to next item in jumplist
 vim.api.nvim_set_keymap('n', '<C-p>', '<C-i>', {noremap = true, silent=true})
@@ -105,3 +107,8 @@ vim.api.nvim_set_keymap('n', '<Leader>wl', '<C-w>L', {noremap = true, silent=tru
 
 -- Show relative file path of the current opened buffer
 vim.api.nvim_set_keymap('n', '<Leader>aa', [[:echo expand('%ph')<CR>]], {noremap = true, silent=true})
+-- horizontal equivalent of zz
+vim.api.nvim_set_keymap('n', 'ZZ', 'zszH', {noremap = true, silent=true})
+-- Shortcuts for competitive programming
+vim.cmd([[command! LoadCompe execute winwidth(0)/3 . "vsp input.txt|sp output.txt|:norm <C-w>h"]])
+vim.api.nvim_set_keymap('n', '<leader>cc', ':LoadCompe<CR>', {noremap = true, silent=true})

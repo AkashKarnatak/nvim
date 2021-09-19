@@ -8,6 +8,13 @@ vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
   }
 )
 
+vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(
+ vim.lsp.handlers.signature_help, {
+   -- Use a sharp border with `FloatBorder` highlights
+   border = "single"
+ }
+)
+
 vim.fn.sign_define(
     "LspDiagnosticsSignError",
     {texthl = "LspDiagnosticsSignError", text = "", numhl = "LspDiagnosticsSignError"}
@@ -77,6 +84,9 @@ M.on_attach = function(_, bufnr)
   vim.api.nvim_buf_set_keymap(bufnr, 'n', ']d', '<cmd>lua vim.lsp.diagnostic.goto_next()<CR>', opts)
   vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>lo', '<cmd>lua vim.lsp.diagnostic.set_loclist()<CR>', opts)
   vim.api.nvim_buf_set_keymap(bufnr, "n", "<leader>lf", "<cmd>lua vim.lsp.buf.formatting()<CR>", opts)
+  vim.api.nvim_command [[autocmd CursorHold  <buffer> lua vim.lsp.buf.document_highlight()]]
+  vim.api.nvim_command [[autocmd CursorHoldI <buffer> lua vim.lsp.buf.document_highlight()]]
+  vim.api.nvim_command [[autocmd CursorMoved <buffer> lua vim.lsp.buf.clear_references()]]
 end
 
 return M
