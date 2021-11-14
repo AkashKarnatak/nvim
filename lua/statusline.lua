@@ -1,7 +1,7 @@
 vim.o.showmode = false   -- Do not show modes as the bottom like -- INSERT --
 require('lualine').setup{
    options = {
-    disabled_filetypes = {'text'},
+    disabled_filetypes = {'text', 'NvimTree'},
     theme = 'sonokai',
     -- section_separators = {'', ''},
     -- component_separators = {'', ''},

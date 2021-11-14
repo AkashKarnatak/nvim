@@ -26,6 +26,9 @@ require('rooter_')
 require('statusline')
 require('nvim_colorizer_')
 require('LuaSnip_')
+require('nvim_tree_')
+require('dashboard_')
+require('bufferline_')
 
 ------------------- LSP ---------------------
 require('lsp/python-ls')

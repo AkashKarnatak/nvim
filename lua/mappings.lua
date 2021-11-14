@@ -97,7 +97,7 @@ vim.api.nvim_set_keymap('n', 'k', [[(v:count > 1 ? "m'" . v:count : '') . 'k']],
 vim.api.nvim_set_keymap('n', 'j', [[(v:count > 1 ? "m'" . v:count : '') . 'j']], {expr = true, noremap = true, silent = true})
 
 -- Global find and replace
-vim.api.nvim_set_keymap('n', '<Leader>ss', [[(v:count > 0 ? ":\<C-u>.,.+" . v:count : ":%") . 's/\<<C-r><C-w>\>//g<Left><Left>']], {expr = true, noremap = true})
+vim.api.nvim_set_keymap('n', '<Leader>rr', [[(v:count > 0 ? ":\<C-u>.,.+" . v:count : ":%") . 's/\<<C-r><C-w>\>//g<Left><Left>']], {expr = true, noremap = true})
 
 -- Easy window move
 vim.api.nvim_set_keymap('n', '<Leader>wh', '<C-w>H', {noremap = true, silent=true})

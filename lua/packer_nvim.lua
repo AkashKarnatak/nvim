@@ -53,7 +53,13 @@ return packer.startup(function()
     use 'mfussenegger/nvim-dap'
     -- snippets
     use 'L3MON4D3/LuaSnip'
-    use 'rafamadriz/friendly-snippets'
+    use 'AkashKarnatak/friendly-snippets'
+    -- nvim-tree
+    use { 'kyazdani42/nvim-tree.lua', requires = 'kyazdani42/nvim-web-devicons' }
+    -- dashboard
+    use 'glepnir/dashboard-nvim'
+    -- bufferline
+    use {'akinsho/bufferline.nvim', requires = 'kyazdani42/nvim-web-devicons'}
     -- -- Copilot
     -- use 'github/copilot.vim'
     -- -- firenvim
