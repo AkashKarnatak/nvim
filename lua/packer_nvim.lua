@@ -45,4 +45,19 @@ return packer.startup(function()
     use 'sainnhe/sonokai'
     -- Colorizer
     use 'norcalli/nvim-colorizer.lua'
+    -- treesitter textobject
+    use { 'nvim-treesitter/nvim-treesitter-textobjects' }
+    -- treesitter playground
+    use 'nvim-treesitter/playground'
+    -- debugging
+    use 'mfussenegger/nvim-dap'
+    -- snippets
+    use 'L3MON4D3/LuaSnip'
+    use 'rafamadriz/friendly-snippets'
+    -- -- Copilot
+    -- use 'github/copilot.vim'
+    -- -- firenvim
+    -- use { 'glacambre/firenvim', run = function() vim.fn['firenvim#install'](0) end }
+    -- ========= trouble.nvim ============
+    -- ========= nvim-cmp ============
 end)

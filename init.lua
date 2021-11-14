@@ -25,9 +25,12 @@ require('telescope_')
 require('rooter_')
 require('statusline')
 require('nvim_colorizer_')
+require('LuaSnip_')
 
 ------------------- LSP ---------------------
 require('lsp/python-ls')
 require('lsp/cxx-ls')
 require('lsp/lua-ls')
 require('lsp/racket-ls')
+require('lsp/html-ls')
+require('lsp/css-ls')
