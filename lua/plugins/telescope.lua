@@ -29,7 +29,8 @@ require('telescope').setup {
           ["<C-k>"] = actions.move_selection_previous,
           [";;"] = actions.close,
       }
-    }
+    },
+		file_ignore_patterns = {"node_modules", ".git"}
   }
 }
 

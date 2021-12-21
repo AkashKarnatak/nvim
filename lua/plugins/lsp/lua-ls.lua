@@ -33,6 +33,6 @@ require'lspconfig'.sumneko_lua.setup {
     },
   },
   on_attach = function(_, bufnr)
-    require'lsp'.on_attach(_, bufnr)
+    require'plugins.lsp'.on_attach(_, bufnr)
   end
 }

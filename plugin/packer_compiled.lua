@@ -44,8 +44,8 @@ local function save_profiles(threshold)
 end
 
 time([[Luarocks path setup]], true)
-local package_path_str = "/home/akash/.cache/nvim/packer_hererocks/2.0.5/share/lua/5.1/?.lua;/home/akash/.cache/nvim/packer_hererocks/2.0.5/share/lua/5.1/?/init.lua;/home/akash/.cache/nvim/packer_hererocks/2.0.5/lib/luarocks/rocks-5.1/?.lua;/home/akash/.cache/nvim/packer_hererocks/2.0.5/lib/luarocks/rocks-5.1/?/init.lua"
-local install_cpath_pattern = "/home/akash/.cache/nvim/packer_hererocks/2.0.5/lib/lua/5.1/?.so"
+local package_path_str = "/home/akash/.cache/nvim/packer_hererocks/2.1.0-beta3/share/lua/5.1/?.lua;/home/akash/.cache/nvim/packer_hererocks/2.1.0-beta3/share/lua/5.1/?/init.lua;/home/akash/.cache/nvim/packer_hererocks/2.1.0-beta3/lib/luarocks/rocks-5.1/?.lua;/home/akash/.cache/nvim/packer_hererocks/2.1.0-beta3/lib/luarocks/rocks-5.1/?/init.lua"
+local install_cpath_pattern = "/home/akash/.cache/nvim/packer_hererocks/2.1.0-beta3/lib/lua/5.1/?.so"
 if not string.find(package.path, package_path_str, 1, true) then
   package.path = package.path .. ';' .. package_path_str
 end
@@ -57,7 +57,7 @@ end
 time([[Luarocks path setup]], false)
 time([[try_loadstring definition]], true)
 local function try_loadstring(s, component, name)
-  local success, result = pcall(loadstring(s))
+  local success, result = pcall(loadstring(s), name, _G.packer_plugins[name])
   if not success then
     vim.schedule(function()
       vim.api.nvim_notify('packer.nvim: Error running ' .. component .. ' for ' .. name .. ': ' .. result, vim.log.levels.ERROR, {})
@@ -70,111 +70,259 @@ time([[try_loadstring definition]], false)
 time([[Defining packer_plugins]], true)
 _G.packer_plugins = {
   ["asyncrun.vim"] = {
-    loaded = true,
-    path = "/home/akash/.local/share/nvim/site/pack/packer/start/asyncrun.vim"
+    commands = { "AsyncTask" },
+    loaded = false,
+    needs_bufread = false,
+    only_cond = false,
+    path = "/home/akash/.local/share/nvim/site/pack/packer/opt/asyncrun.vim",
+    url = "https://github.com/skywind3000/asyncrun.vim"
   },
   ["asynctasks.vim"] = {
-    loaded = true,
-    path = "/home/akash/.local/share/nvim/site/pack/packer/start/asynctasks.vim"
+    commands = { "AsyncTask" },
+    config = { "\27LJ\2\n2\0\0\3\0\2\0\0046\0\0\0'\2\1\0B\0\2\1K\0\1\0\23plugins.asynctasks\frequire\0" },
+    loaded = false,
+    needs_bufread = false,
+    only_cond = false,
+    path = "/home/akash/.local/share/nvim/site/pack/packer/opt/asynctasks.vim",
+    url = "https://github.com/skywind3000/asynctasks.vim"
+  },
+  ["doom-one.nvim"] = {
+    after = { "nvim-bufferline.lua" },
+    config = { "\27LJ\2\n0\0\0\3\0\2\0\0046\0\0\0'\2\1\0B\0\2\1K\0\1\0\21plugins.doom-one\frequire\0" },
+    load_after = {
+      ["packer.nvim"] = true
+    },
+    loaded = false,
+    needs_bufread = false,
+    path = "/home/akash/.local/share/nvim/site/pack/packer/opt/doom-one.nvim",
+    url = "https://github.com/NTBBloodbath/doom-one.nvim"
+  },
+  ["galaxyline.nvim"] = {
+    config = { "\27LJ\2\n2\0\0\3\0\2\0\0046\0\0\0'\2\1\0B\0\2\1K\0\1\0\23plugins.galaxyline\frequire\0" },
+    load_after = {
+      ["nvim-web-devicons"] = true
+    },
+    loaded = false,
+    needs_bufread = false,
+    path = "/home/akash/.local/share/nvim/site/pack/packer/opt/galaxyline.nvim",
+    url = "https://github.com/NTBBloodbath/galaxyline.nvim"
   },
   ["gitsigns.nvim"] = {
-    loaded = true,
-    path = "/home/akash/.local/share/nvim/site/pack/packer/start/gitsigns.nvim"
-  },
-  ["lualine.nvim"] = {
-    loaded = true,
-    path = "/home/akash/.local/share/nvim/site/pack/packer/start/lualine.nvim"
+    config = { "\27LJ\2\n0\0\0\3\0\2\0\0046\0\0\0'\2\1\0B\0\2\1K\0\1\0\21plugins.gitsigns\frequire\0" },
+    load_after = {
+      ["plenary.nvim"] = true
+    },
+    loaded = false,
+    needs_bufread = false,
+    path = "/home/akash/.local/share/nvim/site/pack/packer/opt/gitsigns.nvim",
+    url = "https://github.com/lewis6991/gitsigns.nvim"
   },
   ["markdown-preview.nvim"] = {
     loaded = false,
     needs_bufread = false,
-    path = "/home/akash/.local/share/nvim/site/pack/packer/opt/markdown-preview.nvim"
+    only_cond = false,
+    path = "/home/akash/.local/share/nvim/site/pack/packer/opt/markdown-preview.nvim",
+    url = "https://github.com/iamcco/markdown-preview.nvim"
   },
   ["nvim-autopairs"] = {
-    loaded = true,
-    path = "/home/akash/.local/share/nvim/site/pack/packer/start/nvim-autopairs"
+    config = { "\27LJ\2\n1\0\0\3\0\2\0\0046\0\0\0'\2\1\0B\0\2\1K\0\1\0\22plugins.autopairs\frequire\0" },
+    load_after = {
+      ["nvim-compe"] = true
+    },
+    loaded = false,
+    needs_bufread = false,
+    path = "/home/akash/.local/share/nvim/site/pack/packer/opt/nvim-autopairs",
+    url = "https://github.com/windwp/nvim-autopairs"
+  },
+  ["nvim-bufferline.lua"] = {
+    config = { "\27LJ\2\n2\0\0\3\0\2\0\0046\0\0\0'\2\1\0B\0\2\1K\0\1\0\23plugins.bufferline\frequire\0" },
+    load_after = {
+      ["doom-one.nvim"] = true
+    },
+    loaded = false,
+    needs_bufread = false,
+    path = "/home/akash/.local/share/nvim/site/pack/packer/opt/nvim-bufferline.lua",
+    url = "https://github.com/akinsho/nvim-bufferline.lua"
   },
   ["nvim-colorizer.lua"] = {
-    loaded = true,
-    path = "/home/akash/.local/share/nvim/site/pack/packer/start/nvim-colorizer.lua"
+    commands = { "ColorizerToggle" },
+    config = { "\27LJ\2\n6\0\0\3\0\2\0\0046\0\0\0'\2\1\0B\0\2\1K\0\1\0\27plugins.nvim_colorizer\frequire\0" },
+    loaded = false,
+    needs_bufread = false,
+    only_cond = false,
+    path = "/home/akash/.local/share/nvim/site/pack/packer/opt/nvim-colorizer.lua",
+    url = "https://github.com/norcalli/nvim-colorizer.lua"
   },
   ["nvim-compe"] = {
-    loaded = true,
-    path = "/home/akash/.local/share/nvim/site/pack/packer/start/nvim-compe"
+    after = { "nvim-autopairs" },
+    after_files = { "/home/akash/.local/share/nvim/site/pack/packer/opt/nvim-compe/after/plugin/compe.vim" },
+    config = { "\27LJ\2\n2\0\0\3\0\2\0\0046\0\0\0'\2\1\0B\0\2\1K\0\1\0\23plugins.nvim_compe\frequire\0" },
+    loaded = false,
+    needs_bufread = false,
+    only_cond = false,
+    path = "/home/akash/.local/share/nvim/site/pack/packer/opt/nvim-compe",
+    url = "https://github.com/hrsh7th/nvim-compe"
   },
   ["nvim-lspconfig"] = {
-    loaded = true,
-    path = "/home/akash/.local/share/nvim/site/pack/packer/start/nvim-lspconfig"
+    config = { "\27LJ\2\n‘\2\0\0\3\0\r\0 6\0\0\0'\2\1\0B\0\2\0016\0\0\0'\2\2\0B\0\2\0016\0\0\0'\2\3\0B\0\2\0016\0\0\0'\2\4\0B\0\2\0016\0\0\0'\2\5\0B\0\2\0016\0\0\0'\2\6\0B\0\2\0016\0\0\0'\2\a\0B\0\2\0016\0\0\0'\2\b\0B\0\2\0016\0\0\0'\2\t\0B\0\2\0016\0\n\0009\0\v\0'\2\f\0B\0\2\1K\0\1\0\rLspStart\bcmd\bvim\25plugins.lsp.emmet-ls\30plugins.lsp.javascript-ls\23plugins.lsp.css-ls\24plugins.lsp.html-ls\26plugins.lsp.racket-ls\23plugins.lsp.lua-ls\23plugins.lsp.cxx-ls\26plugins.lsp.python-ls\16plugins.lsp\frequire\0" },
+    loaded = false,
+    needs_bufread = false,
+    only_cond = false,
+    path = "/home/akash/.local/share/nvim/site/pack/packer/opt/nvim-lspconfig",
+    url = "https://github.com/neovim/nvim-lspconfig"
+  },
+  ["nvim-tree.lua"] = {
+    commands = { "NvimTreeToggle" },
+    config = { "\27LJ\2\n1\0\0\3\0\2\0\0046\0\0\0'\2\1\0B\0\2\1K\0\1\0\22plugins.nvim_tree\frequire\0" },
+    loaded = false,
+    needs_bufread = false,
+    only_cond = false,
+    path = "/home/akash/.local/share/nvim/site/pack/packer/opt/nvim-tree.lua",
+    url = "https://github.com/kyazdani42/nvim-tree.lua"
   },
   ["nvim-treesitter"] = {
-    loaded = true,
-    path = "/home/akash/.local/share/nvim/site/pack/packer/start/nvim-treesitter"
+    after = { "playground", "nvim-treesitter-textobjects" },
+    config = { "\27LJ\2\n2\0\0\3\0\2\0\0046\0\0\0'\2\1\0B\0\2\1K\0\1\0\23plugins.treesitter\frequire\0" },
+    loaded = false,
+    needs_bufread = true,
+    only_cond = false,
+    path = "/home/akash/.local/share/nvim/site/pack/packer/opt/nvim-treesitter",
+    url = "https://github.com/nvim-treesitter/nvim-treesitter"
   },
   ["nvim-treesitter-textobjects"] = {
-    loaded = true,
-    path = "/home/akash/.local/share/nvim/site/pack/packer/start/nvim-treesitter-textobjects"
+    config = { "\27LJ\2\nC\0\0\3\0\2\0\0046\0\0\0'\2\1\0B\0\2\1K\0\1\0(plugins.nvim_treesitter_textobjects\frequire\0" },
+    load_after = {
+      ["nvim-treesitter"] = true
+    },
+    loaded = false,
+    needs_bufread = false,
+    path = "/home/akash/.local/share/nvim/site/pack/packer/opt/nvim-treesitter-textobjects",
+    url = "https://github.com/nvim-treesitter/nvim-treesitter-textobjects"
   },
   ["nvim-web-devicons"] = {
-    loaded = true,
-    path = "/home/akash/.local/share/nvim/site/pack/packer/start/nvim-web-devicons"
+    after = { "galaxyline.nvim" },
+    load_after = {
+      ["packer.nvim"] = true
+    },
+    loaded = false,
+    needs_bufread = false,
+    path = "/home/akash/.local/share/nvim/site/pack/packer/opt/nvim-web-devicons",
+    url = "https://github.com/kyazdani42/nvim-web-devicons"
   },
   ["packer.nvim"] = {
-    loaded = true,
-    path = "/home/akash/.local/share/nvim/site/pack/packer/start/packer.nvim"
+    after = { "nvim-web-devicons", "vim-commentary", "replacewithregister", "vim-indent-object", "vim-repeat", "doom-one.nvim", "vim-surround", "rooter.nvim" },
+    loaded = false,
+    needs_bufread = false,
+    only_cond = false,
+    path = "/home/akash/.local/share/nvim/site/pack/packer/opt/packer.nvim",
+    url = "https://github.com/wbthomason/packer.nvim"
   },
   playground = {
-    loaded = true,
-    path = "/home/akash/.local/share/nvim/site/pack/packer/start/playground"
+    config = { "\27LJ\2\nB\0\0\3\0\2\0\0046\0\0\0'\2\1\0B\0\2\1K\0\1\0'plugins.nvim_treesitter_playground\frequire\0" },
+    load_after = {
+      ["nvim-treesitter"] = true
+    },
+    loaded = false,
+    needs_bufread = true,
+    path = "/home/akash/.local/share/nvim/site/pack/packer/opt/playground",
+    url = "https://github.com/nvim-treesitter/playground"
   },
   ["plenary.nvim"] = {
-    loaded = true,
-    path = "/home/akash/.local/share/nvim/site/pack/packer/start/plenary.nvim"
-  },
-  ["popup.nvim"] = {
-    loaded = true,
-    path = "/home/akash/.local/share/nvim/site/pack/packer/start/popup.nvim"
+    after = { "gitsigns.nvim" },
+    loaded = false,
+    needs_bufread = false,
+    only_cond = false,
+    path = "/home/akash/.local/share/nvim/site/pack/packer/opt/plenary.nvim",
+    url = "https://github.com/nvim-lua/plenary.nvim"
   },
   replacewithregister = {
-    loaded = true,
-    path = "/home/akash/.local/share/nvim/site/pack/packer/start/replacewithregister"
+    load_after = {
+      ["packer.nvim"] = true
+    },
+    loaded = false,
+    needs_bufread = false,
+    path = "/home/akash/.local/share/nvim/site/pack/packer/opt/replacewithregister",
+    url = "https://github.com/AkashKarnatak/replacewithregister"
   },
   ["rooter.nvim"] = {
-    loaded = true,
-    path = "/home/akash/.local/share/nvim/site/pack/packer/start/rooter.nvim"
-  },
-  sonokai = {
-    loaded = true,
-    path = "/home/akash/.local/share/nvim/site/pack/packer/start/sonokai"
+    config = { "\27LJ\2\n.\0\0\3\0\2\0\0046\0\0\0'\2\1\0B\0\2\1K\0\1\0\19plugins.rooter\frequire\0" },
+    load_after = {
+      ["packer.nvim"] = true
+    },
+    loaded = false,
+    needs_bufread = false,
+    path = "/home/akash/.local/share/nvim/site/pack/packer/opt/rooter.nvim",
+    url = "https://github.com/ygm2/rooter.nvim"
   },
   ["telescope.nvim"] = {
-    loaded = true,
-    path = "/home/akash/.local/share/nvim/site/pack/packer/start/telescope.nvim"
+    commands = { "Telescope" },
+    config = { "\27LJ\2\n1\0\0\3\0\2\0\0046\0\0\0'\2\1\0B\0\2\1K\0\1\0\22plugins.telescope\frequire\0" },
+    loaded = false,
+    needs_bufread = true,
+    only_cond = false,
+    path = "/home/akash/.local/share/nvim/site/pack/packer/opt/telescope.nvim",
+    url = "https://github.com/nvim-telescope/telescope.nvim"
   },
   ["vim-commentary"] = {
-    loaded = true,
-    path = "/home/akash/.local/share/nvim/site/pack/packer/start/vim-commentary"
+    load_after = {
+      ["packer.nvim"] = true
+    },
+    loaded = false,
+    needs_bufread = false,
+    path = "/home/akash/.local/share/nvim/site/pack/packer/opt/vim-commentary",
+    url = "https://github.com/tpope/vim-commentary"
   },
   ["vim-indent-object"] = {
-    loaded = true,
-    path = "/home/akash/.local/share/nvim/site/pack/packer/start/vim-indent-object"
+    load_after = {
+      ["packer.nvim"] = true
+    },
+    loaded = false,
+    needs_bufread = false,
+    path = "/home/akash/.local/share/nvim/site/pack/packer/opt/vim-indent-object",
+    url = "https://github.com/michaeljsmith/vim-indent-object"
   },
   ["vim-repeat"] = {
-    loaded = true,
-    path = "/home/akash/.local/share/nvim/site/pack/packer/start/vim-repeat"
+    load_after = {
+      ["packer.nvim"] = true
+    },
+    loaded = false,
+    needs_bufread = false,
+    path = "/home/akash/.local/share/nvim/site/pack/packer/opt/vim-repeat",
+    url = "https://github.com/tpope/vim-repeat"
   },
   ["vim-surround"] = {
-    loaded = true,
-    path = "/home/akash/.local/share/nvim/site/pack/packer/start/vim-surround"
+    load_after = {
+      ["packer.nvim"] = true
+    },
+    loaded = false,
+    needs_bufread = false,
+    path = "/home/akash/.local/share/nvim/site/pack/packer/opt/vim-surround",
+    url = "https://github.com/tpope/vim-surround"
   }
 }
 
 time([[Defining packer_plugins]], false)
+
+-- Command lazy-loads
+time([[Defining lazy-load commands]], true)
+pcall(vim.cmd, [[command -nargs=* -range -bang -complete=file AsyncTask lua require("packer.load")({'asyncrun.vim', 'asynctasks.vim'}, { cmd = "AsyncTask", l1 = <line1>, l2 = <line2>, bang = <q-bang>, args = <q-args>, mods = "<mods>" }, _G.packer_plugins)]])
+pcall(vim.cmd, [[command -nargs=* -range -bang -complete=file ColorizerToggle lua require("packer.load")({'nvim-colorizer.lua'}, { cmd = "ColorizerToggle", l1 = <line1>, l2 = <line2>, bang = <q-bang>, args = <q-args>, mods = "<mods>" }, _G.packer_plugins)]])
+pcall(vim.cmd, [[command -nargs=* -range -bang -complete=file NvimTreeToggle lua require("packer.load")({'nvim-tree.lua'}, { cmd = "NvimTreeToggle", l1 = <line1>, l2 = <line2>, bang = <q-bang>, args = <q-args>, mods = "<mods>" }, _G.packer_plugins)]])
+pcall(vim.cmd, [[command -nargs=* -range -bang -complete=file Telescope lua require("packer.load")({'telescope.nvim'}, { cmd = "Telescope", l1 = <line1>, l2 = <line2>, bang = <q-bang>, args = <q-args>, mods = "<mods>" }, _G.packer_plugins)]])
+time([[Defining lazy-load commands]], false)
+
 vim.cmd [[augroup packer_load_aucmds]]
 vim.cmd [[au!]]
   -- Filetype lazy-loads
 time([[Defining lazy-load filetype autocommands]], true)
 vim.cmd [[au FileType markdown ++once lua require("packer.load")({'markdown-preview.nvim'}, { ft = "markdown" }, _G.packer_plugins)]]
 time([[Defining lazy-load filetype autocommands]], false)
+  -- Event lazy-loads
+time([[Defining lazy-load event autocommands]], true)
+vim.cmd [[au BufRead * ++once lua require("packer.load")({'nvim-treesitter', 'plenary.nvim', 'nvim-lspconfig'}, { event = "BufRead *" }, _G.packer_plugins)]]
+vim.cmd [[au InsertEnter * ++once lua require("packer.load")({'nvim-compe'}, { event = "InsertEnter *" }, _G.packer_plugins)]]
+vim.cmd [[au VimEnter * ++once lua require("packer.load")({'packer.nvim'}, { event = "VimEnter *" }, _G.packer_plugins)]]
+time([[Defining lazy-load event autocommands]], false)
 vim.cmd("augroup END")
 if should_profile then save_profiles() end
 

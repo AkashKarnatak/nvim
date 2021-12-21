@@ -112,3 +112,25 @@ vim.api.nvim_set_keymap('n', 'ZZ', 'zszH', {noremap = true, silent=true})
 -- Shortcuts for competitive programming
 vim.cmd([[command! LoadCompe execute winwidth(0)/3 . "vsp input.txt|sp output.txt|:norm <C-w>h"]])
 vim.api.nvim_set_keymap('n', '<leader>cc', ':LoadCompe<CR>', {noremap = true, silent=true})
+vim.api.nvim_set_keymap('n', 'Q', ':bp<bar>sp<bar>bn<bar>bd<CR>', {noremap = true, silent=true})
+
+-- Telescope
+vim.api.nvim_set_keymap('n', '<Leader>ff', ':Telescope find_files no_ignore=true <CR>', {noremap = true, silent = true})
+vim.api.nvim_set_keymap('n', '<Leader>fo', ':Telescope oldfiles no_ignore=true <CR>', {noremap = true, silent = true})
+vim.api.nvim_set_keymap('n', '<Leader>fw', ':Telescope live_grep no_ignore=true <CR>', {noremap = true, silent = true})
+vim.api.nvim_set_keymap('n', '<Leader>fm', ':Telescope marks no_ignore=true <CR>', {noremap = true, silent = true})
+vim.api.nvim_set_keymap('n', '<Leader>fr', ':Telescope file_browser no_ignore=true <CR>', {noremap = true, silent = true})
+vim.api.nvim_set_keymap('n', '<Leader>fc', ':Telescope current_buffer_fuzzy_find no_ignore=true <CR>', {noremap = true, silent = true})
+
+-- Asynctasks
+vim.api.nvim_set_keymap('n', '<Leader>kc', ':let g:asynctasks_term_rows=winheight(0)*10/25 | AsyncTask file-compile<CR>', {noremap = true, silent = true})
+vim.api.nvim_set_keymap('n', '<Leader>kr', ':let g:asynctasks_term_rows=winheight(0)*10/25 | AsyncTask file-run<CR>', {noremap = true, silent = true})
+vim.api.nvim_set_keymap('n', '<Leader>ko', ':let g:asynctasks_term_rows=winheight(0)*10/25 | AsyncTask open-repl<CR>', {noremap = true, silent = true})
+vim.api.nvim_set_keymap('n', '<Leader>kt', ':let g:asynctasks_term_rows=winheight(0)*10/25 | AsyncTask terminal<CR>', {noremap = true, silent = true})
+vim.api.nvim_set_keymap('n', '<Leader>kd', ':let g:asynctasks_term_rows=winheight(0)*10/25 | AsyncTask file-debug<CR>', {noremap = true, silent = true})
+vim.api.nvim_set_keymap('n', '<Leader>kb', ':let g:asynctasks_term_rows=winheight(0)*10/25 | AsyncTask project-build<CR>', {noremap = true, silent = true})
+vim.api.nvim_set_keymap('n', '<Leader>kk', ':let g:asynctasks_term_rows=winheight(0)*10/25 | AsyncTask manim<CR>', {noremap = true, silent = true})
+
+-- Nvim_tree
+vim.api.nvim_set_keymap('n', '<leader>nn', ':NvimTreeToggle<CR>', {noremap = true, silent=true})
+vim.api.nvim_set_keymap('n', '<leader>nr', ':NvimTreeRefresh<CR>', {noremap = true, silent=true})

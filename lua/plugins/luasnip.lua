@@ -24,6 +24,8 @@ end
 _G.tab_complete = function()
     if luasnip and luasnip.expand_or_jumpable() then
         return t("<Plug>luasnip-expand-or-jump")
+    elseif vim.fn.pumvisible() == 1 then
+        return t "<C-j><CR>"
     elseif check_back_space() then
         return t "<Tab>"
     else
@@ -35,6 +37,8 @@ end
 _G.s_tab_complete = function()
     if luasnip and luasnip.jumpable(-1) then
         return t("<Plug>luasnip-jump-prev")
+    elseif vim.fn.pumvisible() == 1 then
+        return t "<C-k><CR>"
     else
         return t "<S-Tab>"
     end

@@ -58,6 +58,7 @@ require'nvim-tree'.setup {
   hijack_netrw        = true,
   open_on_setup       = false,
   ignore_ft_on_setup  = {},
+  ignore = { ".git", "node_modules", ".cache" },
   auto_close          = true,
   open_on_tab         = false,
   hijack_cursor       = false,
@@ -85,7 +86,7 @@ require'nvim-tree'.setup {
     args = {}
   },
   filters = {
-    dotfiles = true,
+    dotfiles = false,
     custom = {}
   },
   view = {
@@ -102,3 +103,4 @@ require'nvim-tree'.setup {
 }
 
 vim.api.nvim_set_keymap('n', '<leader>nn', ':NvimTreeToggle<CR>', {noremap = true, silent=true})
+vim.api.nvim_set_keymap('n', '<leader>nr', ':NvimTreeRefresh<CR>', {noremap = true, silent=true})
