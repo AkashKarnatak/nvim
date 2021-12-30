@@ -114,6 +114,9 @@ vim.cmd([[command! LoadCompe execute winwidth(0)/3 . "vsp input.txt|sp output.tx
 vim.api.nvim_set_keymap('n', '<leader>cc', ':LoadCompe<CR>', {noremap = true, silent=true})
 vim.api.nvim_set_keymap('n', 'Q', ':bp<bar>sp<bar>bn<bar>bd<CR>', {noremap = true, silent=true})
 
+vim.api.nvim_set_keymap('v', '<C-j>', [[:m '>+1<CR>gv=gv]], {noremap = true, silent=true})
+vim.api.nvim_set_keymap('v', '<C-k>', [[:m '<-2<CR>gv=gv]], {noremap = true, silent=true})
+
 -- Telescope
 vim.api.nvim_set_keymap('n', '<Leader>ff', ':Telescope find_files no_ignore=true <CR>', {noremap = true, silent = true})
 vim.api.nvim_set_keymap('n', '<Leader>fo', ':Telescope oldfiles no_ignore=true <CR>', {noremap = true, silent = true})

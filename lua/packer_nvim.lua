@@ -47,35 +47,54 @@ return packer.startup(function()
         require "plugins.treesitter"
       end
     }
-    -- LSP
+    -- Autocompletion and LSP
+    use {
+      "hrsh7th/cmp-nvim-lsp",
+      event = "BufRead"
+    }
     use {
       "neovim/nvim-lspconfig",
-      event = "BufRead",
+      after = "cmp-nvim-lsp",
       config = function()
-        require "plugins.lsp"
-        require('plugins.lsp.python-ls')
-        require('plugins.lsp.cxx-ls')
-        require('plugins.lsp.lua-ls')
-        require('plugins.lsp.racket-ls')
-        require('plugins.lsp.html-ls')
-        require('plugins.lsp.css-ls')
-        require('plugins.lsp.javascript-ls')
-        require('plugins.lsp.emmet-ls')
-        vim.cmd([[LspStart]])
+        require "plugins.lspconfig"
       end
     }
-    -- Autocompletion
     use {
-      "hrsh7th/nvim-compe",
-      event = "InsertEnter",
-      config = function()
-        require "plugins.nvim_compe"
-      end,
+      "AkashKarnatak/friendly-snippets",
+      after = "packer.nvim"
     }
+    use {
+      "L3MON4D3/LuaSnip",
+      after = "friendly-snippets"
+    }
+    use {
+      "saadparwaiz1/cmp_luasnip",
+      after = "LuaSnip"
+    }
+    use {
+      "hrsh7th/nvim-cmp",
+      after = "LuaSnip",
+      config = function()
+        require "plugins.nvim_cmp"
+      end
+    }
+    use {
+      "hrsh7th/cmp-buffer",
+      after = "nvim-cmp"
+    }
+    use {
+      "hrsh7th/cmp-path",
+      after = "cmp-buffer"
+    }
+    use {
+      "hrsh7th/cmp-cmdline",
+      after = "cmp-path"
+    }
+
     -- Bracket completion
     use {
       "windwp/nvim-autopairs",
-      after = "nvim-compe",
+      after = "nvim-cmp",
       config = function()
         require "plugins.autopairs"
       end
@@ -95,7 +114,7 @@ return packer.startup(function()
     -- Git integration
     use {
       "nvim-lua/plenary.nvim",
-      event = "BufRead"
+      after = "packer.nvim",
     }
     use {
       "lewis6991/gitsigns.nvim",
@@ -163,7 +182,7 @@ return packer.startup(function()
       "NTBBloodbath/galaxyline.nvim",
       after = "nvim-web-devicons",
       config = function()
-        require('plugins.galaxyline')
+        require("plugins.eviline")
       end,
     })
 
@@ -171,6 +190,9 @@ return packer.startup(function()
     use {
       "kyazdani42/nvim-web-devicons",
       after = "packer.nvim",
+      config = function()
+        require("plugins.webdevicons")
+      end,
     }
     -- Colorizer
     use {
@@ -199,9 +221,6 @@ return packer.startup(function()
 
     -- debugging
     -- use 'mfussenegger/nvim-dap'
-    -- snippets
-    -- use 'L3MON4D3/LuaSnip'
-    -- use 'AkashKarnatak/friendly-snippets'
 
     -- nvim-tree
     use {
@@ -212,14 +231,29 @@ return packer.startup(function()
       end
     }
 
-    -- -- dashboard
-    -- use {
-    --   "glepnir/dashboard-nvim",
-    --   cmd = "Dashboard",
-    --   config = function()
-    --     require("plugins.dashboard")
-    --   end
-    -- }
+    -- dashboard
+    use {
+      "glepnir/dashboard-nvim",
+      cmd = {
+        "Dashboard",
+        "DashboardNewFile",
+        "DashboardJumpMarks",
+        "SessionLoad",
+        "SessionSave"
+      },
+      config = function()
+        require("plugins.dashboard")
+      end
+    }
+
+    use {
+      "ray-x/lsp_signature.nvim",
+      after = "nvim-cmp",
+      config = function()
+        require("plugins.lsp_signature")
+      end
+    }
+
 
     -- -- Copilot
     -- use 'github/copilot.vim'
