@@ -106,7 +106,7 @@ return packer.startup(function()
     }
     use {
       "skywind3000/asynctasks.vim",
-      cmd = "AsyncTask",
+      after = "asyncrun.vim",
       config = function()
         require "plugins.asynctasks"
       end
