@@ -26,3 +26,5 @@ vim.cmd([[command! FilePath execute "echo expand('%:p')"]])     -- Display absol
 
 -- Jump cursor to the line where last exited nvim
 vim.cmd([[ autocmd BufReadPost * if line("'\"") >= 1 && line("'\"") <= line("$") && &ft !~# 'commit' | exe "normal! g`\"" | endif ]])
+-- Do not add terminal to buffer list
+vim.cmd([[ autocmd TermOpen * set nobuflisted]])

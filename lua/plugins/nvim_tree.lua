@@ -51,6 +51,8 @@ vim.g.nvim_tree_icons = {
    },
 }
 
+vim.g.nvim_tree_disable_window_picker = 1
+
 -- following options are the default
 -- each of these are documented in `:help nvim-tree.OPTION_NAME`
 require'nvim-tree'.setup {

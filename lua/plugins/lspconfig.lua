@@ -19,6 +19,18 @@ lspSymbol("Hint", "")
 -- lspSymbol("Warn", "")
 vim.fn.sign_define("DiagnosticSignWarn", { text = "", numhl = "DiagnosticVirtualTextWarn", texthl = "DiagnosticVirtualTextWarn" })
 
+vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(
+ vim.lsp.handlers.hover, {
+   border = {"╭", "─", "╮", "│", "╯", "─", "╰", "│"}
+ }
+)
+
+vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(
+ vim.lsp.handlers.signature_help, {
+   border = {"╭", "─", "╮", "│", "╯", "─", "╰", "│"}
+ }
+)
+
 local on_attach = function(_, bufnr)
   local opts = { noremap=true, silent=true }
   vim.api.nvim_buf_set_keymap(bufnr, 'n', 'gD', '<Cmd>lua vim.lsp.buf.declaration()<CR>', opts)
