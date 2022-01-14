@@ -10,6 +10,11 @@ gl.short_line_list = {
   "NvimTree",
   "packer",
   "netrw",
+	"dapui_scopes",
+	"dapui_breakpoints",
+	"dapui_stacks",
+	"dapui_watches",
+	"dap-repl",
 }
 
 local function is_not_dashboard()

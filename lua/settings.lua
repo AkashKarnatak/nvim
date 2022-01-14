@@ -28,3 +28,4 @@ vim.cmd([[command! FilePath execute "echo expand('%:p')"]])     -- Display absol
 vim.cmd([[ autocmd BufReadPost * if line("'\"") >= 1 && line("'\"") <= line("$") && &ft !~# 'commit' | exe "normal! g`\"" | endif ]])
 -- Do not add terminal to buffer list
 vim.cmd([[ autocmd TermOpen * set nobuflisted]])
+vim.cmd([[ autocmd FileType dap-repl set nobuflisted]])

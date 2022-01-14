@@ -254,6 +254,22 @@ return packer.startup(function()
       end
     }
 
+    use {
+      "mfussenegger/nvim-dap",
+			keys = {
+				{'n', '<M-x>'},
+				{'n', '<leader>dc'},
+				{'n', '<leader>dl'},
+			},
+    }
+
+    use {
+      "rcarriga/nvim-dap-ui",
+			after = "nvim-dap",
+      config = function()
+        require("plugins.nvim_dap")
+      end
+    }
 
     -- -- Copilot
     -- use 'github/copilot.vim'
