@@ -6,7 +6,20 @@ nvim_treesitter_configs.setup {
     enable = true,              -- false will disable the whole extension
     -- disable = { "c", "rust" },  -- list of language that will be disabled
   },
-  -- indent = {
-  --   enable = true,
-  -- }
+  indent = {
+    enable = true,
+		disable = {
+			"c",
+			"cpp",
+			"yaml",
+      "lua"
+		}
+  },
+	autopairs = {
+		enable = true
+	},
+  context_commentstring = {
+    enable = true,
+    enable_autocmd = false,
+  }
 }

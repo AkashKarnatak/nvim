@@ -36,6 +36,8 @@ end
 bufferline.setup {
    options = {
       offsets = { { filetype = "NvimTree", text = "", padding = 1 } },
+			close_command = "Bdelete! %d",
+			right_mouse_command = "Bdelete! %d",
       buffer_close_icon = "",
       modified_icon = "",
       -- close_icon = "%@NvChad_bufferline_quitvim@%X",

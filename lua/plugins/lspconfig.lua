@@ -60,7 +60,7 @@ end
 local nvim_lsp = require('lspconfig')
 local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
 
--- Language servers
+------------------------ LANGUAGE SERVERS -------------------------
 local servers = { 'clangd', 'pyright', 'tsserver', 'racket_langserver', 'cssls', 'html'}
 for _, lsp in ipairs(servers) do
   nvim_lsp[lsp].setup {
@@ -69,7 +69,7 @@ for _, lsp in ipairs(servers) do
 	}
 end
 
--- Lua
+------------------------------- LUA -------------------------------
 local system_name = "Linux"
 -- set the path to the sumneko installation; if you previously installed via the now deprecated :LspInstall, use
 -- TODO: automate the path
@@ -106,23 +106,7 @@ require'lspconfig'.sumneko_lua.setup {
 	capabilities = capabilities
 }
 
--- Emmet
--- local lspconfig = require("lspconfig")
--- local configs = require("lspconfig/configs")
-
--- if not lspconfig.emmet_ls then
---   configs.emmet_ls = {
---     default_config = {
---       cmd = {'emmet-ls', '--stdio'};
---       filetypes = {'html', 'css', 'blade'};
---       root_dir = function(_)
---         return vim.loop.cwd()
---       end;
---       settings = {};
---     };
---   }
--- end
-
+----------------------------- EMMET -------------------------------
 local lspconfig = require'lspconfig'
 local configs = require'lspconfig.configs'
 
@@ -130,7 +114,7 @@ if not configs.ls_emmet then
   configs.ls_emmet = {
     default_config = {
       cmd = { 'ls_emmet', '--stdio' };
-      filetypes = { 'html', 'css', 'scss', 'haml',
+      filetypes = { 'html', 'css', 'scss', 'javascript', 'javascriptreact', 'typescript', 'typescriptreact', 'haml',
         'xml', 'xsl', 'pug', 'slim', 'sass', 'stylus', 'less', 'sss'};
       root_dir = function(_)
         return vim.loop.cwd()
@@ -142,10 +126,10 @@ end
 
 lspconfig.ls_emmet.setup{
   capabilities = capabilities;
+
   on_attach = function(_, bufnr)
 		local luasnip = require("luasnip")
 		local cmp = require'cmp'
-
 		--- Wraps nvim_replace_termcodes
 		--- @param str string
 		--- @return string
@@ -158,7 +142,6 @@ lspconfig.ls_emmet.setup{
 			local col = vim.fn.col(".") - 1
 			return col == 0 or vim.fn.getline("."):sub(col, col):match("%s")
 		end
-
 		local icons = {
 			Text = "",
 			Method = "",
@@ -186,7 +169,6 @@ lspconfig.ls_emmet.setup{
 			Operator = "",
 			TypeParameter = "",
 		}
-
 		cmp.setup {
 			completion = {
 				keyword_length = 1;
@@ -269,4 +251,5 @@ lspconfig.ls_emmet.setup{
     vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>lo', '<cmd>lua vim.lsp.diagnostic.set_loclist()<CR>', opts)
     vim.api.nvim_buf_set_keymap(bufnr, "n", "<leader>lf", "<cmd>lua vim.lsp.buf.formatting()<CR>", opts)
   end
+
 }

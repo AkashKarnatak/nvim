@@ -4,10 +4,26 @@ vim.cmd [[packadd packer.nvim]]
 local packer = require('packer')
 
 packer.init({
-    git = {
-        clone_timeout = 300, -- Timeout, in seconds, for git clones
-    }
+  git = {
+    clone_timeout = 300, -- Timeout, in seconds, for git clones
+  }
 })
+
+vim.cmd [[
+  augroup packer_user_config
+    autocmd!
+    autocmd BufWritePost packer_nvim.lua source <afile> | PackerSync
+  augroup end
+]]
+
+-- Have packer use a popup window
+packer.init {
+  display = {
+    open_fn = function()
+      return require("packer.util").float { border = "rounded" }
+    end,
+  },
+}
 
 return packer.startup(function()
     -- This package need to be present as a plugin otherwise packer will prompt to remove itself
@@ -15,38 +31,75 @@ return packer.startup(function()
       "wbthomason/packer.nvim",
       event = "VimEnter"
     }
+
+    -- Properly close vim buffer
+    use {
+      "moll/vim-bbye",
+      cmd = "Bdelete"
+    }
+
     -- Repeat commands
     use {
       "tpope/vim-repeat",
       after = "packer.nvim",
     }
+
     -- Vim actions
     use {
       "tpope/vim-surround",
       after = "packer.nvim",
     }
-    -- Vim verbs
+
+    -- comment
     use {
-      "tpope/vim-commentary",
-      after = "packer.nvim",
+      "numToStr/Comment.nvim",
+      after = "nvim-ts-context-commentstring",
+      config = function()
+        require "plugins.comment_nvim"
+      end
     }
+
     use {
       "AkashKarnatak/replacewithregister",
       after = "packer.nvim",
     }
+
     -- Vim nouns
     use {
       "michaeljsmith/vim-indent-object",
       after = "packer.nvim",
     }
+
     -- Improves syntax highlighting and indentation
     use {
       "nvim-treesitter/nvim-treesitter",
-      event = "BufRead",
+     event = "BufRead"
+    }
+   use {
+     "JoosepAlviste/nvim-ts-context-commentstring",
+      after = "nvim-treesitter",
       config = function()
         require "plugins.treesitter"
       end
-    }
+   }
+    -- treesitter textobject
+    -- use {
+    --   "nvim-treesitter/nvim-treesitter-textobjects",
+    --   after = "nvim-treesitter",
+    --   config = function()
+    --     require "plugins.nvim_treesitter_textobjects"
+    --   end
+    -- }
+    -- -- treesitter playground
+    -- use {
+    --   "nvim-treesitter/playground",
+    --   after = "nvim-treesitter",
+    --   config = function()
+    --     require "plugins.nvim_treesitter_playground"
+    --   end
+    -- }
+
+
     -- Autocompletion and LSP
     use {
       "hrsh7th/cmp-nvim-lsp",
@@ -90,6 +143,13 @@ return packer.startup(function()
       "hrsh7th/cmp-cmdline",
       after = "cmp-path"
     }
+    use {
+      "ray-x/lsp_signature.nvim",
+      after = "nvim-cmp",
+      config = function()
+        require("plugins.lsp_signature")
+      end
+    }
 
     -- Bracket completion
     use {
@@ -99,6 +159,7 @@ return packer.startup(function()
         require "plugins.autopairs"
       end
     }
+
     -- Task builder
     use {
       "skywind3000/asyncrun.vim",
@@ -111,6 +172,7 @@ return packer.startup(function()
         require "plugins.asynctasks"
       end
     }
+
     -- Git integration
     use {
       "nvim-lua/plenary.nvim",
@@ -123,29 +185,24 @@ return packer.startup(function()
         require "plugins.gitsigns"
       end
     }
+
     -- Markdown
     use {
       "iamcco/markdown-preview.nvim",
       run = 'cd app && yarn install',
       ft = {'markdown'}
     }
-    -- Fzf
+
+    -- Fuzzy search
     use {
       "nvim-telescope/telescope.nvim",
       requires = {"nvim-lua/plenary.nvim"},
-      cmd = "Telescope",
-      config = function()
+      cmd = "Telescope", config = function()
         require "plugins.telescope"
       end
     }
-    -- theme
-    -- use {
-    --   "sainnhe/sonokai",
-    --   after = "packer.nvim",
-    --   config = function()
-    --     require "plugins.sonokai"
-    --   end
-    -- }
+
+    -- Theme
     use({
       'NTBBloodbath/doom-one.nvim',
       after = "packer.nvim",
@@ -162,6 +219,7 @@ return packer.startup(function()
         require "plugins.rooter"
       end
     }
+
     -- bufferline
     use {
       "akinsho/nvim-bufferline.lua",
@@ -170,14 +228,8 @@ return packer.startup(function()
         require("plugins.bufferline")
       end
     }
+
     -- Statusline
-    -- use {
-    --   "nvim-lualine/lualine.nvim",
-    --   after = "sonokai",
-    --   config = function()
-    --     require "plugins.statusline"
-    --   end
-    -- }
     use({
       "NTBBloodbath/galaxyline.nvim",
       after = "nvim-web-devicons",
@@ -194,6 +246,7 @@ return packer.startup(function()
         require("plugins.webdevicons")
       end,
     }
+
     -- Colorizer
     use {
       "norcalli/nvim-colorizer.lua",
@@ -202,25 +255,6 @@ return packer.startup(function()
         require("plugins.nvim_colorizer")
       end
     }
-    -- treesitter textobject
-    use {
-      "nvim-treesitter/nvim-treesitter-textobjects",
-      after = "nvim-treesitter",
-      config = function()
-        require "plugins.nvim_treesitter_textobjects"
-      end
-    }
-    -- treesitter playground
-    use {
-      "nvim-treesitter/playground",
-      after = "nvim-treesitter",
-      config = function()
-        require "plugins.nvim_treesitter_playground"
-      end
-    }
-
-    -- debugging
-    -- use 'mfussenegger/nvim-dap'
 
     -- nvim-tree
     use {
@@ -246,14 +280,7 @@ return packer.startup(function()
       end
     }
 
-    use {
-      "ray-x/lsp_signature.nvim",
-      after = "nvim-cmp",
-      config = function()
-        require("plugins.lsp_signature")
-      end
-    }
-
+    -- Debugging
     use {
       "mfussenegger/nvim-dap",
 			keys = {
@@ -262,7 +289,6 @@ return packer.startup(function()
 				{'n', '<leader>dl'},
 			},
     }
-
     use {
       "rcarriga/nvim-dap-ui",
 			after = "nvim-dap",
@@ -271,10 +297,4 @@ return packer.startup(function()
       end
     }
 
-    -- -- Copilot
-    -- use 'github/copilot.vim'
-    -- -- firenvim
-    -- use { 'glacambre/firenvim', run = function() vim.fn['firenvim#install'](0) end }
-    -- ========= trouble.nvim ============
-    -- ========= nvim-cmp ============
 end)

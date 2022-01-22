@@ -18,7 +18,8 @@ require('gitsigns').setup {
     -- ['n <leader>hu'] = '<cmd>lua require"gitsigns".undo_stage_hunk()<CR>',
     -- ['n <leader>hr'] = '<cmd>lua require"gitsigns".reset_hunk()<CR>',
     -- ['n <leader>hR'] = '<cmd>lua require"gitsigns".reset_buffer()<CR>',
-    ['n <leader>gp'] = '<cmd>lua require"gitsigns".preview_hunk()<CR>',
+    ['n <leader>gg'] = '<cmd>lua require"gitsigns".preview_hunk()<CR>',
+    ['n <leader>gb'] = '<cmd>lua require"gitsigns".blame_line()<CR>',
     -- ['n <leader>hb'] = '<cmd>lua require"gitsigns".blame_line(true)<CR>',
 
     -- Text objects

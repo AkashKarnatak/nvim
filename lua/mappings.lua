@@ -1,13 +1,7 @@
 vim.api.nvim_set_keymap('n', '<Space>', '<NOP>', {noremap = true, silent = true})
 vim.g.mapleader = ' '
 
--- -- Fuck escape
--- vim.api.nvim_set_keymap('',  ';;', '<ESC>', {noremap = true, silent = true})
--- vim.api.nvim_set_keymap('!', ';;', '<ESC>', {noremap = true, silent = true})
--- vim.api.nvim_set_keymap('x', ';;', '<ESC>', {noremap = true, silent = true})
--- vim.api.nvim_set_keymap('s', ';;', '<ESC>', {noremap = true, silent = true})
--- vim.api.nvim_set_keymap('l', ';;', '<ESC>', {noremap = true, silent = true})
--- vim.api.nvim_set_keymap('c', ';;', '<C-u><BS>', {noremap = true})
+vim.api.nvim_set_keymap('v', 'p', '"_dP', {noremap = true, silent = true})
 
 -- Remap omnicomplete keys
 vim.api.nvim_set_keymap('i', '<C-j>', '<C-n>', {noremap = true, silent = true})
@@ -87,11 +81,6 @@ vim.api.nvim_set_keymap('c', '<C-Bs>', '<C-w>', {noremap = true})
 -- Ctrl p to next item in jumplist
 vim.api.nvim_set_keymap('n', '<C-p>', '<C-i>', {noremap = true, silent=true})
 
--- Mappings for vim-commentary
-vim.api.nvim_set_keymap('n', 'cm', 'gc', {silent=true})
-vim.api.nvim_set_keymap('n', 'cmm', 'gcc', {silent=true})
-vim.api.nvim_set_keymap('v', 'cm', 'gc', {silent=true})
-
 -- Add numbered jumps to jumplist
 vim.api.nvim_set_keymap('n', 'k', [[(v:count > 1 ? "m'" . v:count : '') . 'k']], {expr = true, noremap = true, silent = true})
 vim.api.nvim_set_keymap('n', 'j', [[(v:count > 1 ? "m'" . v:count : '') . 'j']], {expr = true, noremap = true, silent = true})
@@ -112,7 +101,7 @@ vim.api.nvim_set_keymap('n', 'ZZ', 'zszH', {noremap = true, silent=true})
 -- Shortcuts for competitive programming
 vim.cmd([[command! LoadCompe execute winwidth(0)/3 . "vsp input.txt|sp output.txt|:norm <C-w>h"]])
 vim.api.nvim_set_keymap('n', '<leader>cc', ':LoadCompe<CR>', {noremap = true, silent=true})
-vim.api.nvim_set_keymap('n', 'Q', ':bp<bar>sp<bar>bn<bar>bd<CR>', {noremap = true, silent=true})
+vim.api.nvim_set_keymap('n', 'Q', ':Bdelete!<CR>', {noremap = true, silent=true})
 
 vim.api.nvim_set_keymap('v', '<C-j>', [[:m '>+1<CR>gv=gv]], {noremap = true, silent=true})
 vim.api.nvim_set_keymap('v', '<C-k>', [[:m '<-2<CR>gv=gv]], {noremap = true, silent=true})
