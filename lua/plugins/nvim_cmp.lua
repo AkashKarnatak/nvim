@@ -2,6 +2,7 @@ vim.o.shortmess = vim.o.shortmess .. 'c'
 
 local luasnip = require("luasnip")
 local cmp = require'cmp'
+require("luasnip/loaders/from_vscode").lazy_load()
 
 --- Wraps nvim_replace_termcodes
 --- @param str string
@@ -76,11 +77,7 @@ cmp.setup {
 		{ name = "nvim_lua" },
 		{ name = "buffer" },
 		{ name = "treesitter" },
-		-- { name = "calc" },
-		-- { name = "emoji" },
-		-- { name = "luasnip" },
-		-- { name = "cmp_tabnine" },
-		-- { name = "crates" },
+		{ name = "luasnip" },
 	},
   mapping = {
     ["<C-k>"] = cmp.mapping.select_prev_item(),
@@ -93,11 +90,15 @@ cmp.setup {
       behavior = cmp.ConfirmBehavior.Replace,
       select = false,
     },
-    ["<Tab>"] = cmp.mapping(function(fallback)
-      if luasnip.expand_or_jumpable() then
-        vim.fn.feedkeys(replace_termcodes("<Plug>luasnip-expand-or-jump"), "")
+		["<Tab>"] = cmp.mapping(function(fallback)
+			if cmp.visible() then
+        cmp.select_next_item()
+			elseif luasnip.expandable() then
+        luasnip.expand()
+      elseif luasnip.expand_or_jumpable() then
+        luasnip.expand_or_jump()
       elseif check_backspace() then
-        vim.fn.feedkeys(replace_termcodes("<Tab>"), "n")
+        fallback()
       else
         fallback()
       end
@@ -106,8 +107,10 @@ cmp.setup {
       "s",
     }),
     ["<S-Tab>"] = cmp.mapping(function(fallback)
-      if luasnip.jumpable(-1) then
-        vim.fn.feedkeys(replace_termcodes("<Plug>luasnip-jump-prev"), "")
+			if cmp.visible() then
+        cmp.select_prev_item()
+			elseif luasnip.jumpable(-1) then
+        luasnip.jump(-1)
       else
         fallback()
       end

@@ -73,7 +73,7 @@ return packer.startup(function()
     -- Improves syntax highlighting and indentation
     use {
       "nvim-treesitter/nvim-treesitter",
-     event = "BufRead"
+      event = "BufRead"
     }
    use {
      "JoosepAlviste/nvim-ts-context-commentstring",
@@ -172,6 +172,12 @@ return packer.startup(function()
         require "plugins.asynctasks"
       end
     }
+    use {
+      "akinsho/toggleterm.nvim",
+      config = function()
+        require "plugins.toggleterm"
+      end
+    }
 
     -- Git integration
     use {
@@ -214,7 +220,6 @@ return packer.startup(function()
     -- project manager
     use {
       "ygm2/rooter.nvim",
-      after = "packer.nvim",
       config = function()
         require "plugins.rooter"
       end
@@ -241,7 +246,6 @@ return packer.startup(function()
     -- Devicons
     use {
       "kyazdani42/nvim-web-devicons",
-      after = "packer.nvim",
       config = function()
         require("plugins.webdevicons")
       end,
@@ -259,7 +263,6 @@ return packer.startup(function()
     -- nvim-tree
     use {
       "kyazdani42/nvim-tree.lua",
-      cmd = "NvimTreeToggle",
       config = function()
         require "plugins.nvim_tree"
       end

@@ -63,8 +63,8 @@ vim.api.nvim_set_keymap('x', 'ae', ':<C-u>normal! ggVG<CR>', {noremap = true})
 vim.api.nvim_set_keymap('o', 'ae', ':normal ggVG<CR>', {noremap = true})
 
 -- Tab switch buffer
-vim.api.nvim_set_keymap('n', '<TAB>', ':bnext<CR>', {noremap = true, silent = true})
-vim.api.nvim_set_keymap('n', '<S-TAB>', ':bprevious<CR>', {noremap = true, silent = true})
+vim.api.nvim_set_keymap('n', 'L', ':bnext<CR>', {noremap = true, silent = true})
+vim.api.nvim_set_keymap('n', 'H', ':bprevious<CR>', {noremap = true, silent = true})
 
 -- Remove highlighting
 -- vim.api.nvim_set_keymap('n', ';;', ':noh<CR>:<BS>', {noremap = true})
@@ -99,7 +99,7 @@ vim.api.nvim_set_keymap('n', '<Leader>aa', [[:echo expand('%ph')<CR>]], {noremap
 -- horizontal equivalent of zz
 vim.api.nvim_set_keymap('n', 'ZZ', 'zszH', {noremap = true, silent=true})
 -- Shortcuts for competitive programming
-vim.cmd([[command! LoadCompe execute winwidth(0)/3 . "vsp input.txt|sp output.txt|:norm <C-w>h"]])
+vim.cmd([[command! LoadCompe execute winwidth(0)/3 . "vsp input.txt|set ft=input|sp output.txt|set ft=output|:norm <C-w>h"]])
 vim.api.nvim_set_keymap('n', '<leader>cc', ':LoadCompe<CR>', {noremap = true, silent=true})
 vim.api.nvim_set_keymap('n', 'Q', ':Bdelete!<CR>', {noremap = true, silent=true})
 

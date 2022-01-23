@@ -15,6 +15,9 @@ gl.short_line_list = {
 	"dapui_stacks",
 	"dapui_watches",
 	"dap-repl",
+	"toggleterm",
+	"input",
+	"output",
 }
 
 local function is_not_dashboard()
