@@ -1,10 +1,8 @@
 local system_name = "Linux"
-
 -- set the path to the sumneko installation; if you previously installed via the now deprecated :LspInstall, use
 -- TODO: automate the path
 local sumneko_root_path = '/home/akash/GitHub/lua-language-server'
 local sumneko_binary = sumneko_root_path.."/bin/"..system_name.."/lua-language-server"
-
 require'lspconfig'.sumneko_lua.setup {
   cmd = {sumneko_binary, "-E", sumneko_root_path .. "/main.lua"};
   settings = {
@@ -32,7 +30,8 @@ require'lspconfig'.sumneko_lua.setup {
       },
     },
   },
-  on_attach = function(_, bufnr)
-    require'plugins.lsp'.on_attach(_, bufnr)
-  end
+  on_attach = on_attach,
+	capabilities = capabilities
 }
+
+

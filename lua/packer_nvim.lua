@@ -102,17 +102,6 @@ return packer.startup(function()
 
     -- Autocompletion and LSP
     use {
-      "hrsh7th/cmp-nvim-lsp",
-      event = "BufRead"
-    }
-    use {
-      "neovim/nvim-lspconfig",
-      after = "cmp-nvim-lsp",
-      config = function()
-        require "plugins.lspconfig"
-      end
-    }
-    use {
       "AkashKarnatak/friendly-snippets",
       after = "packer.nvim"
     }
@@ -121,31 +110,42 @@ return packer.startup(function()
       after = "friendly-snippets"
     }
     use {
-      "saadparwaiz1/cmp_luasnip",
+      "hrsh7th/nvim-cmp",
       after = "LuaSnip"
     }
     use {
-      "hrsh7th/nvim-cmp",
-      after = "LuaSnip",
-      config = function()
-        require "plugins.nvim_cmp"
-      end
-    }
-    use {
-      "hrsh7th/cmp-buffer",
+      "hrsh7th/cmp-nvim-lsp",
       after = "nvim-cmp"
     }
     use {
       "hrsh7th/cmp-path",
-      after = "cmp-buffer"
+      after = "cmp-nvim-lsp"
     }
     use {
-      "hrsh7th/cmp-cmdline",
+      "hrsh7th/cmp-buffer",
       after = "cmp-path"
     }
     use {
+      "saadparwaiz1/cmp_luasnip",
+      after = "cmp-buffer",
+      config = function()
+        require "plugins.nvim_cmp"
+      end
+    }
+		use {
+			"jose-elias-alvarez/null-ls.nvim",
+			after = "cmp_luasnip"
+		}
+    use {
+      "neovim/nvim-lspconfig",
+      after = "null-ls.nvim",
+      config = function()
+        require "plugins.lspconfig"
+      end
+    }
+    use {
       "ray-x/lsp_signature.nvim",
-      after = "nvim-cmp",
+      after = "nvim-lspconfig",
       config = function()
         require("plugins.lsp_signature")
       end
@@ -154,7 +154,7 @@ return packer.startup(function()
     -- Bracket completion
     use {
       "windwp/nvim-autopairs",
-      after = "nvim-cmp",
+      after = "cmp_luasnip",
       config = function()
         require "plugins.autopairs"
       end
