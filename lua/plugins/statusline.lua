@@ -67,7 +67,7 @@ require('lualine').setup{
          symbols = {error = ' ', warn = ' ', info = ' '},
          colored = true,
        },
-		 },
+     },
      lualine_z = {
        {
          "progress"

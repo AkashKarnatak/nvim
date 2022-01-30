@@ -10,14 +10,14 @@ gl.short_line_list = {
   "NvimTree",
   "packer",
   "netrw",
-	"dapui_scopes",
-	"dapui_breakpoints",
-	"dapui_stacks",
-	"dapui_watches",
-	"dap-repl",
-	"toggleterm",
-	"input",
-	"output",
+  "dapui_scopes",
+  "dapui_breakpoints",
+  "dapui_stacks",
+  "dapui_watches",
+  "dap-repl",
+  "toggleterm",
+  "input",
+  "output",
 }
 
 local function is_not_dashboard()
@@ -28,7 +28,7 @@ end
 gls.left[1] = {
   RainbowRed = {
     provider = function()
-      return "▊ "
+      return "▌ "
     end,
     highlight = { colors.blue, colors.bg },
   },
@@ -68,10 +68,10 @@ gls.left[2] = {
 gls.left[3] = {
   FileSize = {
     provider = "FileSize",
-		condition = condition.buffer_not_empty and condition.hide_in_width,
+    condition = condition.buffer_not_empty and condition.hide_in_width,
     highlight = { colors.fg, colors.bg },
-		separator = " ",
-		separator_highlight = { colors.bg, colors.bg },
+    separator = " ",
+    separator_highlight = { colors.bg, colors.bg },
   },
 }
 gls.left[4] = {
@@ -264,7 +264,7 @@ gls.right[9] = {
 gls.right[10] = {
   RainbowBlue = {
     provider = function()
-      return " ▊"
+      return " ▐"
     end,
     highlight = { colors.blue, colors.bg },
   },
@@ -273,7 +273,7 @@ gls.right[10] = {
 gls.short_line_left[1] = {
   ShortRainbowLeft = {
     provider = function()
-      return "▊ "
+      return "▌ "
     end,
     highlight = { colors.blue, colors.bg },
   },
@@ -299,7 +299,7 @@ gls.short_line_right[1] = {
 gls.short_line_right[2] = {
   ShortRainbowRight = {
     provider = function()
-      return " ▊"
+      return " ▐"
     end,
     highlight = { colors.blue, colors.bg },
   },

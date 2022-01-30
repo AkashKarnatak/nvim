@@ -45,10 +45,10 @@ local icons = {
 }
 
 cmp.setup {
-	completion = {
-		keyword_length = 1;
+  completion = {
+    keyword_length = 1;
     completeopt = "menuone,noselect",
-	},
+  },
   snippet = {
     expand = function(args)
       require("luasnip").lsp_expand(args.body)
@@ -67,21 +67,21 @@ cmp.setup {
       return vim_item
     end,
    },
-	documentation = {
-		border = { "╭", "─", "╮", "│", "╯", "─", "╰", "│" },
-	},
-	sources = {
-		{ name = "nvim_lsp" },
-		{ name = "path" },
-		{ name = "nvim_lua" },
-		{ name = "buffer" },
-		{ name = "treesitter" },
-		-- { name = "calc" },
-		-- { name = "emoji" },
-		-- { name = "luasnip" },
-		-- { name = "cmp_tabnine" },
-		-- { name = "crates" },
-	},
+  documentation = {
+    border = { "╭", "─", "╮", "│", "╯", "─", "╰", "│" },
+  },
+  sources = {
+    { name = "nvim_lsp" },
+    { name = "path" },
+    { name = "nvim_lua" },
+    { name = "buffer" },
+    { name = "treesitter" },
+    -- { name = "calc" },
+    -- { name = "emoji" },
+    -- { name = "luasnip" },
+    -- { name = "cmp_tabnine" },
+    -- { name = "crates" },
+  },
   mapping = {
     ["<C-k>"] = cmp.mapping.select_prev_item(),
     ["<C-j>"] = cmp.mapping.select_next_item(),

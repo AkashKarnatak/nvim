@@ -8,16 +8,17 @@ nvim_treesitter_configs.setup {
   },
   indent = {
     enable = true,
-		disable = {
-			"c",
-			"cpp",
-			"yaml",
-      "lua"
-		}
+    disable = {
+      "c",
+      "cpp",
+      "yaml",
+      "lua",
+      "python"
+    }
   },
-	autopairs = {
-		enable = true
-	},
+  autopairs = {
+    enable = true
+  },
   context_commentstring = {
     enable = true,
     enable_autocmd = false,

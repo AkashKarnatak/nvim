@@ -25,7 +25,7 @@ packer.init {
   },
 }
 
-return packer.startup(function()
+return packer.startup({function()
     -- This package need to be present as a plugin otherwise packer will prompt to remove itself
     use {
       "wbthomason/packer.nvim",
@@ -36,6 +36,19 @@ return packer.startup(function()
     use {
       "moll/vim-bbye",
       cmd = "Bdelete"
+    }
+
+    -- Fix cursorhold bug
+    use {
+      "antoinemadec/FixCursorHold.nvim",
+      config = function()
+        vim.g.cursorhold_updatetime = 100
+      end
+    }
+
+    -- Increase neovims
+    use {
+      "lewis6991/impatient.nvim",
     }
 
     -- Repeat commands
@@ -132,15 +145,15 @@ return packer.startup(function()
         require "plugins.nvim_cmp"
       end
     }
-		use {
-			"jose-elias-alvarez/null-ls.nvim",
-			after = "cmp_luasnip"
-		}
+    use {
+      "jose-elias-alvarez/null-ls.nvim",
+      after = "cmp_luasnip"
+    }
     use {
       "neovim/nvim-lspconfig",
       after = "null-ls.nvim",
       config = function()
-        require "plugins.lspconfig"
+        require "plugins.lsp"
       end
     }
     use {
@@ -286,18 +299,30 @@ return packer.startup(function()
     -- Debugging
     use {
       "mfussenegger/nvim-dap",
-			keys = {
-				{'n', '<M-x>'},
-				{'n', '<leader>dc'},
-				{'n', '<leader>dl'},
-			},
+      keys = {
+        {'n', '<M-x>'},
+        {'n', '<leader>dc'},
+        {'n', '<leader>dl'},
+      },
     }
     use {
       "rcarriga/nvim-dap-ui",
-			after = "nvim-dap",
+      after = "nvim-dap",
       config = function()
         require("plugins.nvim_dap")
       end
     }
 
-end)
+    use {
+      "lukas-reineke/indent-blankline.nvim",
+      after = "doom-one.nvim",
+      config = function()
+        require("plugins.indent-blankline")
+      end
+    }
+
+end,
+config = {
+  -- Move to lua dir so impatient.nvim can cache it
+  compile_path = vim.fn.stdpath('config')..'/lua/packer_compiled.lua'
+}})

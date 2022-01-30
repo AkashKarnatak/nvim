@@ -46,10 +46,10 @@ local icons = {
 }
 
 cmp.setup {
-	completion = {
-		keyword_length = 1;
+  completion = {
+    keyword_length = 1;
     completeopt = "menuone,noselect",
-	},
+  },
   snippet = {
     expand = function(args)
       require("luasnip").lsp_expand(args.body)
@@ -68,15 +68,15 @@ cmp.setup {
       return vim_item
     end,
    },
-	documentation = {
-		border = { "╭", "─", "╮", "│", "╯", "─", "╰", "│" },
-	},
-	sources = {
-		{ name = "nvim_lsp" },
-		{ name = "path" },
-		{ name = "buffer" },
-		{ name = "luasnip" },
-	},
+  documentation = {
+    border = { "╭", "─", "╮", "│", "╯", "─", "╰", "│" },
+  },
+  sources = {
+    { name = "nvim_lsp" },
+    { name = "path" },
+    { name = "buffer" },
+    { name = "luasnip" },
+  },
   mapping = {
     ["<C-k>"] = cmp.mapping.select_prev_item(),
     ["<C-j>"] = cmp.mapping.select_next_item(),
@@ -88,10 +88,10 @@ cmp.setup {
       behavior = cmp.ConfirmBehavior.Replace,
       select = false,
     },
-		["<Tab>"] = cmp.mapping(function(fallback)
-			if cmp.visible() then
+    ["<Tab>"] = cmp.mapping(function(fallback)
+      if cmp.visible() then
         cmp.select_next_item()
-			elseif luasnip.expandable() then
+      elseif luasnip.expandable() then
         luasnip.expand()
       elseif luasnip.expand_or_jumpable() then
         luasnip.expand_or_jump()
@@ -105,9 +105,9 @@ cmp.setup {
       "s",
     }),
     ["<S-Tab>"] = cmp.mapping(function(fallback)
-			if cmp.visible() then
+      if cmp.visible() then
         cmp.select_prev_item()
-			elseif luasnip.jumpable(-1) then
+      elseif luasnip.jumpable(-1) then
         luasnip.jump(-1)
       else
         fallback()

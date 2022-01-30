@@ -1,16 +1,16 @@
 require('Comment').setup({
-	toggler = {
-		line = 'cmm',
-	},
-	opleader = {
-		line = 'cm',
-	},
-	extra = {
-		above = 'cmO',
-		below = 'cmo',
-		eol = 'cmA',
-	},
-	pre_hook = function(ctx)
+  toggler = {
+    line = 'cmm',
+  },
+  opleader = {
+    line = 'cm',
+  },
+  extra = {
+    above = 'cmO',
+    below = 'cmo',
+    eol = 'cmA',
+  },
+  pre_hook = function(ctx)
     local U = require 'Comment.utils'
 
     local location = nil
@@ -24,5 +24,5 @@ require('Comment').setup({
       key = ctx.ctype == U.ctype.line and '__default' or '__multiline',
       location = location,
     }
-	end,
+  end,
 })

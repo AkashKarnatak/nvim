@@ -1,7 +1,22 @@
 local nvim_lsp = require "lspconfig"
--- require "user.lsp.lsp-installer"
+local configs = require "lspconfig.configs"
 require("plugins.lsp.handlers").setup()
 require "plugins.lsp.null-ls"
+
+-- configure servers
+if not configs.ls_emmet then
+  configs.ls_emmet = {
+    default_config = {
+      cmd = { 'ls_emmet', '--stdio' };
+      filetypes = { 'html', 'css', 'scss', 'javascript', 'javascriptreact', 'typescript', 'typescriptreact', 'haml',
+        'xml', 'xsl', 'pug', 'slim', 'sass', 'stylus', 'less', 'sss'};
+      root_dir = function(_)
+        return vim.loop.cwd()
+      end;
+      settings = {};
+    };
+  }
+end
 
 -- list of all servers
 local servers = {
@@ -10,7 +25,9 @@ local servers = {
   'tsserver',
   'racket_langserver',
   'cssls',
-  'html'
+  'html',
+  'ls_emmet',
+  'sumneko_lua'
 }
 
 local opts = {
@@ -18,11 +35,9 @@ local opts = {
   capabilities = require("plugins.lsp.handlers").capabilities
 }
 
+-- Setup servers
 for _, server_name in ipairs(servers) do
   if server_name == "sumneko_lua" then
-    local sumneko_opts = require("plugins.lsp.settings.sumneko_lua")
-    opts = vim.tbl_deep_extend("force", sumneko_opts, opts)
-	elseif server_name == "sumneko_lua" then
     local sumneko_opts = require("plugins.lsp.settings.sumneko_lua")
     opts = vim.tbl_deep_extend("force", sumneko_opts, opts)
   end

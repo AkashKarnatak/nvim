@@ -13,11 +13,11 @@ function _G.ToggleAutoPairs()
   if vim.g.autopairs_active then
     vim.g.autopairs_active = false
     require('nvim-autopairs').disable()
-		print('AutoPairs turned off')
+    print('AutoPairs turned off')
   else
     vim.g.autopairs_active = true
     require('nvim-autopairs').enable()
-		print('AutoPairs turned on')
+    print('AutoPairs turned on')
   end
 end
 

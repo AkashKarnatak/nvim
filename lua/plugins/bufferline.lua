@@ -36,8 +36,8 @@ end
 bufferline.setup {
    options = {
       offsets = { { filetype = "NvimTree", text = "", padding = 1 } },
-			close_command = "Bdelete! %d",
-			right_mouse_command = "Bdelete! %d",
+      close_command = "Bdelete! %d",
+      right_mouse_command = "Bdelete! %d",
       buffer_close_icon = "",
       modified_icon = "",
       -- close_icon = "%@NvChad_bufferline_quitvim@%X",
@@ -175,220 +175,220 @@ bufferline.setup {
          guifg = colors.blue,
          guibg = colors.black,
       },
-			duplicate_selected = {
+      duplicate_selected = {
          guifg = colors.active_tab_fg,
          guibg = colors.active_tab_bg,
          gui = "bold",
-			},
-			duplicate_visible = {
+      },
+      duplicate_visible = {
          guifg = colors.inactive_tab_fg,
          guibg = colors.active_tab_bg,
-			},
-			duplicate = {
+      },
+      duplicate = {
          guifg = colors.inactive_tab_fg,
          guibg = colors.inactive_tab_bg,
-			},
+      },
    },
 }
 
--- 	highlights = {
--- 			fill = {
+--  highlights = {
+--      fill = {
 --          guifg = colors.inactive_tab_bg,
 --          guibg = colors.inactive_tab_bg,
--- 			},
--- 			background = {
+--      },
+--      background = {
 --          guifg = colors.inactive_tab_fg,
 --          guibg = colors.inactive_tab_bg,
--- 			},
--- 			tab = {
+--      },
+--      tab = {
 --          guifg = colors.inactive_tab_fg,
 --          guibg = colors.inactive_tab_bg,
--- 			},
--- 			tab_selected = {
+--      },
+--      tab_selected = {
 --          guifg = colors.black,
 --          guibg = colors.blue,
--- 			},
--- 			tab_close = {
+--      },
+--      tab_close = {
 --          guifg = colors.blue,
 --          guibg = colors.black,
--- 			},
--- 			close_button = {
+--      },
+--      close_button = {
 --          guifg = colors.inactive_tab_fg,
 --          guibg = colors.inactive_tab_bg,
--- 			},
--- 			close_button_visible = {
+--      },
+--      close_button_visible = {
 --          guifg = colors.inactive_tab_fg,
 --          guibg = colors.inactive_tab_bg,
--- 			},
--- 			close_button_selected = {
+--      },
+--      close_button_selected = {
 --          guifg = colors.blue,
 --          guibg = colors.active_tab_bg,
--- 			},
--- 			buffer_visible = {
+--      },
+--      buffer_visible = {
 --          guifg = colors.inactive_tab_fg,
 --          guibg = colors.inactive_tab_bg,
--- 			},
--- 			buffer_selected = {
+--      },
+--      buffer_selected = {
 --          guifg = colors.active_tab_fg,
 --          guibg = colors.active_tab_bg,
 --          gui = "bold",
--- 			},
--- 			diagnostic = {
--- 					guifg = <color-value-here>,
--- 					guibg = <color-value-here>,
--- 			},
--- 			diagnostic_visible = {
--- 					guifg = <color-value-here>,
--- 					guibg = <color-value-here>,
--- 			},
--- 			diagnostic_selected = {
--- 					guifg = <color-value-here>,
--- 					guibg = <color-value-here>,
--- 					gui = "bold,italic"
--- 			},
--- 			info = {
--- 					guifg = <color-value-here>,
--- 					guisp = <color-value-here>,
--- 					guibg = <color-value-here>
--- 			},
--- 			info_visible = {
--- 					guifg = <color-value-here>,
--- 					guibg = <color-value-here>
--- 			},
--- 			info_selected = {
--- 					guifg = <color-value-here>,
--- 					guibg = <color-value-here>,
--- 					gui = "bold,italic",
--- 					guisp = <color-value-here>
--- 			},
--- 			info_diagnostic = {
--- 					guifg = <color-value-here>,
--- 					guisp = <color-value-here>,
--- 					guibg = <color-value-here>
--- 			},
--- 			info_diagnostic_visible = {
--- 					guifg = <color-value-here>,
--- 					guibg = <color-value-here>
--- 			},
--- 			info_diagnostic_selected = {
--- 					guifg = <color-value-here>,
--- 					guibg = <color-value-here>,
--- 					gui = "bold,italic",
--- 					guisp = <color-value-here>
--- 			},
--- 			warning = {
--- 					guifg = <color-value-here>,
--- 					guisp = <color-value-here>,
--- 					guibg = <color-value-here>
--- 			},
--- 			warning_visible = {
--- 					guifg = <color-value-here>,
--- 					guibg = <color-value-here>
--- 			},
--- 			warning_selected = {
--- 					guifg = <color-value-here>,
--- 					guibg = <color-value-here>,
--- 					gui = "bold,italic",
--- 					guisp = <color-value-here>
--- 			},
--- 			warning_diagnostic = {
--- 					guifg = <color-value-here>,
--- 					guisp = <color-value-here>,
--- 					guibg = <color-value-here>
--- 			},
--- 			warning_diagnostic_visible = {
--- 					guifg = <color-value-here>,
--- 					guibg = <color-value-here>
--- 			},
--- 			warning_diagnostic_selected = {
--- 					guifg = <color-value-here>,
--- 					guibg = <color-value-here>,
--- 					gui = "bold,italic",
--- 					guisp = warning_diagnostic_fg
--- 			},
--- 			error = {
+--      },
+--      diagnostic = {
+--          guifg = <color-value-here>,
+--          guibg = <color-value-here>,
+--      },
+--      diagnostic_visible = {
+--          guifg = <color-value-here>,
+--          guibg = <color-value-here>,
+--      },
+--      diagnostic_selected = {
+--          guifg = <color-value-here>,
+--          guibg = <color-value-here>,
+--          gui = "bold,italic"
+--      },
+--      info = {
+--          guifg = <color-value-here>,
+--          guisp = <color-value-here>,
+--          guibg = <color-value-here>
+--      },
+--      info_visible = {
+--          guifg = <color-value-here>,
+--          guibg = <color-value-here>
+--      },
+--      info_selected = {
+--          guifg = <color-value-here>,
+--          guibg = <color-value-here>,
+--          gui = "bold,italic",
+--          guisp = <color-value-here>
+--      },
+--      info_diagnostic = {
+--          guifg = <color-value-here>,
+--          guisp = <color-value-here>,
+--          guibg = <color-value-here>
+--      },
+--      info_diagnostic_visible = {
+--          guifg = <color-value-here>,
+--          guibg = <color-value-here>
+--      },
+--      info_diagnostic_selected = {
+--          guifg = <color-value-here>,
+--          guibg = <color-value-here>,
+--          gui = "bold,italic",
+--          guisp = <color-value-here>
+--      },
+--      warning = {
+--          guifg = <color-value-here>,
+--          guisp = <color-value-here>,
+--          guibg = <color-value-here>
+--      },
+--      warning_visible = {
+--          guifg = <color-value-here>,
+--          guibg = <color-value-here>
+--      },
+--      warning_selected = {
+--          guifg = <color-value-here>,
+--          guibg = <color-value-here>,
+--          gui = "bold,italic",
+--          guisp = <color-value-here>
+--      },
+--      warning_diagnostic = {
+--          guifg = <color-value-here>,
+--          guisp = <color-value-here>,
+--          guibg = <color-value-here>
+--      },
+--      warning_diagnostic_visible = {
+--          guifg = <color-value-here>,
+--          guibg = <color-value-here>
+--      },
+--      warning_diagnostic_selected = {
+--          guifg = <color-value-here>,
+--          guibg = <color-value-here>,
+--          gui = "bold,italic",
+--          guisp = warning_diagnostic_fg
+--      },
+--      error = {
 --          guifg = colors.red,
 --          guibg = colors.active_tab_bg,
--- 			},
--- 			error_visible = {
--- 					guifg = <color-value-here>,
--- 					guibg = <color-value-here>
--- 			},
--- 			error_selected = {
--- 					guifg = <color-value-here>,
--- 					guibg = <color-value-here>,
--- 					gui = "bold,italic",
--- 					guisp = <color-value-here>
--- 			},
--- 			error_diagnostic = {
+--      },
+--      error_visible = {
+--          guifg = <color-value-here>,
+--          guibg = <color-value-here>
+--      },
+--      error_selected = {
+--          guifg = <color-value-here>,
+--          guibg = <color-value-here>,
+--          gui = "bold,italic",
+--          guisp = <color-value-here>
+--      },
+--      error_diagnostic = {
 --          guifg = colors.inactive_tab_fg,
 --          guibg = colors.inactive_tab_bg,
--- 			},
--- 			error_diagnostic_visible = {
--- 					guifg = <color-value-here>,
--- 					guibg = <color-value-here>
--- 			},
--- 			error_diagnostic_selected = {
--- 					guifg = <color-value-here>,
--- 					guibg = <color-value-here>,
--- 					gui = "bold,italic",
--- 					guisp = <color-value-here>
--- 			},
--- 			modified = {
+--      },
+--      error_diagnostic_visible = {
+--          guifg = <color-value-here>,
+--          guibg = <color-value-here>
+--      },
+--      error_diagnostic_selected = {
+--          guifg = <color-value-here>,
+--          guibg = <color-value-here>,
+--          gui = "bold,italic",
+--          guisp = <color-value-here>
+--      },
+--      modified = {
 --          guifg = colors.blue,
 --          guibg = colors.inactive_tab_bg,
--- 			},
--- 			modified_visible = {
+--      },
+--      modified_visible = {
 --          guifg = colors.blue,
 --          guibg = colors.inactive_tab_bg,
--- 			},
--- 			modified_selected = {
+--      },
+--      modified_selected = {
 --          guifg = colors.blue,
 --          guibg = colors.active_tab_bg,
--- 			},
--- 			duplicate_selected = {
--- 					guifg = '<color-value-here>',
--- 					gui = "italic",
--- 					guibg = '<color-value-here>'
--- 			},
--- 			duplicate_visible = {
--- 					guifg = '<color-value-here>',
--- 					gui = "italic",
--- 					guibg = '<color-value-here>'
--- 			},
--- 			duplicate = {
--- 					guifg = '<color-value-here>',
--- 					gui = "italic",
--- 					guibg = '<color-value-here>'
--- 			},
--- 			separator_selected = {
--- 					guifg = '<color-value-here>,
--- 					guibg = '<color-value-here>'
--- 			},
--- 			separator_visible = {
--- 					guifg = '<color-value-here>,
--- 					guibg = '<color-value-here>'
--- 			},
--- 			separator = {
--- 					guifg = '<color-value-here>,
--- 					guibg = '<color-value-here>'
--- 			},
--- 			indicator_selected = {
--- 					guifg = '<color-value-here>',
--- 					guibg = '<color-value-here>'
--- 			},
--- 			pick_selected = {
--- 					guifg = '<color-value-here>',
--- 					guibg = '<color-value-here>',
--- 					gui = "bold,italic"
--- 			},
--- 			pick_visible = {
--- 					guifg = '<color-value-here>',
--- 					guibg = '<color-value-here>',
--- 					gui = "bold,italic"
--- 			},
--- 			pick = {
--- 					guifg = '<color-value-here>',
--- 					guibg = '<color-value-here>',
--- 					gui = "bold,italic"
--- 			}
+--      },
+--      duplicate_selected = {
+--          guifg = '<color-value-here>',
+--          gui = "italic",
+--          guibg = '<color-value-here>'
+--      },
+--      duplicate_visible = {
+--          guifg = '<color-value-here>',
+--          gui = "italic",
+--          guibg = '<color-value-here>'
+--      },
+--      duplicate = {
+--          guifg = '<color-value-here>',
+--          gui = "italic",
+--          guibg = '<color-value-here>'
+--      },
+--      separator_selected = {
+--          guifg = '<color-value-here>,
+--          guibg = '<color-value-here>'
+--      },
+--      separator_visible = {
+--          guifg = '<color-value-here>,
+--          guibg = '<color-value-here>'
+--      },
+--      separator = {
+--          guifg = '<color-value-here>,
+--          guibg = '<color-value-here>'
+--      },
+--      indicator_selected = {
+--          guifg = '<color-value-here>',
+--          guibg = '<color-value-here>'
+--      },
+--      pick_selected = {
+--          guifg = '<color-value-here>',
+--          guibg = '<color-value-here>',
+--          gui = "bold,italic"
+--      },
+--      pick_visible = {
+--          guifg = '<color-value-here>',
+--          guibg = '<color-value-here>',
+--          gui = "bold,italic"
+--      },
+--      pick = {
+--          guifg = '<color-value-here>',
+--          guibg = '<color-value-here>',
+--          gui = "bold,italic"
+--      }
