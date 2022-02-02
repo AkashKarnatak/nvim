@@ -17,7 +17,7 @@ require('doom-one').setup({
     telescope = true,
     neogit = false,
     nvim_tree = true,
-    dashboard = false,
+    dashboard = true,
     startify = false,
     whichkey = false,
     indent_blankline = false,
@@ -25,3 +25,10 @@ require('doom-one').setup({
     lspsaga = false,
   },
 })
+
+vim.cmd('highlight! LspHighlight guibg=#274873')
+vim.cmd('highlight! NvimTreeNormal guibg=#24282e')
+vim.cmd('highlight! NvimTreeNormalNC guibg=#24282e')
+vim.cmd('highlight! NvimTreeEndOfBuffer guifg=#24282e guibg=#24282e')
+vim.cmd('highlight! NvimTreeVertSplit guifg=#24282e guibg=#24282e')
+vim.cmd('highlight! NvimTreeStatuslineNc guifg=#24282e guibg=#24282e')
