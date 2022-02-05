@@ -104,15 +104,6 @@ vim.api.nvim_set_keymap('n', 'Q', ':Bdelete!<CR>', {noremap = true, silent=true}
 vim.api.nvim_set_keymap('v', '<C-j>', [[:m '>+1<CR>gv=gv]], {noremap = true, silent=true})
 vim.api.nvim_set_keymap('v', '<C-k>', [[:m '<-2<CR>gv=gv]], {noremap = true, silent=true})
 
--- Telescope
-vim.api.nvim_set_keymap('n', '<Leader>ff', ':Telescope find_files no_ignore=true <CR>', {noremap = true, silent = true})
-vim.api.nvim_set_keymap('n', '<Leader>fo', ':Telescope oldfiles no_ignore=true <CR>', {noremap = true, silent = true})
-vim.api.nvim_set_keymap('n', '<Leader>fw', ':Telescope live_grep no_ignore=true <CR>', {noremap = true, silent = true})
-vim.api.nvim_set_keymap('n', '<Leader>fm', ':Telescope marks no_ignore=true <CR>', {noremap = true, silent = true})
-vim.api.nvim_set_keymap('n', '<Leader>fr', ':Telescope file_browser no_ignore=true <CR>', {noremap = true, silent = true})
-vim.api.nvim_set_keymap('n', '<Leader>f/', ':Telescope current_buffer_fuzzy_find<CR>', {noremap = true, silent = true})
-vim.api.nvim_set_keymap('n', '<Leader>fc', [[:Telescope find_files prompt_title=Nvim\ Config cwd=$HOME/.config/nvim<CR>]], {noremap = true, silent = true})
-
 -- Asynctasks
 vim.api.nvim_set_keymap('n', '<Leader>kc', ':let g:asynctasks_term_rows=winheight(0)*10/25 | AsyncTask file-compile<CR>', {noremap = true, silent = true})
 vim.api.nvim_set_keymap('n', '<Leader>kr', ':let g:asynctasks_term_rows=winheight(0)*10/25 | AsyncTask file-run<CR>', {noremap = true, silent = true})

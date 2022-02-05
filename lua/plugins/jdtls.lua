@@ -1,4 +1,6 @@
-return {
+local config = {
+  on_attach = require("plugins.lsp.handlers").on_attach,
+  capabilities = require("plugins.lsp.handlers").capabilities,
   -- The command that starts the language server
   -- See: https://github.com/eclipse/eclipse.jdt.ls#running-from-the-command-line
   cmd = {
@@ -73,3 +75,5 @@ return {
     bundles = {}
   }
 }
+
+require('jdtls').start_or_attach(config)

@@ -28,7 +28,6 @@ local servers = {
   'html',
   'ls_emmet',
   'sumneko_lua',
-  'jdtls'
 }
 
 local opts = {
@@ -41,9 +40,6 @@ for _, server_name in ipairs(servers) do
   if server_name == "sumneko_lua" then
     local sumneko_opts = require("plugins.lsp.settings.sumneko_lua")
     opts = vim.tbl_deep_extend("force", sumneko_opts, opts)
-  elseif server_name == "jdtls" then
-    local jdtls_opts = require("plugins.lsp.settings.jdtls")
-    opts = vim.tbl_deep_extend("force", jdtls_opts, opts)
   end
   nvim_lsp[server_name].setup(opts)
 end

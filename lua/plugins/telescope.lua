@@ -21,13 +21,13 @@ require('telescope').setup {
       i = {
           ["<C-j>"] = actions.move_selection_next,
           ["<C-k>"] = actions.move_selection_previous,
-          ["<esc>"] = actions.close,
+          -- ["<esc>"] = actions.close,
           -- [";;"] = actions.close,
       },
       n = {
           ["<C-j>"] = actions.move_selection_next,
           ["<C-k>"] = actions.move_selection_previous,
-          [";;"] = actions.close,
+          ["<esc>"] = actions.close,
       }
     },
     file_ignore_patterns = {"node_modules", ".git"}
@@ -42,6 +42,12 @@ vim.api.nvim_set_keymap('n', '<Leader>fm', ':Telescope marks<CR>', {noremap = tr
 vim.api.nvim_set_keymap('n', '<Leader>fr', ':Telescope file_browser<CR>', {noremap = true, silent = true})
 vim.api.nvim_set_keymap('n', '<Leader>f/', ':Telescope current_buffer_fuzzy_find<CR>', {noremap = true, silent = true})
 vim.api.nvim_set_keymap('n', '<Leader>fc', [[:Telescope find_files prompt_title=Nvim\ Config cwd=$HOME/.config/nvim<CR>]], {noremap = true, silent = true})
+vim.api.nvim_set_keymap("n", "gd", ":Telescope lsp_definitions<CR>", {noremap = true, silent = true})
+vim.api.nvim_set_keymap("n", "gi", ":Telescope lsp_implementations<CR>", {noremap = true, silent = true})
+vim.api.nvim_set_keymap("n", "gr", ":Telescope lsp_references<CR>", {noremap = true, silent = true})
+vim.api.nvim_set_keymap("n", "<leader>la", ":Telescope lsp_code_actions no_ignore=true <CR>", {noremap = true, silent = true})
+vim.api.nvim_set_keymap("n", "<leader>ld", ":Telescope diagnostics<CR>", {noremap = true, silent = true})
+vim.api.nvim_set_keymap("n", "<leader>ls", ":Telescope lsp_document_symbols<CR>", {noremap = true, silent = true})
 
 -- Highlightings
 vim.cmd([[highlight TelescopeSelection      guibg=#383A42 gui=bold]]) -- selected item

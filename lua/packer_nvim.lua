@@ -147,7 +147,7 @@ return packer.startup({function()
     }
     use {
       "neovim/nvim-lspconfig",
-      after = "cmp-vsnip"
+      after = "cmp-vsnip",
     }
     use {
       "jose-elias-alvarez/null-ls.nvim",
@@ -161,6 +161,27 @@ return packer.startup({function()
       after = "nvim-lspconfig",
       config = function()
         require("plugins.lsp_signature")
+      end
+    }
+    use {
+      "mfussenegger/nvim-jdtls",
+      wants = {
+        "nvim-treesitter",
+        "nvim-ts-context-commentstring",
+        "friendly-snippets",
+        "vim-vsnip",
+        "nvim-cmp",
+        "cmp-nvim-lsp",
+        "cmp-path",
+        "cmp-buffer",
+        "cmp-vsnip",
+        "nvim-lspconfig",
+        "null-ls.nvim",
+        "lsp_signature.nvim",
+      },
+      ft = {"java"},
+      config = function()
+        require("plugins.jdtls")
       end
     }
 
@@ -216,7 +237,22 @@ return packer.startup({function()
     use {
       "nvim-telescope/telescope.nvim",
       requires = {"nvim-lua/plenary.nvim"},
-      cmd = "Telescope", config = function()
+      keys = {
+        {'n', '<space>ff'},
+        {'n', '<space>fo'},
+        {'n', '<space>fw'},
+        {'n', '<space>fm'},
+        {'n', '<space>fr'},
+        {'n', '<space>f/'},
+        {'n', '<space>fc'},
+        {'n', 'gd'},
+        {'n', 'gi'},
+        {'n', 'gr'},
+        {'n', '<space>la'},
+        {'n', '<space>ld'},
+        {'n', '<space>ls'},
+      },
+      config = function()
         require "plugins.telescope"
       end
     }

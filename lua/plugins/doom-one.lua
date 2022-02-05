@@ -26,6 +26,14 @@ require('doom-one').setup({
   },
 })
 
+-- Diagnostic
+vim.cmd('highlight! link DiagnosticError DiagnosticFloatingError')
+vim.cmd('highlight! link DiagnosticHint DiagnosticFloatingHint')
+vim.cmd('highlight! link DiagnosticInfo DiagnosticFloatingInfo')
+vim.cmd('highlight! link DiagnosticWarn DiagnosticFloatingWarn')
+vim.cmd('highlight! link DiagnosticSignInfo DiagnosticFloatingInfo')
+vim.cmd('highlight! link DiagnosticSignWarn DiagnosticFloatingWarn')
+
 -- NvimTree
 vim.cmd('highlight! LspHighlight guibg=#274873')
 vim.cmd('highlight! NvimTreeNormal guibg=#24282e')
@@ -33,7 +41,3 @@ vim.cmd('highlight! NvimTreeNormalNC guibg=#24282e')
 vim.cmd('highlight! NvimTreeEndOfBuffer guifg=#24282e guibg=#24282e')
 vim.cmd('highlight! NvimTreeVertSplit guifg=#24282e guibg=#24282e')
 vim.cmd('highlight! NvimTreeStatuslineNc guifg=#24282e guibg=#24282e')
-vim.cmd('highlight! NvimTreeLspDiagnosticsError guibg=NONE guifg=#ff6c6b')
-vim.cmd('highlight! NvmTreeLspDiagnosticsWarning guibg=NONE guifg=#ff0000')
-vim.cmd('highlight! NvimTreeLspDiagnosticsInformation guibg=NONE guifg=#51afef')
-vim.cmd('highlight! NvimTreeLspDiagnosticsHint guibg=NONE guifg=#98be65')
