@@ -1,8 +1,6 @@
 vim.api.nvim_set_keymap('n', '<Space>', '<NOP>', {noremap = true, silent = true})
 vim.g.mapleader = ' '
 
-vim.api.nvim_set_keymap('v', 'p', '"_dP', {noremap = true, silent = true})
-
 -- Remap omnicomplete keys
 vim.api.nvim_set_keymap('i', '<C-j>', '<C-n>', {noremap = true, silent = true})
 vim.api.nvim_set_keymap('i', '<C-k>', '<C-p>', {noremap = true, silent = true})
@@ -99,7 +97,7 @@ vim.api.nvim_set_keymap('n', '<Leader>aa', [[:echo expand('%ph')<CR>]], {noremap
 -- horizontal equivalent of zz
 vim.api.nvim_set_keymap('n', 'ZZ', 'zszH', {noremap = true, silent=true})
 -- Shortcuts for competitive programming
-vim.cmd([[command! LoadCompe execute winwidth(0)/3 . "vsp input.txt|set ft=input|sp output.txt|set ft=output|:norm <C-w>h"]])
+vim.cmd([[command! LoadCompe execute winwidth(0)/3 . "vsp input.txt|set nobuflisted|setlocal nocursorline|set ft=input|sp output.txt|set nobuflisted|setlocal nocursorline|set ft=output|:norm <C-w>h"]])
 vim.api.nvim_set_keymap('n', '<leader>cc', ':LoadCompe<CR>', {noremap = true, silent=true})
 vim.api.nvim_set_keymap('n', 'Q', ':Bdelete!<CR>', {noremap = true, silent=true})
 
@@ -112,7 +110,8 @@ vim.api.nvim_set_keymap('n', '<Leader>fo', ':Telescope oldfiles no_ignore=true <
 vim.api.nvim_set_keymap('n', '<Leader>fw', ':Telescope live_grep no_ignore=true <CR>', {noremap = true, silent = true})
 vim.api.nvim_set_keymap('n', '<Leader>fm', ':Telescope marks no_ignore=true <CR>', {noremap = true, silent = true})
 vim.api.nvim_set_keymap('n', '<Leader>fr', ':Telescope file_browser no_ignore=true <CR>', {noremap = true, silent = true})
-vim.api.nvim_set_keymap('n', '<Leader>fc', ':Telescope current_buffer_fuzzy_find no_ignore=true <CR>', {noremap = true, silent = true})
+vim.api.nvim_set_keymap('n', '<Leader>f/', ':Telescope current_buffer_fuzzy_find<CR>', {noremap = true, silent = true})
+vim.api.nvim_set_keymap('n', '<Leader>fc', [[:Telescope find_files prompt_title=Nvim\ Config cwd=$HOME/.config/nvim<CR>]], {noremap = true, silent = true})
 
 -- Asynctasks
 vim.api.nvim_set_keymap('n', '<Leader>kc', ':let g:asynctasks_term_rows=winheight(0)*10/25 | AsyncTask file-compile<CR>', {noremap = true, silent = true})

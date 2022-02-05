@@ -111,3 +111,7 @@ vim.api.nvim_set_keymap('n', '<M-e>', [[<cmd>lua require("dapui").eval()<CR>]], 
 vim.api.nvim_set_keymap('v', '<M-e>', [[<cmd>lua require("dapui").eval()<CR>]], {noremap = true, silent = true})
 vim.api.nvim_set_keymap('n', '<leader>de', [[<cmd>lua require("dapui").eval(vim.fn.input('Enter expression: '))<CR>]], {noremap = true, silent = true})
 vim.api.nvim_set_keymap('n', '<leader>dd', [[:lua require'dapui'.toggle()<CR>]], {noremap = true, silent = true})
+
+-- Autocommands
+vim.cmd([[ autocmd FileType dap-repl set nobuflisted]])
+vim.cmd([[ autocmd FileType dap-repl,dapui_scopes,dapui_breakpoints,dapui_stacks,dapui_watches set nocursorline]])

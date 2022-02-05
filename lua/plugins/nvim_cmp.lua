@@ -1,21 +1,10 @@
 vim.o.shortmess = vim.o.shortmess .. 'c'
 
-local luasnip = require("luasnip")
-local cmp = require'cmp'
-require("luasnip/loaders/from_vscode").lazy_load()
+local feedkey = function(key, mode)
+  vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes(key, true, true, true), mode, true)
+end
 
---- Wraps nvim_replace_termcodes
---- @param str string
---- @return string
-local function replace_termcodes(str)
-  return vim.api.nvim_replace_termcodes(str, true, true, true)
-end
---- Helper function to check what <Tab> behaviour to use
---- @return boolean
-local function check_backspace()
-  local col = vim.fn.col(".") - 1
-  return col == 0 or vim.fn.getline("."):sub(col, col):match("%s")
-end
+local cmp = require'cmp'
 
 local icons = {
   Text = "",
@@ -52,7 +41,7 @@ cmp.setup {
   },
   snippet = {
     expand = function(args)
-      require("luasnip").lsp_expand(args.body)
+      vim.fn["vsnip#anonymous"](args.body)
     end,
   },
   formatting = {
@@ -60,9 +49,9 @@ cmp.setup {
       vim_item.kind = string.format("%s %s", icons[vim_item.kind], vim_item.kind)
       vim_item.menu = ({
         nvim_lsp = "[LSP]",
-        luasnip = "[Snp]",
-        buffer = "[Buf]",
-        nvim_lua = "[Lua]",
+        vsnip = "[VSnip]",
+        buffer = "[Buffer]",
+        nvim_lua = "[NvimLua]",
         path = "[Path]",
       })[entry.source.name]
       return vim_item
@@ -72,10 +61,10 @@ cmp.setup {
     border = { "╭", "─", "╮", "│", "╯", "─", "╰", "│" },
   },
   sources = {
+    { name = 'vsnip' },
     { name = "nvim_lsp" },
     { name = "path" },
     { name = "buffer" },
-    { name = "luasnip" },
   },
   mapping = {
     ["<C-k>"] = cmp.mapping.select_prev_item(),
@@ -89,33 +78,21 @@ cmp.setup {
       select = false,
     },
     ["<Tab>"] = cmp.mapping(function(fallback)
-      if cmp.visible() then
+      if vim.fn["vsnip#jumpable"](1) == 1 then
+        feedkey("<Plug>(vsnip-jump-next)", "")
+      elseif cmp.visible() then
         cmp.select_next_item()
-      elseif luasnip.expandable() then
-        luasnip.expand()
-      elseif luasnip.expand_or_jumpable() then
-        luasnip.expand_or_jump()
-      elseif check_backspace() then
-        fallback()
       else
-        fallback()
+        fallback() -- The fallback function sends a already mapped key. In this case, it's probably `<Tab>`.
       end
-    end, {
-      "i",
-      "s",
-    }),
-    ["<S-Tab>"] = cmp.mapping(function(fallback)
-      if cmp.visible() then
+    end, { "i", "s" }),
+    ["<S-Tab>"] = cmp.mapping(function()
+      if vim.fn["vsnip#jumpable"](-1) == 1 then
+        feedkey("<Plug>(vsnip-jump-prev)", "")
+      elseif cmp.visible() then
         cmp.select_prev_item()
-      elseif luasnip.jumpable(-1) then
-        luasnip.jump(-1)
-      else
-        fallback()
       end
-    end, {
-      "i",
-      "s",
-    }),
+    end, { "i", "s" }),
   },
 }
 

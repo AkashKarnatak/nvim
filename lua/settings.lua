@@ -29,4 +29,3 @@ vim.cmd([[ autocmd BufReadPost * if line("'\"") >= 1 && line("'\"") <= line("$")
 -- Do not add terminal to buffer list
 vim.cmd([[ autocmd TermOpen * set nobuflisted]])
 vim.cmd([[ autocmd QuickFixCmdPost * set nobuflisted]])
-vim.cmd([[ autocmd FileType dap-repl set nobuflisted]])

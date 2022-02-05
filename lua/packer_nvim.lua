@@ -46,7 +46,7 @@ return packer.startup({function()
       end
     }
 
-    -- Increase neovims
+    -- Load nvim configs faster
     use {
       "lewis6991/impatient.nvim",
     }
@@ -86,7 +86,7 @@ return packer.startup({function()
     -- Improves syntax highlighting and indentation
     use {
       "nvim-treesitter/nvim-treesitter",
-      event = "BufRead"
+      after = "packer.nvim"
     }
    use {
      "JoosepAlviste/nvim-ts-context-commentstring",
@@ -116,15 +116,15 @@ return packer.startup({function()
     -- Autocompletion and LSP
     use {
       "AkashKarnatak/friendly-snippets",
-      after = "packer.nvim"
+      after = "nvim-treesitter"
     }
     use {
-      "L3MON4D3/LuaSnip",
+      "hrsh7th/vim-vsnip",
       after = "friendly-snippets"
     }
     use {
       "hrsh7th/nvim-cmp",
-      after = "LuaSnip"
+      after = "vim-vsnip"
     }
     use {
       "hrsh7th/cmp-nvim-lsp",
@@ -139,19 +139,19 @@ return packer.startup({function()
       after = "cmp-path"
     }
     use {
-      "saadparwaiz1/cmp_luasnip",
+      "hrsh7th/cmp-vsnip",
       after = "cmp-buffer",
       config = function()
         require "plugins.nvim_cmp"
       end
     }
     use {
-      "jose-elias-alvarez/null-ls.nvim",
-      after = "cmp_luasnip"
+      "neovim/nvim-lspconfig",
+      after = "cmp-vsnip"
     }
     use {
-      "neovim/nvim-lspconfig",
-      after = "null-ls.nvim",
+      "jose-elias-alvarez/null-ls.nvim",
+      after = "nvim-lspconfig",
       config = function()
         require "plugins.lsp"
       end
@@ -167,7 +167,7 @@ return packer.startup({function()
     -- Bracket completion
     use {
       "windwp/nvim-autopairs",
-      after = "cmp_luasnip",
+      after = "cmp-vsnip",
       config = function()
         require "plugins.autopairs"
       end

@@ -1,5 +1,5 @@
 ------------ Packer configs ---------------
-require('impatient')
+require('impatient').enable_profile()
 require('packer_nvim')
 require('packer_compiled')
 

@@ -40,7 +40,8 @@ vim.api.nvim_set_keymap('n', '<Leader>fo', ':Telescope oldfiles<CR>', {noremap =
 vim.api.nvim_set_keymap('n', '<Leader>fw', ':Telescope live_grep<CR>', {noremap = true, silent = true})
 vim.api.nvim_set_keymap('n', '<Leader>fm', ':Telescope marks<CR>', {noremap = true, silent = true})
 vim.api.nvim_set_keymap('n', '<Leader>fr', ':Telescope file_browser<CR>', {noremap = true, silent = true})
-vim.api.nvim_set_keymap('n', '<Leader>fc', ':Telescope current_buffer_fuzzy_find<CR>', {noremap = true, silent = true})
+vim.api.nvim_set_keymap('n', '<Leader>f/', ':Telescope current_buffer_fuzzy_find<CR>', {noremap = true, silent = true})
+vim.api.nvim_set_keymap('n', '<Leader>fc', [[:Telescope find_files prompt_title=Nvim\ Config cwd=$HOME/.config/nvim<CR>]], {noremap = true, silent = true})
 
 -- Highlightings
 vim.cmd([[highlight TelescopeSelection      guibg=#383A42 gui=bold]]) -- selected item
