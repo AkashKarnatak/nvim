@@ -35,13 +35,12 @@ require('telescope').setup {
 }
 
 -- Mappings
-vim.api.nvim_set_keymap('n', '<Leader>ff', ':Telescope find_files<CR>', {noremap = true, silent = true})
-vim.api.nvim_set_keymap('n', '<Leader>fo', ':Telescope oldfiles<CR>', {noremap = true, silent = true})
-vim.api.nvim_set_keymap('n', '<Leader>fw', ':Telescope live_grep<CR>', {noremap = true, silent = true})
-vim.api.nvim_set_keymap('n', '<Leader>fm', ':Telescope marks<CR>', {noremap = true, silent = true})
-vim.api.nvim_set_keymap('n', '<Leader>fr', ':Telescope file_browser<CR>', {noremap = true, silent = true})
+vim.api.nvim_set_keymap('n', '<Leader>ff', ':Telescope find_files no_ignore=true<CR>', {noremap = true, silent = true})
+vim.api.nvim_set_keymap('n', '<Leader>fo', ':Telescope oldfiles no_ignore=true<CR>', {noremap = true, silent = true})
+vim.api.nvim_set_keymap('n', '<Leader>fw', ':Telescope live_grep no_ignore=true<CR>', {noremap = true, silent = true})
+vim.api.nvim_set_keymap('n', '<Leader>fm', ':Telescope marks no_ignore=true<CR>', {noremap = true, silent = true})
 vim.api.nvim_set_keymap('n', '<Leader>f/', ':Telescope current_buffer_fuzzy_find<CR>', {noremap = true, silent = true})
-vim.api.nvim_set_keymap('n', '<Leader>fc', [[:Telescope find_files prompt_title=Nvim\ Config cwd=$HOME/.config/nvim<CR>]], {noremap = true, silent = true})
+vim.api.nvim_set_keymap('n', '<Leader>fc', [[:Telescope find_files no_ignore=true prompt_title=Nvim\ Config cwd=$HOME/.config/nvim<CR>]], {noremap = true, silent = true})
 vim.api.nvim_set_keymap("n", "gd", ":Telescope lsp_definitions<CR>", {noremap = true, silent = true})
 vim.api.nvim_set_keymap("n", "gi", ":Telescope lsp_implementations<CR>", {noremap = true, silent = true})
 vim.api.nvim_set_keymap("n", "gr", ":Telescope lsp_references<CR>", {noremap = true, silent = true})

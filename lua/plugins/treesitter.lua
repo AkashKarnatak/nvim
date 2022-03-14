@@ -14,7 +14,10 @@ nvim_treesitter_configs.setup {
       "yaml",
       "lua",
       "python",
-      "java"
+      "java",
+      "html",
+      "css",
+      "javascript",
     }
   },
   autopairs = {

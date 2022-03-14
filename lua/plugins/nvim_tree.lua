@@ -51,24 +51,29 @@ vim.g.nvim_tree_icons = {
   },
 }
 
-vim.g.nvim_tree_disable_window_picker = 1
 vim.g.nvim_tree_respect_buf_cwd = 1
 
 -- following options are the default
 -- each of these are documented in `:help nvim-tree.OPTION_NAME`
 require'nvim-tree'.setup {
   disable_netrw       = true,
+  disable_window_picker  = false,
   hijack_netrw        = true,
   open_on_setup       = false,
   ignore_ft_on_setup  = {},
-  ignore = { ".git", "node_modules", ".cache" },
   auto_close          = true,
+  auto_reload_on_write = true,
   open_on_tab         = false,
   hijack_cursor       = false,
   update_cwd          = true,
   update_to_buf_dir   = {
     enable = true,
     auto_open = true,
+  },
+  git = {
+    enable = true,
+    ignore = false,
+    timeout = 500,
   },
   diagnostics = {
     enable = false,
@@ -90,18 +95,43 @@ require'nvim-tree'.setup {
   },
   filters = {
     dotfiles = false,
-    custom = {}
+    custom = { ".git", "node_modules", ".cache" }
   },
   view = {
     width = 30,
     height = 30,
     hide_root_folder = false,
+    preserve_window_proportions = true,
     side = 'left',
-    auto_resize = true,
     mappings = {
       custom_only = false,
       list = list
     }
+  },
+  actions = {
+    open_file = {
+      resize_window = true,
+      window_picker = {
+        enable = true,
+        chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890",
+        exclude = {
+          filetype = {
+            "NvimTree",
+            "packer",
+            "netrw",
+            "dapui_scopes",
+            "dapui_breakpoints",
+            "dapui_stacks",
+            "dapui_watches",
+            "dap-repl",
+            "toggleterm",
+            "input",
+            "output",
+          },
+          buftype  = { "nofile", "terminal", "help", },
+        }
+      }
+    },
   }
 }
 

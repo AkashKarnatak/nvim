@@ -25,7 +25,7 @@ vim.cmd('command! BD silent! execute "%bd|e#|bd#"')             -- Close all buf
 vim.cmd([[command! FilePath execute "echo expand('%:p')"]])     -- Display absolute path of the file opened in current buffer
 
 -- Jump cursor to the line where last exited nvim
-vim.cmd([[ autocmd BufReadPost * if line("'\"") >= 1 && line("'\"") <= line("$") && &ft !~# 'commit' | exe "normal! g`\"" | endif ]])
+vim.cmd([[autocmd BufReadPre * autocmd FileType <buffer> ++once if &ft !~# 'commit\|rebase' && line("'\"") > 1 && line("'\"") <= line("$") | exe 'normal! g`"' | endif]])
 -- Do not add terminal to buffer list
 vim.cmd([[ autocmd TermOpen * set nobuflisted]])
 vim.cmd([[ autocmd QuickFixCmdPost * set nobuflisted]])

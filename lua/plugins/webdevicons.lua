@@ -67,6 +67,11 @@ require("nvim-web-devicons").set_icon {
      color = colors.blue,
      name = "lua",
   },
+  Makefile = {
+     icon = "",
+     color = '#6d8086',
+     name = "Makefile",
+  },
   mp3 = {
      icon = "",
      color = colors.fg,

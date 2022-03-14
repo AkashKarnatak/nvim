@@ -13,10 +13,10 @@ vim.api.nvim_set_keymap('n', '<C-k>', '<C-w>k', {noremap = true, silent = true})
 vim.api.nvim_set_keymap('n', '<C-l>', '<C-w>l', {noremap = true, silent = true})
 
 -- resize windows easily
-vim.api.nvim_set_keymap('n', '<M-h>', '<C-w><', {noremap = true, silent = true})
-vim.api.nvim_set_keymap('n', '<M-j>', '<C-w>-', {noremap = true, silent = true})
-vim.api.nvim_set_keymap('n', '<M-k>', '<C-w>+', {noremap = true, silent = true})
-vim.api.nvim_set_keymap('n', '<M-l>', '<C-w>>', {noremap = true, silent = true})
+vim.api.nvim_set_keymap('n', '<C-Left>', '<C-w><', {noremap = true, silent = true})
+vim.api.nvim_set_keymap('n', '<C-Down>', '<C-w>-', {noremap = true, silent = true})
+vim.api.nvim_set_keymap('n', '<C-Up>', '<C-w>+', {noremap = true, silent = true})
+vim.api.nvim_set_keymap('n', '<C-Right>', '<C-w>>', {noremap = true, silent = true})
 
 -- Remap 0, $, ^
 vim.api.nvim_set_keymap('n', '0', '$',  {noremap = true, silent = true})
@@ -103,6 +103,8 @@ vim.api.nvim_set_keymap('n', 'Q', ':Bdelete!<CR>', {noremap = true, silent=true}
 
 vim.api.nvim_set_keymap('v', '<C-j>', [[:m '>+1<CR>gv=gv]], {noremap = true, silent=true})
 vim.api.nvim_set_keymap('v', '<C-k>', [[:m '<-2<CR>gv=gv]], {noremap = true, silent=true})
+
+vim.api.nvim_set_keymap('v', '*', [[y/\V<C-R>=escape(@",'/\')<CR><CR>]], {noremap = true, silent=true})
 
 -- Asynctasks
 vim.api.nvim_set_keymap('n', '<Leader>kc', ':let g:asynctasks_term_rows=winheight(0)*10/25 | AsyncTask file-compile<CR>', {noremap = true, silent = true})

@@ -41,5 +41,8 @@ for _, server_name in ipairs(servers) do
     local sumneko_opts = require("plugins.lsp.settings.sumneko_lua")
     opts = vim.tbl_deep_extend("force", sumneko_opts, opts)
   end
+  if server_name == "cssls" or server_name == "html" then
+    opts = require("plugins.lsp.settings.vscode-langservers-extracted")
+  end
   nvim_lsp[server_name].setup(opts)
 end

@@ -41,3 +41,6 @@ vim.cmd('highlight! NvimTreeNormalNC guibg=#24282e')
 vim.cmd('highlight! NvimTreeEndOfBuffer guifg=#24282e guibg=#24282e')
 vim.cmd('highlight! NvimTreeVertSplit guifg=#24282e guibg=#24282e')
 vim.cmd('highlight! NvimTreeStatuslineNc guifg=#24282e guibg=#24282e')
+
+local hlmap = vim.treesitter.highlighter.hl_map
+hlmap.error = nil
