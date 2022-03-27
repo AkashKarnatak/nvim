@@ -18,6 +18,7 @@ vim.wo.signcolumn = "yes"                                       -- Always show t
 -- vim.o.updatetime = 200                                       -- Faster completion
 vim.o.timeoutlen = 500                                          -- By default timeoutlen is 1000 ms
 vim.o.cpoptions = vim.o.cpoptions .. 'y'                        -- Allows yank action to be repeated
+vim.o.laststatus = 3                                            -- Global statusline
 vim.cmd('set ts=2')                                             -- Insert 4 spaces for a tab
 vim.cmd('set sw=2')                                             -- Change the number of space characters inserted for indentation
 vim.cmd('syntax on')                                            -- Enable syntax highlighting

@@ -65,11 +65,9 @@ vim.api.nvim_set_keymap('n', 'L', ':bnext<CR>', {noremap = true, silent = true})
 vim.api.nvim_set_keymap('n', 'H', ':bprevious<CR>', {noremap = true, silent = true})
 
 -- Remove highlighting
--- vim.api.nvim_set_keymap('n', ';;', ':noh<CR>:<BS>', {noremap = true})
 vim.api.nvim_set_keymap('n', '<Esc>', ':noh<CR>:<BS>', {noremap = true})
 -- Enter normal mode in terminal
--- vim.api.nvim_set_keymap('t', ';;', '<C-\\><C-n>', {noremap = true})
-vim.api.nvim_set_keymap('t', '<Esc>', '<C-\\><C-n>', {noremap = true})
+vim.api.nvim_set_keymap('t', '<M-Esc>', '<C-\\><C-n>', {noremap = true})
 -- Map Ctrl-Backspace to delete the previous word in insert mode
 vim.api.nvim_set_keymap('i', '<C-h>', '<C-w>', {noremap = true})
 vim.api.nvim_set_keymap('c', '<C-h>', '<C-w>', {noremap = true})
