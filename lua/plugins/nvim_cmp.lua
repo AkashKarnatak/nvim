@@ -12,7 +12,7 @@ local icons = {
   Function = "",
   Constructor = "",
   Field = "ﴲ",
-  Variable = "[]",
+  Variable = "",
   Class = "",
   Interface = "ﰮ",
   Module = "",
@@ -46,7 +46,7 @@ cmp.setup {
   },
   formatting = {
     format = function(entry, vim_item)
-      vim_item.kind = string.format("%s %s", icons[vim_item.kind], vim_item.kind)
+      vim_item.kind = string.format("%s  %s", icons[vim_item.kind], vim_item.kind)
       vim_item.menu = ({
         nvim_lsp = "[LSP]",
         vsnip = "[VSnip]",
@@ -56,9 +56,15 @@ cmp.setup {
       })[entry.source.name]
       return vim_item
     end,
-   },
-  documentation = {
-    border = { "╭", "─", "╮", "│", "╯", "─", "╰", "│" },
+  },
+  window = {
+    documentation = {
+      border = {'╭', '─', '╮', '│', '╯', '─', '╰', '│'},
+    },
+    completion = {
+      border = {'╭', '─', '╮', '│', '╯', '─', '╰', '│'},
+      winhighlight = 'Normal:CmpPmenu,FloatBorder:CmpPmenuBorder,CursorLine:PmenuSel,Search:None',
+    },
   },
   sources = {
     { name = 'vsnip' },
@@ -136,3 +142,5 @@ vim.cmd('highlight! CmpItemKindStruct          guibg=NONE    guifg=' .. colors.b
 vim.cmd('highlight! CmpItemKindEvent           guibg=NONE    guifg=' .. colors.cyan)
 vim.cmd('highlight! CmpItemKindOperator        guibg=NONE    guifg=' .. colors.red)
 vim.cmd('highlight! CmpItemKindTypeParameter   guibg=NONE    guifg=' .. colors.orange)
+vim.cmd('highlight! link CmpPmenu              Pmenu')
+vim.cmd('highlight! link CmpPmenuBorder        Pmenu')

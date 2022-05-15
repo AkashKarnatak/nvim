@@ -33,6 +33,12 @@ if not present then
    return
 end
 
+vim.cmd([[
+ function! Quit_vim(a,b,c,d)
+     qa
+ endfunction
+]])
+
 bufferline.setup {
    options = {
       offsets = { { filetype = "NvimTree", text = "", padding = 1 } },
@@ -40,9 +46,8 @@ bufferline.setup {
       right_mouse_command = "Bdelete! %d",
       buffer_close_icon = "",
       modified_icon = "",
-      -- close_icon = "%@NvChad_bufferline_quitvim@%X",
       close_icon = "",
-      show_close_icon = true,
+      show_close_icon = false,
       left_trunc_marker = "",
       right_trunc_marker = "",
       max_name_length = 14,
@@ -65,6 +70,13 @@ bufferline.setup {
       separator_style = "thin",
       always_show_bufferline = true,
       diagnostics = false, -- "or nvim_lsp"
+      custom_areas = {
+         right = function()
+            return {
+               { text = "%@Quit_vim@  %X" },
+            }
+         end,
+      },
       custom_filter = function(buf_number)
          -- Func to filter out our managed/persistent split terms
          local present_type, type = pcall(function()
@@ -127,7 +139,7 @@ bufferline.setup {
          guibg = colors.active_tab_bg,
       },
       fill = {
-         guifg = colors.inactive_tab_bg,
+         guifg = colors.inactive_tab_fg,
          guibg = colors.inactive_tab_bg,
       },
       indicator_selected = {

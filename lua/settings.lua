@@ -19,8 +19,8 @@ vim.wo.signcolumn = "yes"                                       -- Always show t
 vim.o.timeoutlen = 500                                          -- By default timeoutlen is 1000 ms
 vim.o.cpoptions = vim.o.cpoptions .. 'y'                        -- Allows yank action to be repeated
 vim.o.laststatus = 3                                            -- Global statusline
-vim.cmd('set ts=2')                                             -- Insert 4 spaces for a tab
-vim.cmd('set sw=2')                                             -- Change the number of space characters inserted for indentation
+vim.o.ts = 2                                                    -- Insert 4 spaces for a tab
+vim.o.sw = 2                                                    -- Change the number of space characters inserted for indentation
 vim.cmd('syntax on')                                            -- Enable syntax highlighting
 vim.cmd('command! BD silent! execute "%bd|e#|bd#"')             -- Close all buffers except the active one
 vim.cmd([[command! FilePath execute "echo expand('%:p')"]])     -- Display absolute path of the file opened in current buffer
@@ -28,5 +28,33 @@ vim.cmd([[command! FilePath execute "echo expand('%:p')"]])     -- Display absol
 -- Jump cursor to the line where last exited nvim
 vim.cmd([[autocmd BufReadPre * autocmd FileType <buffer> ++once if &ft !~# 'commit\|rebase' && line("'\"") > 1 && line("'\"") <= line("$") | exe 'normal! g`"' | endif]])
 -- Do not add terminal to buffer list
-vim.cmd([[ autocmd TermOpen * set nobuflisted]])
-vim.cmd([[ autocmd QuickFixCmdPost * set nobuflisted]])
+vim.api.nvim_create_autocmd("TermOpen", {
+  callback = function() vim.o.buflisted = false end
+})
+vim.api.nvim_create_autocmd("QuickFixCmdPost", {
+  callback = function() vim.o.buflisted = false end
+})
+
+-- Set cursorline only for active buffers
+local filesToIgnr = "NvimTree, TelescopePrompt, TelescopeResults"
+local gid = vim.api.nvim_create_augroup("CursorLine", {
+  clear = false
+})
+vim.api.nvim_create_autocmd({"VimEnter", "WinEnter", "BufWinEnter"}, {
+  pattern = {"*"},
+  group = gid,
+  callback = function()
+    if not string.find(filesToIgnr, vim.o.filetype) then
+      vim.o.cursorline = true
+    end
+  end
+})
+vim.api.nvim_create_autocmd({"WinLeave"}, {
+  pattern = {"*"},
+  group = gid,
+  callback = function()
+    if not string.find(filesToIgnr, vim.o.filetype) then
+      vim.o.cursorline = false
+    end
+  end
+})

@@ -86,7 +86,7 @@ return packer.startup({function()
     -- Improves syntax highlighting and indentation
     use {
       "nvim-treesitter/nvim-treesitter",
-      after = "packer.nvim"
+      event = { "BufRead", "BufNewFile" },
     }
    use {
      "JoosepAlviste/nvim-ts-context-commentstring",
@@ -208,6 +208,10 @@ return packer.startup({function()
     }
     use {
       "akinsho/toggleterm.nvim",
+      cmd = "ToggleTerm",
+      keys = {
+        {"n", "<C-_>"}
+      },
       config = function()
         require "plugins.toggleterm"
       end
@@ -229,7 +233,7 @@ return packer.startup({function()
     -- Markdown
     use {
       "iamcco/markdown-preview.nvim",
-      run = 'cd app && yarn install',
+      run = 'cd app && npm install',
       ft = {'markdown'}
     }
 
@@ -245,6 +249,7 @@ return packer.startup({function()
         {'n', '<space>fr'},
         {'n', '<space>f/'},
         {'n', '<space>fc'},
+        {'n', '<space>fh'},
         {'n', 'gd'},
         {'n', 'gi'},
         {'n', 'gr'},
@@ -317,21 +322,6 @@ return packer.startup({function()
       end
     }
 
-    -- dashboard
-    use {
-      "glepnir/dashboard-nvim",
-      cmd = {
-        "Dashboard",
-        "DashboardNewFile",
-        "DashboardJumpMarks",
-        "SessionLoad",
-        "SessionSave"
-      },
-      config = function()
-        require("plugins.dashboard")
-      end
-    }
-
     -- Debugging
     use {
       "mfussenegger/nvim-dap",
@@ -357,8 +347,18 @@ return packer.startup({function()
       end
     }
 
+    -- Session manager
+    use({
+      "rmagatti/auto-session",
+      -- module = "persisted", -- For lazy loading
+      config = function()
+        require("plugins.session")
+      end,
+    })
+
 end,
 config = {
   -- Move to lua dir so impatient.nvim can cache it
-  compile_path = vim.fn.stdpath('config')..'/lua/packer_compiled.lua'
+  compile_path = vim.fn.stdpath('config')..'/lua/packer_compiled.lua',
+  snapshot_path = vim.fn.stdpath('config')..'/snapshots'
 }})

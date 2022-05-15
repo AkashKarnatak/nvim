@@ -26,6 +26,9 @@ require('doom-one').setup({
   },
 })
 
+-- Pmenu
+vim.cmd('highlight! PmenuSbar   guibg=#404652')
+
 -- Diagnostic
 vim.cmd('highlight! link DiagnosticError DiagnosticFloatingError')
 vim.cmd('highlight! link DiagnosticHint DiagnosticFloatingHint')
@@ -41,6 +44,11 @@ vim.cmd('highlight! NvimTreeNormalNC guibg=#24282e')
 vim.cmd('highlight! NvimTreeEndOfBuffer guifg=#24282e guibg=#24282e')
 vim.cmd('highlight! NvimTreeVertSplit guifg=#24282e guibg=#24282e')
 vim.cmd('highlight! NvimTreeStatuslineNc guifg=#24282e guibg=#24282e')
+vim.cmd('highlight! NvimTreeCursorLine guibg=#1d2125 gui=bold')
+
+-- -- Bufferline
+vim.cmd('highlight! BufferLineRightCustomArea guifg=#76cce0 guibg=#1c1f24 gui=bold')
+vim.cmd('highlight! BufferLineRightCustomAreaText1 guifg=#76cce0 guibg=#1c1f24 gui=bold')
 
 local hlmap = vim.treesitter.highlighter.hl_map
 hlmap.error = nil

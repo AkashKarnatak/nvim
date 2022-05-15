@@ -1,5 +1,7 @@
 local ft = require('Comment.ft')
 ft.set('asm', {'//%s', '/*%s*/'})
+ft.set('resolv', '#%s')
+ft.set('pfmain', '#%s')
 
 require('Comment').setup({
   toggler = {

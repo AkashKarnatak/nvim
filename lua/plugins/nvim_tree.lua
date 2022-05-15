@@ -57,11 +57,9 @@ vim.g.nvim_tree_respect_buf_cwd = 1
 -- each of these are documented in `:help nvim-tree.OPTION_NAME`
 require'nvim-tree'.setup {
   disable_netrw       = true,
-  disable_window_picker  = false,
   hijack_netrw        = true,
   open_on_setup       = false,
   ignore_ft_on_setup  = {},
-  auto_close          = true,
   auto_reload_on_write = true,
   open_on_tab         = false,
   hijack_cursor       = false,
