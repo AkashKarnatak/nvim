@@ -42,7 +42,7 @@ end
 
 local lsp_highlight_document = function(client)
   -- Set autocommands conditional on server_capabilities
-  if client.supports_method("textDocument/highlight") then
+  if client.supports_method("textDocument/documentHighlight") then
     vim.api.nvim_exec(
       [[
       augroup lsp_document_highlight
