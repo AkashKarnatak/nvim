@@ -1,1 +1,1 @@
-call v:lua.ToggleAutoPairs()
+lua require('nvim-autopairs').disable()
