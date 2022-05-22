@@ -26,9 +26,10 @@ require('doom-one').setup({
   },
 })
 
--- Pmenu
+-- General
 vim.cmd('highlight! PmenuSbar guibg=#404652')
 vim.cmd('highlight! FloatBorder guifg=#5b6268 guibg=#21252a')
+vim.cmd('highlight! TermCursor cterm=reverse gui=reverse guifg=#51afef')
 
 -- Diagnostic
 vim.cmd('highlight! link DiagnosticError DiagnosticFloatingError')
