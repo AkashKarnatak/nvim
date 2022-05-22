@@ -27,7 +27,8 @@ require('doom-one').setup({
 })
 
 -- Pmenu
-vim.cmd('highlight! PmenuSbar   guibg=#404652')
+vim.cmd('highlight! PmenuSbar guibg=#404652')
+vim.cmd('highlight! FloatBorder guifg=#5b6268 guibg=#21252a')
 
 -- Diagnostic
 vim.cmd('highlight! link DiagnosticError DiagnosticFloatingError')

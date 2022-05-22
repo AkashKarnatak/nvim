@@ -36,7 +36,7 @@ vim.api.nvim_create_autocmd("QuickFixCmdPost", {
 })
 
 -- Set cursorline only for active buffers
-local filesToIgnr = "NvimTree, TelescopePrompt, TelescopeResults"
+local filesToIgnr = { NvimTree = true, TelescopePrompt = true, TelescopeResults = true, [""] = true }
 local gid = vim.api.nvim_create_augroup("CursorLine", {
   clear = false
 })
@@ -44,7 +44,7 @@ vim.api.nvim_create_autocmd({"VimEnter", "WinEnter", "BufWinEnter"}, {
   pattern = {"*"},
   group = gid,
   callback = function()
-    if not string.find(filesToIgnr, vim.o.filetype) then
+    if not filesToIgnr[vim.o.filetype] then
       vim.o.cursorline = true
     end
   end
@@ -53,7 +53,7 @@ vim.api.nvim_create_autocmd({"WinLeave"}, {
   pattern = {"*"},
   group = gid,
   callback = function()
-    if not string.find(filesToIgnr, vim.o.filetype) then
+    if not filesToIgnr[vim.o.filetype] then
       vim.o.cursorline = false
     end
   end

@@ -60,6 +60,7 @@ cmp.setup {
   window = {
     documentation = {
       border = {'╭', '─', '╮', '│', '╯', '─', '╰', '│'},
+      winhighlight = 'Normal:CmpPmenu,FloatBorder:CmpPmenuBorder,CursorLine:PmenuSel,Search:None',
     },
     completion = {
       border = {'╭', '─', '╮', '│', '╯', '─', '╰', '│'},
@@ -105,7 +106,7 @@ cmp.setup {
 local colors = {
   bg = "#23272e",
   fg = "#bbc2cf",
-  fg_alt = "#5B6268",
+  fg_alt = "#5b6268",
   yellow = "#ECBE7B",
   cyan = "#46D9FF",
   green = "#98be65",
@@ -117,7 +118,7 @@ local colors = {
 
 vim.cmd('highlight! CmpItemAbbrMatch           guibg=NONE    guifg=' .. colors.cyan)
 vim.cmd('highlight! CmpItemAbbrMatchFuzzy      guibg=NONE    guifg=' .. colors.cyan)
-vim.cmd('highlight! CmpItemKindText            guibg=NONE    guifg=' .. colors.fg)
+vim.cmd('highlight! CmpItemKindText            guibg=NONE    guifg=' .. colors.fg_alt)
 vim.cmd('highlight! CmpItemKindMethod          guibg=NONE    guifg=' .. colors.blue)
 vim.cmd('highlight! CmpItemKindFunction        guibg=NONE    guifg=' .. colors.cyan)
 vim.cmd('highlight! CmpItemKindConstructor     guibg=NONE    guifg=' .. colors.red)
@@ -143,4 +144,4 @@ vim.cmd('highlight! CmpItemKindEvent           guibg=NONE    guifg=' .. colors.c
 vim.cmd('highlight! CmpItemKindOperator        guibg=NONE    guifg=' .. colors.red)
 vim.cmd('highlight! CmpItemKindTypeParameter   guibg=NONE    guifg=' .. colors.orange)
 vim.cmd('highlight! link CmpPmenu              Pmenu')
-vim.cmd('highlight! link CmpPmenuBorder        Pmenu')
+vim.cmd('highlight! link CmpPmenuBorder FloatBorder')
