@@ -6,7 +6,13 @@ local packer = require('packer')
 packer.init({
   git = {
     clone_timeout = 300, -- Timeout, in seconds, for git clones
-  }
+  },
+  display = {
+    prompt_border = 'rounded',
+    open_fn = function()
+      return require("packer.util").float { border = "rounded" }
+    end,
+  },
 })
 
 vim.cmd [[
@@ -15,15 +21,6 @@ vim.cmd [[
     autocmd BufWritePost packer_nvim.lua source <afile> | PackerSync
   augroup end
 ]]
-
--- Have packer use a popup window
-packer.init {
-  display = {
-    open_fn = function()
-      return require("packer.util").float { border = "rounded" }
-    end,
-  },
-}
 
 return packer.startup({function()
     -- This package need to be present as a plugin otherwise packer will prompt to remove itself
@@ -77,16 +74,14 @@ return packer.startup({function()
       after = "packer.nvim",
     }
 
-    -- Vim nouns
-    use {
-      "michaeljsmith/vim-indent-object",
-      after = "packer.nvim",
-    }
-
     -- Improves syntax highlighting and indentation
     use {
       "nvim-treesitter/nvim-treesitter",
       event = { "BufRead", "BufNewFile" },
+    }
+    use {
+      "nvim-treesitter/nvim-treesitter-textobjects",
+      after = "nvim-treesitter"
     }
    use {
      "JoosepAlviste/nvim-ts-context-commentstring",
@@ -250,10 +245,10 @@ return packer.startup({function()
         {'n', '<space>f/'},
         {'n', '<space>fc'},
         {'n', '<space>fh'},
+        {'n', '<space>fg'},
         {'n', 'gd'},
         {'n', 'gi'},
         {'n', 'gr'},
-        {'n', '<space>la'},
         {'n', '<space>ld'},
         {'n', '<space>ls'},
       },
@@ -273,9 +268,9 @@ return packer.startup({function()
 
     -- project manager
     use {
-      "ygm2/rooter.nvim",
+      "ahmedkhalf/project.nvim",
       config = function()
-        require "plugins.rooter"
+        require("plugins.project")
       end
     }
 

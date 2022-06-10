@@ -27,6 +27,10 @@ vim.cmd([[command! FilePath execute "echo expand('%:p')"]])     -- Display absol
 
 -- Jump cursor to the line where last exited nvim
 vim.cmd([[autocmd BufReadPre * autocmd FileType <buffer> ++once if &ft !~# 'commit\|rebase' && line("'\"") > 1 && line("'\"") <= line("$") | exe 'normal! g`"' | endif]])
+-- Prioritize linux man pages over posix
+vim.api.nvim_create_autocmd("BufEnter", {
+  callback = function() vim.b.man_default_sects = '2,3' end
+})
 -- Do not add terminal to buffer list
 vim.api.nvim_create_autocmd("TermOpen", {
   callback = function() vim.o.buflisted = false end

@@ -106,7 +106,7 @@ cmp.setup {
 local colors = {
   bg = "#23272e",
   fg = "#bbc2cf",
-  fg_alt = "#5b6268",
+  fg_alt = "#747c84",
   yellow = "#ECBE7B",
   cyan = "#46D9FF",
   green = "#98be65",
@@ -143,5 +143,6 @@ vim.cmd('highlight! CmpItemKindStruct          guibg=NONE    guifg=' .. colors.b
 vim.cmd('highlight! CmpItemKindEvent           guibg=NONE    guifg=' .. colors.cyan)
 vim.cmd('highlight! CmpItemKindOperator        guibg=NONE    guifg=' .. colors.red)
 vim.cmd('highlight! CmpItemKindTypeParameter   guibg=NONE    guifg=' .. colors.orange)
-vim.cmd('highlight! link CmpPmenu              Pmenu')
-vim.cmd('highlight! link CmpPmenuBorder FloatBorder')
+vim.cmd('highlight! CmpItemMenu                guibg=NONE    guifg=' .. colors.blue)
+vim.cmd('highlight! CmpPmenu guifg=#bbc2cf guibg=#282c34')
+vim.cmd('highlight! CmpPmenuBorder guifg=#5f5f5f guibg=#282c34')

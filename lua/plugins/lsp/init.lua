@@ -3,6 +3,16 @@ local configs = require "lspconfig.configs"
 require("plugins.lsp.handlers").setup()
 require "plugins.lsp.null-ls"
 
+-- Borders for LspInfo winodw
+local win = require "lspconfig.ui.windows"
+local _default_opts = win.default_opts
+
+win.default_opts = function(options)
+   local opts = _default_opts(options)
+   opts.border = "rounded"
+   return opts
+end
+
 -- configure servers
 if not configs.ls_emmet then
   configs.ls_emmet = {

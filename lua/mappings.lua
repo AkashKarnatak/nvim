@@ -99,9 +99,6 @@ vim.cmd([[command! LoadCompe execute winwidth(0)/3 . "vsp input.txt|set nobuflis
 vim.api.nvim_set_keymap('n', '<leader>cc', ':LoadCompe<CR>', {noremap = true, silent=true})
 vim.api.nvim_set_keymap('n', 'Q', ':Bdelete!<CR>', {noremap = true, silent=true})
 
-vim.api.nvim_set_keymap('v', '<C-j>', [[:m '>+1<CR>gv=gv]], {noremap = true, silent=true})
-vim.api.nvim_set_keymap('v', '<C-k>', [[:m '<-2<CR>gv=gv]], {noremap = true, silent=true})
-
 vim.api.nvim_set_keymap('v', '*', [[y/\V<C-R>=escape(@",'/\')<CR><CR>]], {noremap = true, silent=true})
 
 -- Asynctasks
