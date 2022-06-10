@@ -285,7 +285,7 @@ return packer.startup({function()
 
     -- Statusline
     use({
-      "NTBBloodbath/galaxyline.nvim",
+      "AkashKarnatak/galaxyline.nvim",
       after = "nvim-web-devicons",
       config = function()
         require("plugins.eviline")

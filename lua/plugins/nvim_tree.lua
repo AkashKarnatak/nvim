@@ -76,8 +76,8 @@ require'nvim-tree'.setup {
     args = {}
   },
   filters = {
-    dotfiles = false,
-    custom = { ".git", "node_modules", ".cache" }
+    dotfiles = true,
+    custom = { "node_modules", ".cache" }
   },
   view = {
     width = 30,
