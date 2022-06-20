@@ -95,7 +95,39 @@ vim.api.nvim_set_keymap('n', '<Leader>aa', [[:echo expand('%ph')<CR>]], {noremap
 -- horizontal equivalent of zz
 vim.api.nvim_set_keymap('n', 'ZZ', 'zszH', {noremap = true, silent=true})
 -- Shortcuts for competitive programming
-vim.cmd([[command! LoadCompe execute winwidth(0)/3 . "vsp input.txt|set nobuflisted|setlocal nocursorline|set ft=input|sp output.txt|set nobuflisted|setlocal nocursorline|set ft=output|:norm <C-w>h"]])
+local function file_exists(path)
+  local _, error = vim.loop.fs_stat(path)
+  return error == nil
+end
+vim.api.nvim_create_user_command(
+    'LoadCompe',
+    function()
+      if not file_exists('./.cvim_cache') then
+        vim.loop.fs_mkdir('./.cvim_cache', 493)
+      end
+      if not file_exists('./.cvim_cache/input.txt') then
+        local fd = vim.loop.fs_open('./.cvim_cache/input.txt', "w", 420)
+        vim.loop.fs_close(fd)
+      end
+      if not file_exists('./.cvim_cache/output.txt') then
+        local fd = vim.loop.fs_open('./.cvim_cache/output.txt', "w", 420)
+        vim.loop.fs_close(fd)
+      end
+      vim.cmd([[execute winwidth(0)/3 . "vsp ./.cvim_cache/input.txt|set nobuflisted|setlocal nocursorline|set ft=input|sp ./.cvim_cache/output.txt|set nobuflisted|setlocal nocursorline|set ft=output|:norm \<C-w>h"]])
+      vim.api.nvim_create_autocmd("BufEnter", {
+        nested = true,
+        callback = function()
+          if #vim.api.nvim_list_wins() == 2 and (vim.bo.filetype == 'input' or vim.bo.filetype == 'output') then
+            vim.cmd "quit"
+          end
+          if #vim.api.nvim_list_wins() == 1 and (vim.bo.filetype == 'input' or vim.bo.filetype == 'output') then
+            vim.cmd "quit"
+          end
+        end
+      })
+    end,
+    { nargs = 0 }
+)
 vim.api.nvim_set_keymap('n', '<leader>cc', ':LoadCompe<CR>', {noremap = true, silent=true})
 vim.api.nvim_set_keymap('n', 'Q', ':Bdelete!<CR>', {noremap = true, silent=true})
 
