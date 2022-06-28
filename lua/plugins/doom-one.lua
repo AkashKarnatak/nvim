@@ -20,7 +20,7 @@ require('doom-one').setup({
     dashboard = false,
     startify = false,
     whichkey = false,
-    indent_blankline = false,
+    indent_blankline = true,
     vim_illuminate = false,
     lspsaga = false,
   },
@@ -63,6 +63,9 @@ vim.cmd('highlight! link GitSignsChangeLn DiffChange')
 vim.cmd('highlight! link GitSignsChangeInline DiffChange')
 vim.cmd('highlight! link GitSignsDeleteLn DiffDelete')
 vim.cmd('highlight! link GitSignsDeleteInline DiffDelete')
+
+-- Indent blankline
+vim.cmd [[highlight! IndentBlanklineContextChar guifg=#6d7580 gui=bold]]
 
 local hlmap = vim.treesitter.highlighter.hl_map
 hlmap.error = nil

@@ -4,9 +4,9 @@ vim.cmd [[packadd packer.nvim]]
 local packer = require('packer')
 
 packer.init({
-  git = {
-    clone_timeout = 300, -- Timeout, in seconds, for git clones
-  },
+  auto_clean = true,
+  compile_on_sync = true,
+  git = { clone_timeout = 6000 },
   display = {
     prompt_border = 'rounded',
     open_fn = function()
@@ -33,14 +33,6 @@ return packer.startup({function()
     use {
       "moll/vim-bbye",
       cmd = "Bdelete"
-    }
-
-    -- Fix cursorhold bug
-    use {
-      "antoinemadec/FixCursorHold.nvim",
-      config = function()
-        vim.g.cursorhold_updatetime = 100
-      end
     }
 
     -- Load nvim configs faster
@@ -152,12 +144,27 @@ return packer.startup({function()
       end
     }
     use {
+      "windwp/nvim-autopairs",
+      after = "null-ls.nvim",
+      config = function()
+        require "plugins.autopairs"
+      end
+    }
+    use {
       "ray-x/lsp_signature.nvim",
-      after = "nvim-lspconfig",
+      after = "nvim-autopairs",
       config = function()
         require("plugins.lsp_signature")
       end
     }
+    -- use {
+    --   "kevinhwang91/nvim-ufo",
+    --   requires = "kevinhwang91/promise-async",
+    --   after = "lsp_signature.nvim",
+    --   config = function()
+    --     require("plugins.nvim-ufo")
+    --   end
+    -- }
     use {
       "mfussenegger/nvim-jdtls",
       wants = {
@@ -177,15 +184,6 @@ return packer.startup({function()
       ft = {"java"},
       config = function()
         require("plugins.jdtls")
-      end
-    }
-
-    -- Bracket completion
-    use {
-      "windwp/nvim-autopairs",
-      after = "cmp-vsnip",
-      config = function()
-        require "plugins.autopairs"
       end
     }
 
@@ -285,7 +283,7 @@ return packer.startup({function()
 
     -- Statusline
     use({
-      "AkashKarnatak/galaxyline.nvim",
+      "glepnir/galaxyline.nvim",
       after = "nvim-web-devicons",
       config = function()
         require("plugins.eviline")
@@ -336,7 +334,7 @@ return packer.startup({function()
 
     use {
       "lukas-reineke/indent-blankline.nvim",
-      after = "doom-one.nvim",
+      after = "nvim-treesitter",
       config = function()
         require("plugins.indent-blankline")
       end

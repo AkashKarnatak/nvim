@@ -18,6 +18,7 @@ nvim_treesitter_configs.setup {
       "html",
       "css",
       "javascript",
+      "go"
     }
   },
   incremental_selection = {

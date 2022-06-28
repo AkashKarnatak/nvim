@@ -38,6 +38,7 @@ local servers = {
   'html',
   'ls_emmet',
   'sumneko_lua',
+  'gopls',
 }
 
 local opts = {

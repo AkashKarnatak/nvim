@@ -1,9 +1,21 @@
 vim.o.showmode = false
 local gl = require("galaxyline")
-local colors = require("galaxyline.themes.colors")["doom-one"]
+local colors = {
+  bg = "#23272e",
+  fg = "#bbc2cf",
+  fg_alt = "#5B6268",
+  yellow = "#ECBE7B",
+  cyan = "#46D9FF",
+  green = "#98be65",
+  orange = "#da8548",
+  magenta = "#c678dd",
+  blue = "#51afef",
+  red = "#ff6c6b",
+  violet = "#a9a1e1",
+}
 local condition = require("galaxyline.condition")
-local buffer = require("galaxyline.providers.buffer")
-local lsp = require("galaxyline.providers.lsp")
+local buffer = require("galaxyline.provider_buffer")
+local lsp = require("galaxyline.provider_lsp")
 local gls = gl.section
 
 gl.short_line_list = {
@@ -18,6 +30,7 @@ gl.short_line_list = {
   "toggleterm",
   "input",
   "output",
+  "lspinfo"
 }
 
 local function is_not_dashboard()
@@ -59,7 +72,7 @@ gls.left[2] = {
         ["!"] = colors.red,
         t = colors.red,
       }
-      vim.api.nvim_command("hi GalaxyViMode guifg=" .. mode_color[vim.fn.mode()])
+      vim.api.nvim_set_hl(0, "GalaxyViMode", { fg = mode_color[vim.fn.mode()] })
       return "  "
     end,
     highlight = { colors.red, colors.bg, "bold" },
@@ -78,7 +91,7 @@ gls.left[4] = {
   FileIcon = {
     provider = "FileIcon",
     condition = condition.buffer_not_empty and is_not_dashboard,
-    highlight = { require("galaxyline.providers.fileinfo").get_file_icon_color, colors.bg },
+    highlight = { require("galaxyline.provider_fileinfo").get_file_icon_color, colors.bg },
   },
 }
 

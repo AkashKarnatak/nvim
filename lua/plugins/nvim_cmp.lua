@@ -1,4 +1,5 @@
 vim.o.shortmess = vim.o.shortmess .. 'c'
+vim.o.completeopt = "menuone,noselect"
 
 local feedkey = function(key, mode)
   vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes(key, true, true, true), mode, true)
@@ -35,6 +36,7 @@ local icons = {
 }
 
 cmp.setup {
+  preselect = cmp.PreselectMode.None,
   completion = {
     keyword_length = 1;
     completeopt = "menuone,noselect",
@@ -116,8 +118,8 @@ local colors = {
   red = "#ff6c6b",
 }
 
-vim.cmd('highlight! CmpItemAbbrMatch           guibg=NONE    guifg=' .. colors.cyan)
-vim.cmd('highlight! CmpItemAbbrMatchFuzzy      guibg=NONE    guifg=' .. colors.cyan)
+vim.cmd('highlight! CmpItemAbbrMatch        gui=bold   guibg=NONE    guifg=' .. colors.cyan)
+vim.cmd('highlight! CmpItemAbbrMatchFuzzy   gui=bold   guibg=NONE    guifg=' .. colors.cyan)
 vim.cmd('highlight! CmpItemKindText            guibg=NONE    guifg=' .. colors.fg_alt)
 vim.cmd('highlight! CmpItemKindMethod          guibg=NONE    guifg=' .. colors.blue)
 vim.cmd('highlight! CmpItemKindFunction        guibg=NONE    guifg=' .. colors.cyan)
