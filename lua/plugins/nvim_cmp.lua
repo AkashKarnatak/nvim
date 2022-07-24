@@ -7,39 +7,39 @@ end
 
 local cmp = require'cmp'
 
-local icons = {
-  Text = "",
-  Method = "",
-  Function = "",
-  Constructor = "",
-  Field = "ﴲ",
-  Variable = "",
-  Class = "",
-  Interface = "ﰮ",
-  Module = "",
-  Property = "襁",
-  Unit = "",
-  Value = "",
-  Enum = "練",
-  Keyword = "",
-  Snippet = "",
-  Color = "",
-  File = "",
-  Reference = "",
-  Folder = "",
-  EnumMember = "",
-  Constant = "ﲀ",
-  Struct = "ﳤ",
-  Event = "",
-  Operator = "",
-  TypeParameter = "",
+local kinds = {
+    Text = "",
+    Method = "",
+    Function = "",
+    Constructor = "ﰕ",
+    Field = "ﰠ",
+    Variable = "",
+    Class = "ﴯ",
+    Interface = "",
+    Module = "",
+    Property = "",
+    Unit = "塞",
+    Value = "",
+    Enum = "",
+    Keyword = "廓",
+    Snippet = "",
+    Color = "",
+    File = "",
+    Reference = "",
+    Folder = "",
+    EnumMember = "",
+    Constant = "",
+    Struct = "פּ",
+    Event = "",
+    Operator = "",
+    TypeParameter = "",
 }
 
 cmp.setup {
   preselect = cmp.PreselectMode.None,
   completion = {
     keyword_length = 1;
-    completeopt = "menuone,noselect",
+    completeopt = "menuone",
   },
   snippet = {
     expand = function(args)
@@ -47,15 +47,17 @@ cmp.setup {
     end,
   },
   formatting = {
+    fields = { "kind", "abbr", "menu" },
     format = function(entry, vim_item)
-      vim_item.kind = string.format("%s  %s", icons[vim_item.kind], vim_item.kind)
-      vim_item.menu = ({
-        nvim_lsp = "[LSP]",
-        vsnip = "[VSnip]",
-        buffer = "[Buffer]",
-        nvim_lua = "[NvimLua]",
-        path = "[Path]",
-      })[entry.source.name]
+      vim_item.menu = vim_item.kind
+      -- vim_item.menu = string.format("%s %s", vim_item.kind, ({
+      --   nvim_lsp = "[LSP]",
+      --   vsnip = "[VSnip]",
+      --   buffer = "[Buffer]",
+      --   nvim_lua = "[NvimLua]",
+      --   path = "[Path]",
+      -- })[entry.source.name])
+      vim_item.kind = kinds[vim_item.kind]
       return vim_item
     end,
   },
@@ -80,7 +82,7 @@ cmp.setup {
     ["<C-j>"] = cmp.mapping.select_next_item(),
     ["<C-u>"] = cmp.mapping.scroll_docs(-4),
     ["<C-d>"] = cmp.mapping.scroll_docs(4),
-    ["<C-Space>"] = cmp.mapping.complete(),
+    ["<M-Space>"] = cmp.mapping.complete(),
     ["<C-e>"] = cmp.mapping.close(),
     ["<CR>"] = cmp.mapping.confirm {
       behavior = cmp.ConfirmBehavior.Replace,
@@ -118,33 +120,33 @@ local colors = {
   red = "#ff6c6b",
 }
 
-vim.cmd('highlight! CmpItemAbbrMatch        gui=bold   guibg=NONE    guifg=' .. colors.cyan)
-vim.cmd('highlight! CmpItemAbbrMatchFuzzy   gui=bold   guibg=NONE    guifg=' .. colors.cyan)
-vim.cmd('highlight! CmpItemKindText            guibg=NONE    guifg=' .. colors.fg_alt)
+vim.cmd('highlight! CmpItemAbbrMatch        gui=bold   guibg=NONE    guifg=' .. colors.blue)
+vim.cmd('highlight! CmpItemAbbrMatchFuzzy   gui=underline   guibg=NONE    guifg=' .. colors.blue)
+vim.cmd('highlight! CmpItemKindText            guibg=NONE    guifg=' .. colors.orange)
 vim.cmd('highlight! CmpItemKindMethod          guibg=NONE    guifg=' .. colors.blue)
-vim.cmd('highlight! CmpItemKindFunction        guibg=NONE    guifg=' .. colors.cyan)
-vim.cmd('highlight! CmpItemKindConstructor     guibg=NONE    guifg=' .. colors.red)
-vim.cmd('highlight! CmpItemKindField           guibg=NONE    guifg=' .. colors.orange)
+vim.cmd('highlight! CmpItemKindFunction        guibg=NONE    guifg=' .. colors.blue)
+vim.cmd('highlight! CmpItemKindConstructor     guibg=NONE    guifg=' .. colors.yellow)
+vim.cmd('highlight! CmpItemKindField           guibg=NONE    guifg=' .. colors.blue)
 vim.cmd('highlight! CmpItemKindVariable        guibg=NONE    guifg=' .. colors.green)
-vim.cmd('highlight! CmpItemKindClass           guibg=NONE    guifg=' .. colors.magenta)
+vim.cmd('highlight! CmpItemKindClass           guibg=NONE    guifg=' .. colors.yellow)
 vim.cmd('highlight! CmpItemKindInterface       guibg=NONE    guifg=' .. colors.yellow)
-vim.cmd('highlight! CmpItemKindModule          guibg=NONE    guifg=' .. colors.magenta)
+vim.cmd('highlight! CmpItemKindModule          guibg=NONE    guifg=' .. colors.blue)
 vim.cmd('highlight! CmpItemKindProperty        guibg=NONE    guifg=' .. colors.blue)
 vim.cmd('highlight! CmpItemKindUnit            guibg=NONE    guifg=' .. colors.cyan)
-vim.cmd('highlight! CmpItemKindValue           guibg=NONE    guifg=' .. colors.red)
-vim.cmd('highlight! CmpItemKindEnum            guibg=NONE    guifg=' .. colors.orange)
-vim.cmd('highlight! CmpItemKindKeyword         guibg=NONE    guifg=' .. colors.green)
-vim.cmd('highlight! CmpItemKindSnippet         guibg=NONE    guifg=' .. colors.magenta)
+vim.cmd('highlight! CmpItemKindValue           guibg=NONE    guifg=' .. colors.orange)
+vim.cmd('highlight! CmpItemKindEnum            guibg=NONE    guifg=' .. colors.yellow)
+vim.cmd('highlight! CmpItemKindKeyword         guibg=NONE    guifg=' .. colors.magenta)
+vim.cmd('highlight! CmpItemKindSnippet         guibg=NONE    guifg=' .. colors.green)
 vim.cmd('highlight! CmpItemKindColor           guibg=NONE    guifg=' .. colors.blue)
-vim.cmd('highlight! CmpItemKindFile            guibg=NONE    guifg=' .. colors.cyan)
+vim.cmd('highlight! CmpItemKindFile            guibg=NONE    guifg=' .. colors.blue)
 vim.cmd('highlight! CmpItemKindReference       guibg=NONE    guifg=' .. colors.red)
 vim.cmd('highlight! CmpItemKindFolder          guibg=NONE    guifg=' .. colors.orange)
-vim.cmd('highlight! CmpItemKindEnumMember      guibg=NONE    guifg=' .. colors.green)
-vim.cmd('highlight! CmpItemKindConstant        guibg=NONE    guifg=' .. colors.magenta)
-vim.cmd('highlight! CmpItemKindStruct          guibg=NONE    guifg=' .. colors.blue)
+vim.cmd('highlight! CmpItemKindEnumMember      guibg=NONE    guifg=' .. colors.cyan)
+vim.cmd('highlight! CmpItemKindConstant        guibg=NONE    guifg=' .. colors.orange)
+vim.cmd('highlight! CmpItemKindStruct          guibg=NONE    guifg=' .. colors.yellow)
 vim.cmd('highlight! CmpItemKindEvent           guibg=NONE    guifg=' .. colors.cyan)
 vim.cmd('highlight! CmpItemKindOperator        guibg=NONE    guifg=' .. colors.red)
 vim.cmd('highlight! CmpItemKindTypeParameter   guibg=NONE    guifg=' .. colors.orange)
-vim.cmd('highlight! CmpItemMenu                guibg=NONE    guifg=' .. colors.blue)
+vim.cmd('highlight! CmpItemMenu                guibg=NONE    guifg=' .. colors.fg_alt)
 vim.cmd('highlight! CmpPmenu guifg=#bbc2cf guibg=#282c34')
 vim.cmd('highlight! CmpPmenuBorder guifg=#5f5f5f guibg=#282c34')

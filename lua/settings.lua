@@ -25,6 +25,11 @@ vim.cmd('syntax on')                                            -- Enable syntax
 vim.cmd('command! BD silent! execute "%bd|e#|bd#"')             -- Close all buffers except the active one
 vim.cmd([[command! FilePath execute "echo expand('%:p')"]])     -- Display absolute path of the file opened in current buffer
 
+-- HTML related settings (:h html-indent)
+vim.g.html_indent_inctags = "p"
+vim.g.html_indent_script1 = "inc"
+vim.g.html_indent_style1 = "inc"
+
 -- Jump cursor to the line where last exited nvim
 vim.cmd([[autocmd BufReadPre * autocmd FileType <buffer> ++once if &ft !~# 'commit\|rebase' && line("'\"") > 1 && line("'\"") <= line("$") | exe 'normal! g`"' | endif]])
 -- Prioritize linux man pages over posix

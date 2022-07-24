@@ -52,15 +52,6 @@ return packer.startup({function()
       after = "packer.nvim",
     }
 
-    -- comment
-    use {
-      "numToStr/Comment.nvim",
-      after = "nvim-ts-context-commentstring",
-      config = function()
-        require "plugins.comment_nvim"
-      end
-    }
-
     use {
       "AkashKarnatak/replacewithregister",
       after = "packer.nvim",
@@ -75,30 +66,21 @@ return packer.startup({function()
       "nvim-treesitter/nvim-treesitter-textobjects",
       after = "nvim-treesitter"
     }
-   use {
-     "JoosepAlviste/nvim-ts-context-commentstring",
+    use {
+      "JoosepAlviste/nvim-ts-context-commentstring",
       after = "nvim-treesitter",
       config = function()
         require "plugins.treesitter"
       end
-   }
-    -- treesitter textobject
-    -- use {
-    --   "nvim-treesitter/nvim-treesitter-textobjects",
-    --   after = "nvim-treesitter",
-    --   config = function()
-    --     require "plugins.nvim_treesitter_textobjects"
-    --   end
-    -- }
-    -- -- treesitter playground
-    -- use {
-    --   "nvim-treesitter/playground",
-    --   after = "nvim-treesitter",
-    --   config = function()
-    --     require "plugins.nvim_treesitter_playground"
-    --   end
-    -- }
-
+    }
+    -- comment
+    use {
+      "numToStr/Comment.nvim",
+      after = "nvim-ts-context-commentstring",
+      config = function()
+        require "plugins.comment_nvim"
+      end
+    }
 
     -- Autocompletion and LSP
     use {
@@ -151,8 +133,12 @@ return packer.startup({function()
       end
     }
     use {
-      "ray-x/lsp_signature.nvim",
+      "windwp/nvim-ts-autotag",
       after = "nvim-autopairs",
+    }
+    use {
+      "ray-x/lsp_signature.nvim",
+      after = "nvim-ts-autotag",
       config = function()
         require("plugins.lsp_signature")
       end
@@ -300,8 +286,9 @@ return packer.startup({function()
 
     -- Colorizer
     use {
-      "norcalli/nvim-colorizer.lua",
-      cmd = "ColorizerToggle",
+      "RRethy/vim-hexokinase",
+      run = "make hexokinase",
+      -- cmd = "HexokinaseToggle",
       config = function()
         require("plugins.nvim_colorizer")
       end

@@ -4,7 +4,7 @@ nvim_treesitter_configs.setup {
   -- ignore_install = { "javascript" }, -- List of parsers to ignore installing
   highlight = {
     enable = true,              -- false will disable the whole extension
-    -- disable = { "c", "rust" },  -- list of language that will be disabled
+    disable = { "html" },  -- list of language that will be disabled
   },
   indent = {
     enable = true,
@@ -31,6 +31,9 @@ nvim_treesitter_configs.setup {
     },
   },
   autopairs = {
+    enable = true
+  },
+  autotag = {
     enable = true
   },
   context_commentstring = {

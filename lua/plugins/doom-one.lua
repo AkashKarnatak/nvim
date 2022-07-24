@@ -41,11 +41,21 @@ vim.cmd('highlight! link DiagnosticSignInfo DiagnosticFloatingInfo')
 vim.cmd('highlight! link DiagnosticSignWarn DiagnosticFloatingWarn')
 
 -- NvimTree
+vim.cmd('highlight! Visual guibg=#353d4e')
+vim.cmd('highlight! PmenuSel guifg=NONE guibg=#353d4e')
+-- vim.cmd('highlight! CursorLine guifg=NONE guibg=#2f3541')
+-- vim.cmd('highlight! CursorLineNr guifg=NONE guibg=#2f3541')
 vim.cmd('highlight! LspHighlight guibg=#274873')
 vim.cmd('highlight! NvimTreeNormal guibg=#24282e')
 vim.cmd('highlight! NvimTreeNormalNC guibg=#24282e')
 vim.cmd('highlight! NvimTreeEndOfBuffer guifg=#24282e guibg=#24282e')
 vim.cmd('highlight! NvimTreeVertSplit guifg=#24282e guibg=#24282e')
+-- vim.cmd('highlight! NvimTreeWinSeperator guifg=#24282e guibg=#24282e')
+
+-- vim.cmd('highlight! NvimTreeVertSplit guifg=#3f444a guibg=#24282e')
+-- vim.opt.fillchars:append('vert:▕')
+-- vim.opt.fillchars:append('vertright:▕')
+
 vim.cmd('highlight! NvimTreeStatuslineNc guifg=#24282e guibg=#24282e')
 vim.cmd('highlight! NvimTreeCursorLine guibg=#1d2125 gui=bold')
 

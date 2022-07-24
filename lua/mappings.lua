@@ -19,15 +19,19 @@ vim.api.nvim_set_keymap('n', '<C-Up>', '<C-w>+', {noremap = true, silent = true}
 vim.api.nvim_set_keymap('n', '<C-Right>', '<C-w>>', {noremap = true, silent = true})
 
 -- Remap 0, $, ^
-vim.api.nvim_set_keymap('n', '0', '$',  {noremap = true, silent = true})
-vim.api.nvim_set_keymap('n', '$', '^',  {noremap = true, silent = true})
-vim.api.nvim_set_keymap('n', '^', '0',  {noremap = true, silent = true})
-vim.api.nvim_set_keymap('v', '0', '$h', {noremap = true, silent = true})
-vim.api.nvim_set_keymap('v', '$', '^',  {noremap = true, silent = true})
-vim.api.nvim_set_keymap('v', '^', '0',  {noremap = true, silent = true})
-vim.api.nvim_set_keymap('o', '0', '$',  {noremap = true, silent = true})
-vim.api.nvim_set_keymap('o', '$', '^',  {noremap = true, silent = true})
-vim.api.nvim_set_keymap('o', '^', '0',  {noremap = true, silent = true})
+vim.api.nvim_set_keymap('n', '0', '$',  {noremap = true})
+vim.api.nvim_set_keymap('n', '$', '^',  {noremap = true})
+vim.api.nvim_set_keymap('n', '^', '0',  {noremap = true})
+vim.api.nvim_set_keymap('v', '0', '$h', {noremap = true})
+vim.api.nvim_set_keymap('v', '$', '^',  {noremap = true})
+vim.api.nvim_set_keymap('v', '^', '0',  {noremap = true})
+vim.api.nvim_set_keymap('o', '0', '$',  {noremap = true})
+vim.api.nvim_set_keymap('o', '$', '^',  {noremap = true})
+vim.api.nvim_set_keymap('o', '^', '0',  {noremap = true})
+
+-- Swap ^ and !
+vim.api.nvim_set_keymap('n', '!', '0',  {noremap = true})
+vim.api.nvim_set_keymap('n', '^', '!',  {noremap = true})
 
 -- Remap g0, g$, g^
 vim.api.nvim_set_keymap('n', 'g0', 'g$',  {noremap = true, silent = true})
@@ -140,7 +144,7 @@ vim.api.nvim_set_keymap('n', '<Leader>ko', ':let g:asynctasks_term_rows=winheigh
 vim.api.nvim_set_keymap('n', '<Leader>kt', ':let g:asynctasks_term_rows=winheight(0)*10/25 | AsyncTask terminal<CR>', {noremap = true, silent = true})
 vim.api.nvim_set_keymap('n', '<Leader>kd', ':let g:asynctasks_term_rows=winheight(0)*10/25 | AsyncTask file-debug<CR>', {noremap = true, silent = true})
 vim.api.nvim_set_keymap('n', '<Leader>kb', ':let g:asynctasks_term_rows=winheight(0)*10/25 | AsyncTask project-build<CR>', {noremap = true, silent = true})
-vim.api.nvim_set_keymap('n', '<Leader>kk', ':let g:asynctasks_term_rows=winheight(0)*10/25 | AsyncTask manim<CR>', {noremap = true, silent = true})
+vim.api.nvim_set_keymap('n', '<Leader>kk', ':let g:asynctasks_term_rows=winheight(0)*10/25 | AsyncTask live-server<CR>', {noremap = true, silent = true})
 
 -- Nvim_tree
 vim.api.nvim_set_keymap('n', '<leader>nn', ':NvimTreeToggle<CR>', {noremap = true, silent=true})
