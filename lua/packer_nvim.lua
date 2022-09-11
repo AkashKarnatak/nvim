@@ -350,6 +350,14 @@ return packer.startup({function()
       requires = "nvim-lua/plenary.nvim"
     }
 
+    -- Change tabline behaviour
+    use {
+      "tiagovla/scope.nvim",
+      config = function()
+        require("plugins.scope")
+      end,
+    }
+
 end,
 config = {
   -- Move to lua dir so impatient.nvim can cache it
