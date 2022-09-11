@@ -230,6 +230,8 @@ return packer.startup({function()
         {'n', '<space>fc'},
         {'n', '<space>fh'},
         {'n', '<space>fg'},
+        {'n', '<space>fp'},
+        {'n', '<space>fr'},
         {'n', 'gd'},
         {'n', 'gi'},
         {'n', 'gr'},
