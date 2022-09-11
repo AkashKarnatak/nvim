@@ -246,6 +246,7 @@ return packer.startup({function()
     -- Theme
     use({
       'NTBBloodbath/doom-one.nvim',
+      commit = "98b23b0eb3d47f908ae2d2b77dd7bad42f566340",
       after = "packer.nvim",
       config = function()
         require('plugins.doom-one')

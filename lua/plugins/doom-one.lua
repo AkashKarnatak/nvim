@@ -77,5 +77,5 @@ vim.cmd('highlight! link GitSignsDeleteInline DiffDelete')
 -- Indent blankline
 vim.cmd [[highlight! IndentBlanklineContextChar guifg=#6d7580 gui=bold]]
 
-local hlmap = vim.treesitter.highlighter.hl_map
-hlmap.error = nil
+-- local hlmap = vim.treesitter.highlighter.hl_map
+-- hlmap.error = nil
