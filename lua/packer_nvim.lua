@@ -307,8 +307,9 @@ return packer.startup({function()
       "mfussenegger/nvim-dap",
       keys = {
         {'n', '<M-x>'},
-        {'n', '<leader>dc'},
-        {'n', '<leader>dl'},
+        {'n', '<M-c>'},
+        {'n', '<space>dc'},
+        {'n', '<space>dl'},
       },
     }
     use {

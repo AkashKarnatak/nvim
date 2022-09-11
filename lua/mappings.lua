@@ -149,8 +149,3 @@ vim.api.nvim_set_keymap('n', '<Leader>kk', ':let g:asynctasks_term_rows=winheigh
 -- Nvim_tree
 vim.api.nvim_set_keymap('n', '<leader>nn', ':NvimTreeToggle<CR>', {noremap = true, silent=true})
 vim.api.nvim_set_keymap('n', '<leader>nr', ':NvimTreeRefresh<CR>', {noremap = true, silent=true})
-
--- Nvim Dap
-vim.api.nvim_set_keymap('n', '<M-c>', [[:lua require'dap'.continue()<CR>]], {noremap = true, silent = true})
-vim.api.nvim_set_keymap('n', '<leader>dc', [[:lua require'dap'.set_breakpoint(vim.fn.input('Breakpoint condition: '))<CR>]], {noremap = true, silent = true})
-vim.api.nvim_set_keymap('n', '<leader>dl', [[:lua require'dap'.set_breakpoint(nil, nil, vim.fn.input('Log point message: '))<CR>]], {noremap = true, silent = true})
