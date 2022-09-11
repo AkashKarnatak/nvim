@@ -100,105 +100,105 @@ bufferline.setup {
 
    highlights = {
       background = {
-         guifg = colors.inactive_tab_fg,
-         guibg = colors.inactive_tab_bg,
+         fg = colors.inactive_tab_fg,
+         bg = colors.inactive_tab_bg,
       },
 
       -- buffers
       buffer_selected = {
-         guifg = colors.active_tab_fg,
-         guibg = colors.active_tab_bg,
-         gui = "bold",
+         fg = colors.active_tab_fg,
+         bg = colors.active_tab_bg,
+         bold = true
       },
       buffer_visible = {
-         guifg = colors.inactive_tab_fg,
-         guibg = colors.inactive_tab_bg,
+         fg = colors.inactive_tab_fg,
+         bg = colors.inactive_tab_bg,
       },
 
       -- for diagnostics = "nvim_lsp"
       error = {
-         guifg = colors.inactive_tab_fg,
-         guibg = colors.inactive_tab_bg,
+         fg = colors.inactive_tab_fg,
+         bg = colors.inactive_tab_bg,
       },
       error_diagnostic = {
-         guifg = colors.inactive_tab_fg,
-         guibg = colors.inactive_tab_bg,
+         fg = colors.inactive_tab_fg,
+         bg = colors.inactive_tab_bg,
       },
 
       -- close buttons
       close_button = {
-         guifg = colors.inactive_tab_fg,
-         guibg = colors.inactive_tab_bg,
+         fg = colors.inactive_tab_fg,
+         bg = colors.inactive_tab_bg,
       },
       close_button_visible = {
-         guifg = colors.inactive_tab_fg,
-         guibg = colors.inactive_tab_bg,
+         fg = colors.inactive_tab_fg,
+         bg = colors.inactive_tab_bg,
       },
       close_button_selected = {
-         guifg = colors.blue,
-         guibg = colors.active_tab_bg,
+         fg = colors.blue,
+         bg = colors.active_tab_bg,
       },
       fill = {
-         guifg = colors.inactive_tab_fg,
-         guibg = colors.inactive_tab_bg,
+         fg = colors.inactive_tab_fg,
+         bg = colors.inactive_tab_bg,
       },
       indicator_selected = {
-         guifg = colors.blue,
-         guibg = colors.active_tab_bg,
+         fg = colors.blue,
+         bg = colors.active_tab_bg,
       },
 
       -- modified
       modified = {
-         guifg = colors.blue,
-         guibg = colors.inactive_tab_bg,
+         fg = colors.blue,
+         bg = colors.inactive_tab_bg,
       },
       modified_visible = {
-         guifg = colors.blue,
-         guibg = colors.inactive_tab_bg,
+         fg = colors.blue,
+         bg = colors.inactive_tab_bg,
       },
       modified_selected = {
-         guifg = colors.blue,
-         guibg = colors.active_tab_bg,
+         fg = colors.blue,
+         bg = colors.active_tab_bg,
       },
 
       -- separators
       separator = {
-         guifg = colors.inactive_tab_bg,
-         guibg = colors.inactive_tab_bg,
+         fg = colors.inactive_tab_bg,
+         bg = colors.inactive_tab_bg,
       },
       separator_visible = {
-         guifg = colors.inactive_tab_bg,
-         guibg = colors.inactive_tab_bg,
+         fg = colors.inactive_tab_bg,
+         bg = colors.inactive_tab_bg,
       },
       separator_selected = {
-         guifg = colors.inactive_tab_bg,
-         guibg = colors.inactive_tab_bg,
+         fg = colors.inactive_tab_bg,
+         bg = colors.inactive_tab_bg,
       },
       -- tabs
       tab = {
-         guifg = colors.inactive_tab_fg,
-         guibg = colors.inactive_tab_bg,
+         fg = colors.inactive_tab_fg,
+         bg = colors.inactive_tab_bg,
       },
       tab_selected = {
-         guifg = colors.black,
-         guibg = colors.blue,
+         fg = colors.black,
+         bg = colors.blue,
       },
       tab_close = {
-         guifg = colors.blue,
-         guibg = colors.black,
+         fg = colors.blue,
+         bg = colors.black,
       },
       duplicate_selected = {
-         guifg = colors.active_tab_fg,
-         guibg = colors.active_tab_bg,
-         gui = "bold",
+         fg = colors.active_tab_fg,
+         bg = colors.active_tab_bg,
+         bold = true
       },
       duplicate_visible = {
-         guifg = colors.inactive_tab_fg,
-         guibg = colors.active_tab_bg,
+         fg = colors.inactive_tab_fg,
+         bg = colors.active_tab_bg,
       },
       duplicate = {
-         guifg = colors.inactive_tab_fg,
-         guibg = colors.inactive_tab_bg,
+         fg = colors.inactive_tab_fg,
+         bg = colors.inactive_tab_bg,
       },
    },
 }
