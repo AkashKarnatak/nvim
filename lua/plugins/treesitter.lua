@@ -4,7 +4,7 @@ nvim_treesitter_configs.setup {
   -- ignore_install = { "javascript" }, -- List of parsers to ignore installing
   highlight = {
     enable = true,              -- false will disable the whole extension
-    disable = { "html" },  -- list of language that will be disabled
+    disable = { "html", "markdown" },  -- list of language that will be disabled
   },
   indent = {
     enable = true,
@@ -18,7 +18,9 @@ nvim_treesitter_configs.setup {
       "html",
       "css",
       "javascript",
-      "go"
+      "go",
+      "norg",
+      "markdown"
     }
   },
   incremental_selection = {
@@ -34,7 +36,8 @@ nvim_treesitter_configs.setup {
     enable = true
   },
   autotag = {
-    enable = true
+    enable = true,
+    disable = { "markdown" },
   },
   context_commentstring = {
     enable = true,
@@ -43,6 +46,7 @@ nvim_treesitter_configs.setup {
   textobjects = {
     select = {
       enable = true,
+      disable = { "markdown" },
 
       -- Automatically jump forward to textobj, similar to targets.vim
       lookahead = true,
@@ -64,42 +68,42 @@ nvim_treesitter_configs.setup {
         ["ai"] = "@conditional.outer",
       },
     },
-    swap = {
-      enable = true,
-      swap_next = {
-        ["<leader>ts"] = "@parameter.inner",
-      },
-      swap_previous = {
-        ["<leader>tS"] = "@parameter.inner",
-      },
-    },
-    move = {
-      enable = true,
-      set_jumps = true, -- whether to set jumps in the jumplist
-      goto_next_start = {
-        ["]m"] = "@function.outer",
-        ["]]"] = "@class.outer",
-      },
-      goto_next_end = {
-        ["]M"] = "@function.outer",
-        ["]["] = "@class.outer",
-      },
-      goto_previous_start = {
-        ["[m"] = "@function.outer",
-        ["[["] = "@class.outer",
-      },
-      goto_previous_end = {
-        ["[M"] = "@function.outer",
-        ["[]"] = "@class.outer",
-      },
-    },
-    lsp_interop = {
-      enable = true,
-      border = 'rounded',
-      peek_definition_code = {
-        ["<leader>tf"] = "@function.outer",
-        ["<leader>tF"] = "@class.outer",
-      },
-    },
+    -- swap = {
+    --   enable = true,
+    --   swap_next = {
+    --     ["<leader>ts"] = "@parameter.inner",
+    --   },
+    --   swap_previous = {
+    --     ["<leader>tS"] = "@parameter.inner",
+    --   },
+    -- },
+    -- move = {
+    --   enable = true,
+    --   set_jumps = true, -- whether to set jumps in the jumplist
+    --   goto_next_start = {
+    --     ["]m"] = "@function.outer",
+    --     ["]]"] = "@class.outer",
+    --   },
+    --   goto_next_end = {
+    --     ["]M"] = "@function.outer",
+    --     ["]["] = "@class.outer",
+    --   },
+    --   goto_previous_start = {
+    --     ["[m"] = "@function.outer",
+    --     ["[["] = "@class.outer",
+    --   },
+    --   goto_previous_end = {
+    --     ["[M"] = "@function.outer",
+    --     ["[]"] = "@class.outer",
+    --   },
+    -- },
+    -- lsp_interop = {
+    --   enable = true,
+    --   border = 'rounded',
+    --   peek_definition_code = {
+    --     ["<leader>tf"] = "@function.outer",
+    --     ["<leader>tF"] = "@class.outer",
+    --   },
+    -- },
   },
 }

@@ -39,6 +39,7 @@ local servers = {
   'ls_emmet',
   'sumneko_lua',
   'gopls',
+  'rust_analyzer',
 }
 
 local opts = {

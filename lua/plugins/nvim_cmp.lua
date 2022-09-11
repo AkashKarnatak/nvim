@@ -39,7 +39,7 @@ cmp.setup {
   preselect = cmp.PreselectMode.None,
   completion = {
     keyword_length = 1;
-    completeopt = "menuone",
+    completeopt = "menuone,noselect",
   },
   snippet = {
     expand = function(args)
@@ -76,6 +76,7 @@ cmp.setup {
     { name = "nvim_lsp" },
     { name = "path" },
     { name = "buffer" },
+    { name = "neorg" },
   },
   mapping = {
     ["<C-k>"] = cmp.mapping.select_prev_item(),
@@ -91,8 +92,8 @@ cmp.setup {
     ["<Tab>"] = cmp.mapping(function(fallback)
       if vim.fn["vsnip#jumpable"](1) == 1 then
         feedkey("<Plug>(vsnip-jump-next)", "")
-      elseif cmp.visible() then
-        cmp.select_next_item()
+      -- elseif cmp.visible() then
+      --   cmp.select_next_item()
       else
         fallback() -- The fallback function sends a already mapped key. In this case, it's probably `<Tab>`.
       end
@@ -100,8 +101,8 @@ cmp.setup {
     ["<S-Tab>"] = cmp.mapping(function()
       if vim.fn["vsnip#jumpable"](-1) == 1 then
         feedkey("<Plug>(vsnip-jump-prev)", "")
-      elseif cmp.visible() then
-        cmp.select_prev_item()
+      -- elseif cmp.visible() then
+      --   cmp.select_prev_item()
       end
     end, { "i", "s" }),
   },

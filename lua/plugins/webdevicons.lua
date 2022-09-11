@@ -42,6 +42,11 @@ require("nvim-web-devicons").set_icon {
      color = colors.orange,
      name = "html",
   },
+  gohtml = {
+     icon = "",
+     color = colors.orange,
+     name = "gohtml",
+  },
   jpeg = {
      icon = "",
      color = colors.magenta,
@@ -81,6 +86,11 @@ require("nvim-web-devicons").set_icon {
      icon = "",
      color = colors.fg,
      name = "mp4",
+  },
+  norg = {
+     icon = "",
+     color = colors.blue,
+     name = "norg",
   },
   out = {
      icon = "",
