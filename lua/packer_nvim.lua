@@ -340,6 +340,16 @@ return packer.startup({function()
       end,
     })
 
+    -- Orgmode
+    use {
+      "nvim-neorg/neorg",
+      ft = "norg",
+      config = function()
+        require("plugins.neorg")
+      end,
+      requires = "nvim-lua/plenary.nvim"
+    }
+
 end,
 config = {
   -- Move to lua dir so impatient.nvim can cache it
