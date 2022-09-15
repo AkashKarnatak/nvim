@@ -272,7 +272,7 @@ return packer.startup({function()
 
     -- Statusline
     use({
-      "glepnir/galaxyline.nvim",
+      "nvim-lualine/lualine.nvim",
       after = "nvim-web-devicons",
       config = function()
         require("plugins.eviline")

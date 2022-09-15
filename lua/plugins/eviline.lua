@@ -1,5 +1,8 @@
 vim.o.showmode = false
-local gl = require("galaxyline")
+local lualine = require('lualine')
+
+-- Color table for highlights
+-- stylua: ignore
 local colors = {
   bg = "#23272e",
   fg = "#bbc2cf",
@@ -13,344 +16,319 @@ local colors = {
   red = "#ff6c6b",
   violet = "#a9a1e1",
 }
-local condition = require("galaxyline.condition")
-local buffer = require("galaxyline.provider_buffer")
-local lsp = require("galaxyline.provider_lsp")
-local gls = gl.section
 
-gl.short_line_list = {
-  "NvimTree",
-  "packer",
-  "netrw",
-  "dapui_scopes",
-  "dapui_breakpoints",
-  "dapui_stacks",
-  "dapui_watches",
-  "dap-repl",
-  "toggleterm",
-  "input",
-  "output",
-  "lspinfo"
+local short_line_tbl = {
+  ["NvimTree"] = true,
+  ["packer"] = true,
+  ["netrw"] = true,
+  ["dapui_scopes"] = true,
+  ["dapui_breakpoints"] = true,
+  ["dapui_stacks"] = true,
+  ["dapui_watches"] = true,
+  ["dap-repl"] = true,
+  ["toggleterm"] = true,
+  ["input"] = true,
+  ["output"] = true,
+  ["lspinfo"] = true,
 }
 
-local function is_not_dashboard()
-  local buftype = buffer.get_buffer_filetype()
-  return buftype ~= "DASHBOARD"
+local conditions = {
+  buffer_not_empty = function()
+    return vim.fn.empty(vim.fn.expand('%:t')) ~= 1 and not short_line_tbl[vim.bo.filetype]
+  end,
+  hide_in_width = function()
+    return vim.fn.winwidth(0) > 80 and not short_line_tbl[vim.bo.filetype]
+  end,
+  check_git_workspace = function()
+    local filepath = vim.fn.expand('%:p:h')
+    local gitdir = vim.fn.finddir('.git', filepath .. ';')
+    return ( gitdir and #gitdir > 0 and #gitdir < #filepath ) and not short_line_tbl[vim.bo.filetype]
+  end,
+  short_status = function()
+    return short_line_tbl[vim.bo.filetype]
+  end,
+}
+
+-- Config
+local config = {
+  options = {
+    -- Disable sections and component separators
+    component_separators = '',
+    section_separators = '',
+    globalstatus = true,
+    theme = {
+      -- We are going to use lualine_c an lualine_x as left and
+      -- right section. Both are highlighted by c theme .  So we
+      -- are just setting default looks o statusline
+      normal = { c = { fg = colors.fg, bg = colors.bg } },
+      inactive = { c = { fg = colors.fg, bg = colors.bg } },
+    },
+    cond = function()
+      return not short_line_tbl[vim.bo.filetype]
+    end,
+  },
+  sections = {
+    -- these are to remove the defaults
+    lualine_a = {},
+    lualine_b = {},
+    lualine_y = {},
+    lualine_z = {},
+    -- These will be filled later
+    lualine_c = {},
+    lualine_x = {},
+  },
+  inactive_sections = {
+    -- these are to remove the defaults
+    lualine_a = {},
+    lualine_b = {},
+    lualine_y = {},
+    lualine_z = {},
+    lualine_c = {},
+    lualine_x = {},
+  },
+}
+
+local longline = {
+  lualine_c = {},
+  lualine_x = {},
+}
+
+local shortline = {
+  lualine_c = {},
+  lualine_x = {},
+}
+
+-- Inserts a component in lualine_c at left section
+local function ins_left(component)
+  table.insert(config.sections.lualine_c, component)
 end
 
-gls.left[1] = {
-  RainbowRed = {
-    provider = function()
-      return "▌ "
-    end,
-    highlight = { colors.blue, colors.bg },
-  },
-}
-gls.left[2] = {
-  ViMode = {
-    provider = function()
-      -- auto change color according the vim mode
-      local mode_color = {
-        n = colors.red,
-        i = colors.green,
-        v = colors.blue,
-        [""] = colors.blue,
-        V = colors.blue,
-        c = colors.magenta,
-        no = colors.red,
-        s = colors.orange,
-        S = colors.orange,
-        [""] = colors.orange,
-        ic = colors.yellow,
-        R = colors.violet,
-        Rv = colors.violet,
-        cv = colors.red,
-        ce = colors.red,
-        r = colors.cyan,
-        rm = colors.cyan,
-        ["r?"] = colors.cyan,
-        ["!"] = colors.red,
-        t = colors.red,
-      }
-      vim.api.nvim_set_hl(0, "GalaxyViMode", { fg = mode_color[vim.fn.mode()] })
-      return "  "
-    end,
-    highlight = { colors.red, colors.bg, "bold" },
-  },
-}
-gls.left[3] = {
-  FileSize = {
-    provider = "FileSize",
-    condition = condition.buffer_not_empty and condition.hide_in_width,
-    highlight = { colors.fg, colors.bg },
-    separator = " ",
-    separator_highlight = { colors.bg, colors.bg },
-  },
-}
-gls.left[4] = {
-  FileIcon = {
-    provider = "FileIcon",
-    condition = condition.buffer_not_empty and is_not_dashboard,
-    highlight = { require("galaxyline.provider_fileinfo").get_file_icon_color, colors.bg },
-  },
+-- Inserts a component in lualine_x ot right section
+local function ins_right(component)
+  table.insert(config.sections.lualine_x, component)
+end
+
+ins_left {
+  function()
+    return '▊'
+  end,
+  cond = function() return true end,
+  color = { fg = colors.blue }, -- Sets highlighting of component
+  padding = { left = 0, right = 1 }, -- We don't need space before this
 }
 
-gls.left[5] = {
-  FileName = {
-    provider = "FileName",
-    condition = condition.buffer_not_empty and is_not_dashboard,
-    highlight = { colors.magenta, colors.bg, "bold" },
-    separator = " ",
-    separator_highlight = { colors.bg, colors.bg },
-  },
+ins_left {
+  'filetype',
+  icons_enabled = false,
+  fmt = string.upper,
+  cond = conditions.short_status,
+  padding = { left = 0, right = 1 }, -- We don't need space before this
+  color = { fg = colors.blue, gui = 'bold' },
 }
 
-gls.left[6] = {
-  LineInfo = {
-    provider = function()
-      local line = vim.fn.line(".")
-      local column = vim.fn.col(".")
-      return string.format("%d:%d  ", line, column)
-    end,
-    -- provider = "LineColumn",
-    highlight = { colors.fg_alt, colors.bg },
-  },
+ins_left {
+  -- mode component
+  function()
+    return ''
+  end,
+  color = function()
+    -- auto change color according to neovims mode
+    local mode_color = {
+      n = colors.red,
+      i = colors.green,
+      v = colors.blue,
+      [''] = colors.blue,
+      V = colors.blue,
+      c = colors.magenta,
+      no = colors.red,
+      s = colors.orange,
+      S = colors.orange,
+      [''] = colors.orange,
+      ic = colors.yellow,
+      R = colors.violet,
+      Rv = colors.violet,
+      cv = colors.red,
+      ce = colors.red,
+      r = colors.cyan,
+      rm = colors.cyan,
+      ['r?'] = colors.cyan,
+      ['!'] = colors.red,
+      t = colors.red,
+    }
+    return { fg = mode_color[vim.fn.mode()] }
+  end,
+  padding = { right = 1 },
 }
 
-gls.left[7] = {
-  PerCent = {
-    provider = "LinePercent",
-    condition = is_not_dashboard,
-    highlight = { colors.fg_alt, colors.bg },
-    separator = "  ",
-    separator_highlight = { colors.bg, colors.bg },
-  },
+ins_left {
+  -- filesize component
+  'filesize',
+  cond = conditions.buffer_not_empty,
 }
 
-gls.left[8] = {
-  DiagnosticError = {
-    provider = "DiagnosticError",
-    condition = is_not_dashboard,
-    icon = "  ",
-    highlight = { colors.red, colors.bg },
-  },
-}
-gls.left[9] = {
-  DiagnosticWarn = {
-    provider = "DiagnosticWarn",
-    condition = is_not_dashboard,
-    icon = "  ",
-    highlight = { colors.yellow, colors.bg },
-  },
-}
-
-gls.left[10] = {
-  DiagnosticHint = {
-    provider = "DiagnosticHint",
-    condition = is_not_dashboard,
-    icon = "  ",
-    highlight = { colors.green, colors.bg },
-  },
-}
-
-gls.left[11] = {
-  DiagnosticInfo = {
-    provider = "DiagnosticInfo",
-    condition = is_not_dashboard,
-    icon = "  ",
-    highlight = { colors.blue, colors.bg },
-  },
-}
-
-gls.mid[1] = {
-  LspProgressInfo = {
-    provider = function()
-      local Lsp = vim.lsp.util.get_progress_messages()[1]
-
-      if Lsp then
-        local msg = Lsp.message or ""
-        local percentage = Lsp.percentage or 0
-        local title = Lsp.title or ""
-        local spinners = {
-          "",
-          "",
-          "",
-        }
-
-        local success_icon = {
-          "",
-          "",
-          "",
-        }
-
-        local ms = vim.loop.hrtime() / 1000000
-        local frame = math.floor(ms / 120) % #spinners
-
-        if percentage >= 70 then
-          return string.format(" %s %s %s (%s%%) ", success_icon[frame + 1], title, msg, percentage)
-        end
-
-        return string.format(" %s %s %s (%s%%) ", spinners[frame + 1], title, msg, percentage)
-      end
-
-      return ""
-    end,
-    highlight = { colors.violet, colors.bg },
+ins_left {
+  'filename',
+  cond = conditions.buffer_not_empty,
+  color = { fg = colors.magenta, gui = 'bold' },
+  symbols = {
+    modified = '',      -- Text to show when the file is modified.
+    readonly = '',      -- Text to show when the file is non-modifiable or readonly.
+    unnamed = '[No Name]', -- Text to show for unnamed buffers.
+    newfile = '[New]',     -- Text to show for new created file before first writting
   }
 }
 
-gls.right[1] = {
-  FileEncode = {
-    provider = "FileEncode",
-    condition = condition.hide_in_width and is_not_dashboard,
-    separator = " ",
-    separator_highlight = { "NONE", colors.bg },
-    highlight = { colors.fg, colors.bg, "bold" },
+ins_left {
+  'location',
+  color = { fg = colors.fg_alt, gui = 'bold' },
+}
+
+ins_left {
+  'progress',
+  padding = { left = 0, right = 1 },
+  color = { fg = colors.fg_alt, gui = 'bold' }
+}
+
+ins_left {
+  'diagnostics',
+  sources = { 'nvim_diagnostic' },
+  symbols = { error = ' ', warn = ' ', info = ' ', hint = ' ' },
+  diagnostics_color = {
+    error = { fg = colors.red },
+    warn = { fg = colors.yellow },
+    info = { fg = colors.blue },
+    hint = { fg = colors.green },
   },
 }
 
-gls.right[2] = {
-  FileFormat = {
-    provider = "FileFormat",
-    condition = condition.hide_in_width and is_not_dashboard,
-    separator = " ",
-    separator_highlight = { "NONE", colors.bg },
-    highlight = { colors.fg, colors.bg, "bold" },
-  },
+-- Insert mid section. You can make any number of sections in neovim :)
+-- for lualine it's any number greater then 2
+ins_left {
+  function()
+    return '%='
+  end,
 }
 
-gls.right[3] = {
-  ShowLspClient = {
-    -- provider = "GetLspClient",
-    -- condition = function()
-    --   local tbl = { ["dashboard"] = true, [""] = true }
-    --   if tbl[vim.bo.filetype] then
-    --     return false
-    --   end
-    --   return true
-    -- end,
-    -- icon = " LSP:",
-    -- highlight = { colors.cyan, colors.bg, "bold" },
-    provider = function()
-      -- Check if there's a LSP client running to avoid redundant
-      -- statusline elements
-      if lsp.get_lsp_client() ~= "No Active Lsp" then
-        return string.format(" %s   %s ", vim.bo.filetype, lsp.get_lsp_client())
-      else
-        -- Use the filetype instead
-        return string.format(" %s ", vim.bo.filetype)
+ins_left {
+  -- Lsp server name .
+  function()
+    local Lsp = vim.lsp.util.get_progress_messages()[1]
+
+    if Lsp then
+      local msg = Lsp.message or ""
+      local percentage = Lsp.percentage or 0
+      local title = Lsp.title or ""
+      local spinners = {
+        "",
+        "",
+        "",
+      }
+
+      local success_icon = {
+        "",
+        "",
+        "",
+      }
+
+      local ms = vim.loop.hrtime() / 1000000
+      local frame = math.floor(ms / 120) % #spinners
+
+      if percentage >= 70 then
+        return string.format(" %%<%s %s %s (%s%%%%) ", success_icon[frame + 1], title, msg, percentage)
       end
-    end,
-    condition = function()
-      local tbl = { ["dashboard"] = true, [""] = true }
-      if tbl[vim.bo.filetype] then
-        return false
+
+      return string.format(" %%<%s %s %s (%s%%%%) ", spinners[frame + 1], title, msg, percentage)
+    end
+
+    return ""
+  end,
+  color = { fg = colors.violet },
+}
+
+-- ins_right {
+--   'fileformat',
+--   fmt = string.upper,
+--   padding = { left = 1, right = 0 },
+--   color = { fg = colors.fg, gui = 'bold' },
+-- }
+
+-- Add components to right sections
+ins_right {
+  'o:encoding', -- option component same as &encoding in viml
+  fmt = string.upper, -- I'm not sure why it's upper case either ;)
+  cond = conditions.hide_in_width,
+  color = { fg = colors.fg, gui = 'bold' },
+}
+
+ins_right {
+  'fileformat',
+  fmt = string.upper,
+  icons_enabled = false,
+  padding = { left = 0, right = 1 },
+  color = { fg = colors.fg, gui = 'bold' },
+}
+
+ins_right {
+  'filetype',
+  cond = conditions.buffer_not_empty,
+  color = { fg = colors.blue },
+}
+
+ins_right {
+  -- Lsp server name .
+  function()
+    local buf_ft = vim.api.nvim_buf_get_option(0, 'filetype')
+    local clients = vim.lsp.get_active_clients()
+    if next(clients) == nil then
+      return ""
+    end
+    local msg = ""
+    for _, client in ipairs(clients) do
+      local filetypes = client.config.filetypes
+      if filetypes and vim.fn.index(filetypes, buf_ft) ~= -1 then
+        msg = msg .. string.format("   %s", client.name)
       end
-      return true
-    end,
-    highlight = { colors.blue, colors.bg },
-    separator = "  ",
-    separator_highlight = { colors.bg, colors.bg },
-  },
+    end
+    return string.sub(msg, 2)
+  end,
+  cond = function()
+    local tbl = { ["dashboard"] = true, [""] = true }
+    if tbl[vim.bo.filetype] then
+      return false
+    end
+    return true
+  end,
+  icons_enabled = false,
+  padding = { left = 0, right = 1 },
+  color = { fg = colors.blue },
 }
 
-gls.right[4] = {
-  GitIcon = {
-    provider = function()
-      return " "
-    end,
-    condition = condition.check_git_workspace,
-    highlight = { colors.red, colors.bg },
-    separator = " ",
-    separator_highlight = { colors.bg, colors.bg },
-  },
+ins_right {
+  'branch',
+  icon = { "", color = { fg = colors.red } },
+  color = { fg = colors.green },
 }
 
-gls.right[5] = {
-  GitBranch = {
-    provider = "GitBranch",
-    condition = condition.check_git_workspace,
-    highlight = { colors.green, colors.bg, "bold" },
+ins_right {
+  'diff',
+  -- Is it me or the symbol for modified us really weird
+  symbols = { added = ' ', modified = '柳', removed = ' ' },
+  diff_color = {
+    added = { fg = colors.green },
+    modified = { fg = colors.orange },
+    removed = { fg = colors.red },
   },
+  cond = conditions.hide_in_width,
 }
 
-gls.right[6] = {
-  DiffSeparator = {
-    provider = function()
-      return "   "
-    end,
-    condition = condition.hide_in_width,
-    highlight = { colors.bg, colors.bg },
-  },
+ins_right {
+  function()
+    return '▊'
+  end,
+  cond = function() return true end,
+  color = { fg = colors.blue },
+  padding = { left = 1 },
 }
 
-gls.right[7] = {
-  DiffAdd = {
-    provider = "DiffAdd",
-    condition = condition.hide_in_width,
-    icon = "  ",
-    highlight = { colors.green, colors.bg },
-  },
-}
-
-gls.right[8] = {
-  DiffModified = {
-    provider = "DiffModified",
-    condition = condition.hide_in_width,
-    icon = " 柳",
-    highlight = { colors.orange, colors.bg },
-  },
-}
-
-gls.right[9] = {
-  DiffRemove = {
-    provider = "DiffRemove",
-    condition = condition.hide_in_width,
-    icon = "  ",
-    highlight = { colors.red, colors.bg },
-  },
-}
-
-gls.right[10] = {
-  RainbowBlue = {
-    provider = function()
-      return " ▐"
-    end,
-    highlight = { colors.blue, colors.bg },
-  },
-}
-
-gls.short_line_left[1] = {
-  ShortRainbowLeft = {
-    provider = function()
-      return "▌ "
-    end,
-    highlight = { colors.blue, colors.bg },
-  },
-}
-
-gls.short_line_left[2] = {
-  BufferType = {
-    provider = "FileTypeName",
-    condition = is_not_dashboard,
-    separator = " ",
-    separator_highlight = { "NONE", colors.bg },
-    highlight = { colors.blue, colors.bg, "bold" },
-  },
-}
-
-gls.short_line_right[1] = {
-  BufferIcon = {
-    provider = "BufferIcon",
-    highlight = { colors.fg, colors.bg },
-  },
-}
-
-gls.short_line_right[2] = {
-  ShortRainbowRight = {
-    provider = function()
-      return " ▐"
-    end,
-    highlight = { colors.blue, colors.bg },
-  },
-}
+-- Now don't forget to initialize lualine
+lualine.setup(config)

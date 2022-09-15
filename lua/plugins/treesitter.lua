@@ -68,42 +68,42 @@ nvim_treesitter_configs.setup {
         ["ai"] = "@conditional.outer",
       },
     },
-    -- swap = {
-    --   enable = true,
-    --   swap_next = {
-    --     ["<leader>ts"] = "@parameter.inner",
-    --   },
-    --   swap_previous = {
-    --     ["<leader>tS"] = "@parameter.inner",
-    --   },
-    -- },
-    -- move = {
-    --   enable = true,
-    --   set_jumps = true, -- whether to set jumps in the jumplist
-    --   goto_next_start = {
-    --     ["]m"] = "@function.outer",
-    --     ["]]"] = "@class.outer",
-    --   },
-    --   goto_next_end = {
-    --     ["]M"] = "@function.outer",
-    --     ["]["] = "@class.outer",
-    --   },
-    --   goto_previous_start = {
-    --     ["[m"] = "@function.outer",
-    --     ["[["] = "@class.outer",
-    --   },
-    --   goto_previous_end = {
-    --     ["[M"] = "@function.outer",
-    --     ["[]"] = "@class.outer",
-    --   },
-    -- },
-    -- lsp_interop = {
-    --   enable = true,
-    --   border = 'rounded',
-    --   peek_definition_code = {
-    --     ["<leader>tf"] = "@function.outer",
-    --     ["<leader>tF"] = "@class.outer",
-    --   },
-    -- },
+    swap = {
+      enable = true,
+      swap_next = {
+        ["<leader>ts"] = "@parameter.inner",
+      },
+      swap_previous = {
+        ["<leader>tS"] = "@parameter.inner",
+      },
+    },
+    move = {
+      enable = true,
+      set_jumps = true, -- whether to set jumps in the jumplist
+      goto_next_start = {
+        ["]m"] = "@function.outer",
+        ["]]"] = "@class.outer",
+      },
+      goto_next_end = {
+        ["]M"] = "@function.outer",
+        ["]["] = "@class.outer",
+      },
+      goto_previous_start = {
+        ["[m"] = "@function.outer",
+        ["[["] = "@class.outer",
+      },
+      goto_previous_end = {
+        ["[M"] = "@function.outer",
+        ["[]"] = "@class.outer",
+      },
+    },
+    lsp_interop = {
+      enable = true,
+      border = 'rounded',
+      peek_definition_code = {
+        ["<leader>tf"] = "@function.outer",
+        ["<leader>tF"] = "@class.outer",
+      },
+    },
   },
 }
