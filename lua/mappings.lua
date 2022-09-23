@@ -64,9 +64,11 @@ vim.api.nvim_set_keymap('o', 'ie', ':normal ggvG<CR>', {noremap = true, silent =
 vim.api.nvim_set_keymap('x', 'ae', ':<C-u>normal! ggVG<CR>', {noremap = true, silent = true})
 vim.api.nvim_set_keymap('o', 'ae', ':normal ggVG<CR>', {noremap = true, silent = true})
 
--- Tab switch buffer
+-- switch buffer
 vim.api.nvim_set_keymap('n', 'L', ':bnext<CR>', {noremap = true, silent = true})
 vim.api.nvim_set_keymap('n', 'H', ':bprevious<CR>', {noremap = true, silent = true})
+vim.api.nvim_set_keymap('n', '<Tab>', ':tabnext<CR>', {noremap = true, silent = true})
+vim.api.nvim_set_keymap('n', '<S-Tab>', ':tabprevious<CR>', {noremap = true, silent = true})
 
 -- Remove highlighting
 vim.api.nvim_set_keymap('n', '<Esc>', ':noh<CR>:<BS>', {noremap = true})
