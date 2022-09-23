@@ -87,6 +87,11 @@ require("nvim-web-devicons").set_icon {
      color = colors.fg,
      name = "mp4",
   },
+  webm = {
+     icon = "",
+     color = colors.fg,
+     name = "webm",
+  },
   norg = {
      icon = "",
      color = colors.blue,
