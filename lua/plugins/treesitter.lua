@@ -5,6 +5,7 @@ nvim_treesitter_configs.setup {
   highlight = {
     enable = true,              -- false will disable the whole extension
     disable = { "html", "markdown" },  -- list of language that will be disabled
+    additional_vim_regex_highlighting = true,
   },
   indent = {
     enable = true,
@@ -20,7 +21,7 @@ nvim_treesitter_configs.setup {
       "javascript",
       "go",
       "norg",
-      "markdown"
+      "markdown",
     }
   },
   incremental_selection = {
