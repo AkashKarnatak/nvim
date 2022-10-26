@@ -12,6 +12,9 @@ vim.api.nvim_set_keymap('n', '<C-j>', '<C-w>j', {noremap = true, silent = true})
 vim.api.nvim_set_keymap('n', '<C-k>', '<C-w>k', {noremap = true, silent = true})
 vim.api.nvim_set_keymap('n', '<C-l>', '<C-w>l', {noremap = true, silent = true})
 
+-- greatest remap of all time
+vim.api.nvim_set_keymap('x', '<Space>p', '\"_dP', {noremap = true, silent = true})
+
 -- resize windows easily
 vim.api.nvim_set_keymap('n', '<C-Left>', '<C-w><', {noremap = true, silent = true})
 vim.api.nvim_set_keymap('n', '<C-Down>', '<C-w>-', {noremap = true, silent = true})
@@ -151,3 +154,10 @@ vim.api.nvim_set_keymap('n', '<Leader>kk', ':let g:asynctasks_term_rows=winheigh
 -- Nvim_tree
 vim.api.nvim_set_keymap('n', '<leader>nn', ':NvimTreeToggle<CR>', {noremap = true, silent=true})
 vim.api.nvim_set_keymap('n', '<leader>nr', ':NvimTreeRefresh<CR>', {noremap = true, silent=true})
+
+-- Tab mapping
+vim.api.nvim_set_keymap('n', '<leader>tt', [[:tabnew|Telescope projects<CR>]], {noremap = true, silent=true})
+vim.api.nvim_set_keymap('n', '<leader>tc', [[:tabclose<CR>]], {noremap = true, silent=true})
+
+-- Super star
+vim.api.nvim_set_keymap('', '*', [[:let @/= '\<' . expand('<cword>') . '\>' <bar> set hls <cr>]], {noremap = true, silent=true})

@@ -4,7 +4,7 @@ nvim_treesitter_configs.setup {
   -- ignore_install = { "javascript" }, -- List of parsers to ignore installing
   highlight = {
     enable = true,              -- false will disable the whole extension
-    disable = { "html", "markdown" },  -- list of language that will be disabled
+    disable = { "html", "markdown", "help" },  -- list of language that will be disabled
     additional_vim_regex_highlighting = true,
   },
   indent = {
@@ -68,18 +68,21 @@ nvim_treesitter_configs.setup {
         ["iI"] = "@conditional.else",
         ["ai"] = "@conditional.outer",
       },
+      include_surrounding_whitespace = true,
     },
     swap = {
       enable = true,
+      disable = { "markdown" },
       swap_next = {
-        ["<leader>ts"] = "@parameter.inner",
+        ["<space>js"] = "@parameter.inner",
       },
       swap_previous = {
-        ["<leader>tS"] = "@parameter.inner",
+        ["<space>jS"] = "@parameter.inner",
       },
     },
     move = {
       enable = true,
+      disable = { "markdown" },
       set_jumps = true, -- whether to set jumps in the jumplist
       goto_next_start = {
         ["]m"] = "@function.outer",
@@ -100,10 +103,11 @@ nvim_treesitter_configs.setup {
     },
     lsp_interop = {
       enable = true,
+      disable = { "markdown" },
       border = 'rounded',
       peek_definition_code = {
-        ["<leader>tf"] = "@function.outer",
-        ["<leader>tF"] = "@class.outer",
+        ["<space>jf"] = "@function.outer",
+        ["<space>jF"] = "@class.outer",
       },
     },
   },

@@ -68,7 +68,7 @@ return packer.startup({function()
     }
     use {
       "JoosepAlviste/nvim-ts-context-commentstring",
-      after = "nvim-treesitter",
+      after = "nvim-treesitter-textobjects",
       config = function()
         require "plugins.treesitter"
       end
@@ -119,8 +119,12 @@ return packer.startup({function()
       after = "cmp-vsnip",
     }
     use {
-      "jose-elias-alvarez/null-ls.nvim",
+      "simrat39/rust-tools.nvim",
       after = "nvim-lspconfig",
+    }
+    use {
+      "jose-elias-alvarez/null-ls.nvim",
+      after = "rust-tools.nvim",
       config = function()
         require "plugins.lsp"
       end
@@ -238,6 +242,7 @@ return packer.startup({function()
         {'n', '<space>ld'},
         {'n', '<space>ls'},
       },
+      cmd = "Telescope",
       config = function()
         require "plugins.telescope"
       end
@@ -356,6 +361,14 @@ return packer.startup({function()
       config = function()
         require("plugins.scope")
       end,
+    }
+
+    -- Quick motion
+    use {
+      'ggandor/leap.nvim',
+      config = function()
+        require("plugins.leap")
+      end
     }
 
 end,

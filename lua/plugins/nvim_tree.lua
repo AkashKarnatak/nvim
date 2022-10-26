@@ -1,7 +1,9 @@
+vim.g.loaded = 1
+vim.g.loaded_netrwPlugin = 1
 local tree_cb = require'nvim-tree.config'.nvim_tree_callback
 -- default mappings
 local list = {
-  { key = {"<CR>", "o", "<2-LeftMouse>"}, cb = tree_cb("edit") },
+  { key = {"<CR>", "<2-LeftMouse>"}, cb = tree_cb("edit") },
   { key = {"<2-RightMouse>", "<C-]>"},    cb = tree_cb("cd") },
   { key = "<C-v>",                        cb = tree_cb("vsplit") },
   { key = "<C-x>",                        cb = tree_cb("split") },
@@ -32,7 +34,7 @@ local list = {
   { key = "[c",                           cb = tree_cb("prev_git_item") },
   { key = "]c",                           cb = tree_cb("next_git_item") },
   { key = "-",                            cb = tree_cb("dir_up") },
-  { key = "s",                            cb = tree_cb("system_open") },
+  { key = "o",                            cb = tree_cb("system_open") },
   { key = "q",                            cb = tree_cb("close") },
   { key = "g?",                           cb = tree_cb("toggle_help") },
 }
@@ -69,6 +71,7 @@ require'nvim-tree'.setup {
   update_focused_file = {
     enable      = true,
     update_cwd  = true,
+    update_root = true,
     ignore_list = {}
   },
   system_open = {
@@ -85,7 +88,7 @@ require'nvim-tree'.setup {
     preserve_window_proportions = true,
     side = 'left',
     mappings = {
-      custom_only = false,
+      custom_only = true,
       list = list
     }
   },
