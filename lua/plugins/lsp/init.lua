@@ -11,7 +11,7 @@ if not configs.ls_emmet then
   configs.ls_emmet = {
     default_config = {
       cmd = { 'ls_emmet', '--stdio' };
-      filetypes = { 'html', 'css', 'scss', 'javascript', 'javascriptreact', 'typescript', 'typescriptreact', 'haml',
+      filetypes = { 'html', 'css', 'scss', 'javascriptreact', 'typescript', 'typescriptreact', 'haml',
         'xml', 'xsl', 'pug', 'slim', 'sass', 'stylus', 'less', 'sss'};
       root_dir = function(_)
         return vim.loop.cwd()
@@ -32,7 +32,7 @@ local servers = {
   'ls_emmet',
   'sumneko_lua',
   'gopls',
-  'rust_analyzer',
+  -- 'solc'
 }
 
 local opts = {
@@ -40,7 +40,7 @@ local opts = {
   capabilities = require("plugins.lsp.handlers").capabilities
 }
 
--- Setup servers
+-- Generic lsp servers
 for _, server_name in ipairs(servers) do
   if server_name == "sumneko_lua" then
     local sumneko_opts = require("plugins.lsp.settings.sumneko_lua")
@@ -51,3 +51,10 @@ for _, server_name in ipairs(servers) do
   end
   nvim_lsp[server_name].setup(opts)
 end
+
+-- Special setup
+-- Rust
+local rt = require("rust-tools")
+rt.setup({
+  server = opts
+})
