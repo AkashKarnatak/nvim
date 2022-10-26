@@ -35,6 +35,8 @@ local kinds = {
     TypeParameter = "",
 }
 
+vim.g.vsnip_append_final_tabstop = false
+
 cmp.setup {
   preselect = cmp.PreselectMode.None,
   completion = {
@@ -92,8 +94,8 @@ cmp.setup {
     ["<Tab>"] = cmp.mapping(function(fallback)
       if vim.fn["vsnip#jumpable"](1) == 1 then
         feedkey("<Plug>(vsnip-jump-next)", "")
-      -- elseif cmp.visible() then
-      --   cmp.select_next_item()
+      elseif cmp.visible() then
+        cmp.select_next_item()
       else
         fallback() -- The fallback function sends a already mapped key. In this case, it's probably `<Tab>`.
       end
@@ -101,8 +103,8 @@ cmp.setup {
     ["<S-Tab>"] = cmp.mapping(function()
       if vim.fn["vsnip#jumpable"](-1) == 1 then
         feedkey("<Plug>(vsnip-jump-prev)", "")
-      -- elseif cmp.visible() then
-      --   cmp.select_prev_item()
+      elseif cmp.visible() then
+        cmp.select_prev_item()
       end
     end, { "i", "s" }),
   },
