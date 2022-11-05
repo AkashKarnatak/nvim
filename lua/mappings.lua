@@ -160,4 +160,7 @@ vim.api.nvim_set_keymap('n', '<leader>tt', [[:tabnew|Telescope projects<CR>]], {
 vim.api.nvim_set_keymap('n', '<leader>tc', [[:tabclose<CR>]], {noremap = true, silent=true})
 
 -- Super star
-vim.api.nvim_set_keymap('', '*', [[:let @/= '\<' . expand('<cword>') . '\>' <bar> set hls <cr>]], {noremap = true, silent=true})
+vim.api.nvim_set_keymap('n', '*', [[:let @/= '\<' . expand('<cword>') . '\>' <bar> set hls <cr>]], {noremap = true, silent=true})
+
+-- Multi replace
+vim.api.nvim_set_keymap('n', '<space>gd', '*cgn', {noremap = false, silent=true})

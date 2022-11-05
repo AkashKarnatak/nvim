@@ -32,7 +32,8 @@ local servers = {
   'ls_emmet',
   'sumneko_lua',
   'gopls',
-  -- 'solc'
+  -- 'solc',
+  'jsonls',
 }
 
 local opts = {
