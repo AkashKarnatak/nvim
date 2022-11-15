@@ -32,6 +32,15 @@ local short_line_tbl = {
   ["lspinfo"] = true,
 }
 
+local live_server_support = {
+  ["html"] = true,
+  ["css"] = true,
+  ["javascript"] = true,
+  ["javascriptreact"] = true,
+  ["typescript"] = true,
+  ["typescriptreact"] = true,
+}
+
 local conditions = {
   buffer_not_empty = function()
     return vim.fn.empty(vim.fn.expand('%:t')) ~= 1 and not short_line_tbl[vim.bo.filetype]
@@ -266,6 +275,49 @@ ins_right {
   icons_enabled = false,
   padding = { left = 0, right = 1 },
   color = { fg = colors.fg, gui = 'bold' },
+}
+
+local Job = require'plenary.job'
+local live_server_enabled = false
+local live_server
+
+ins_right {
+  function()
+    return ''
+  end,
+  cond = function()
+    return live_server_support[vim.bo.filetype]
+  end,
+  on_stdout = function(_, line)
+    vim.cmd([[:echo 'hi: ]] .. vim.inspect.inspect(line) .. [[']])
+  end,
+  on_stderr = function(_, line)
+    vim.cmd([[:echo 'hi: ]] .. vim.inspect.inspect(line) .. [[']])
+  end,
+  on_exit = function()
+    vim.cmd([[:echo 'what the fuck']])
+  end,
+  on_click = function()
+    live_server_enabled = not live_server_enabled
+    if live_server_enabled then
+      live_server = Job:new({ command = 'live-server' })
+      live_server:start()
+    else
+      -- TODO: Job:shutdown() doesn't kill the job
+      -- by itself as of now. This will probably
+      -- be fixed later.
+      -- https://github.com/nvim-lua/plenary.nvim/issues/156
+      live_server:shutdown()
+      vim.loop.kill(live_server.pid)
+    end
+  end,
+  color = function()
+    local fg = colors.blue
+    if live_server_enabled then
+      fg = colors.green
+    end
+    return { fg = fg }
+  end,
 }
 
 ins_right {
