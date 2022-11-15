@@ -32,6 +32,12 @@ vim.cmd('highlight! link NormalFloat Normal')
 vim.cmd('highlight! FloatBorder guifg=#51afef guibg=#282c34')
 vim.cmd('highlight! TermCursor cterm=reverse gui=reverse guifg=#51afef')
 
+-- Spell
+vim.cmd('highlight! SpellBad guisp=#ff6c6b')
+vim.cmd('highlight! SpellCap guisp=#98be65')
+vim.cmd('highlight! SpellRare guisp=#ffa8ff')
+vim.cmd('highlight! SpellLocal guisp=#4bc4f7')
+
 -- Diagnostic
 vim.cmd('highlight! link DiagnosticError DiagnosticFloatingError')
 vim.cmd('highlight! link DiagnosticHint DiagnosticFloatingHint')
@@ -39,6 +45,10 @@ vim.cmd('highlight! link DiagnosticInfo DiagnosticFloatingInfo')
 vim.cmd('highlight! link DiagnosticWarn DiagnosticFloatingWarn')
 vim.cmd('highlight! link DiagnosticSignInfo DiagnosticFloatingInfo')
 vim.cmd('highlight! link DiagnosticSignWarn DiagnosticFloatingWarn')
+vim.cmd('highlight! ErrorMsgUnderline guifg=NONE gui=undercurl guisp=#ff6c6b')
+vim.cmd('highlight! WarningMsgUnderline guifg=NONE gui=undercurl guisp=#ecbe7b')
+vim.cmd('highlight! MsgUnderline guifg=NONE gui=undercurl guisp=#98be65')
+vim.cmd('highlight! MoreMsgUnderline guifg=NONE gui=undercurl guisp=#51afef')
 
 -- NvimTree
 vim.cmd('highlight! Visual guibg=#353d4e')
