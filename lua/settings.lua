@@ -32,6 +32,35 @@ vim.g.html_indent_style1 = "inc"
 
 -- Jump cursor to the line where last exited nvim
 vim.cmd([[autocmd BufReadPre * autocmd FileType <buffer> ++once if &ft !~# 'commit\|rebase' && line("'\"") > 1 && line("'\"") <= line("$") | exe 'normal! g`"' | endif]])
+-- -- Avoid scrolling when switch buffers
+-- vim.cmd([[au BufLeave * if !&diff | let b:winview = winsaveview() | endif]])
+-- vim.cmd([[au BufEnter * if exists('b:winview') && !&diff | call   winrestview(b:winview) | endif]])
+vim.cmd([[
+" Save current view settings on a per-window, per-buffer basis.
+function! AutoSaveWinView()
+    if !exists("w:SavedBufView")
+        let w:SavedBufView = {}
+    endif
+    let w:SavedBufView[bufnr("%")] = winsaveview()
+endfunction
+" Restore current view settings.
+function! AutoRestoreWinView()
+    let buf = bufnr("%")
+    if exists("w:SavedBufView") && has_key(w:SavedBufView, buf)
+        let v = winsaveview()
+        let atStartOfFile = v.lnum == 1 && v.col == 0
+        if atStartOfFile && !&diff
+            call winrestview(w:SavedBufView[buf])
+        endif
+        unlet w:SavedBufView[buf]
+    endif
+endfunction
+" When switching buffers, preserve window view.
+if v:version >= 700
+    autocmd BufLeave * call AutoSaveWinView()
+    autocmd BufEnter * call AutoRestoreWinView()
+endif
+]])
 -- Prioritize linux man pages over posix
 vim.api.nvim_create_autocmd("BufEnter", {
   callback = function() vim.b.man_default_sects = '2,3' end

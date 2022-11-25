@@ -60,7 +60,6 @@ return packer.startup({function()
     -- Improves syntax highlighting and indentation
     use {
       "nvim-treesitter/nvim-treesitter",
-      event = { "BufRead", "BufNewFile" },
     }
     use {
       "nvim-treesitter/nvim-treesitter-textobjects",
@@ -269,7 +268,8 @@ return packer.startup({function()
     -- bufferline
     use {
       "akinsho/nvim-bufferline.lua",
-      after = "doom-one.nvim",
+      after = "nvim-treesitter",
+      requires = "nvim-tree/nvim-web-devicons",
       config = function()
         require("plugins.bufferline")
       end
