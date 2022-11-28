@@ -163,4 +163,4 @@ vim.api.nvim_set_keymap('n', '<leader>tc', [[:tabclose<CR>]], {noremap = true, s
 vim.api.nvim_set_keymap('n', '*', [[:let @/= '\<' . expand('<cword>') . '\>' <bar> set hls <cr>]], {noremap = true, silent=true})
 
 -- Multi replace
-vim.api.nvim_set_keymap('n', '<space>gd', '*cgn', {noremap = false, silent=true})
+vim.api.nvim_set_keymap('n', '<C-s>', '*cgn', {noremap = false, silent=true})

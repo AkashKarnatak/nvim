@@ -83,6 +83,7 @@ vim.cmd('highlight! link GitSignsChangeLn DiffChange')
 vim.cmd('highlight! link GitSignsChangeInline DiffChange')
 vim.cmd('highlight! link GitSignsDeleteLn DiffDelete')
 vim.cmd('highlight! link GitSignsDeleteInline DiffDelete')
+vim.cmd('highlight! DiffText guibg=#303c39 gui=NONE')
 
 -- Indent blankline
 vim.cmd [[highlight! IndentBlanklineContextChar guifg=#6d7580 gui=bold]]

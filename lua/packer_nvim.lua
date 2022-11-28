@@ -22,7 +22,8 @@ vim.cmd [[
   augroup end
 ]]
 
-return packer.startup({function()
+return packer.startup({
+  function()
     -- This package need to be present as a plugin otherwise packer will prompt to remove itself
     use {
       "wbthomason/packer.nvim",
@@ -370,10 +371,10 @@ return packer.startup({function()
         require("plugins.leap")
       end
     }
-
-end,
-config = {
-  -- Move to lua dir so impatient.nvim can cache it
-  compile_path = vim.fn.stdpath('config')..'/lua/packer_compiled.lua',
-  snapshot_path = vim.fn.stdpath('config')..'/snapshots'
-}})
+  end,
+  config = {
+    -- Move to lua dir so impatient.nvim can cache it
+    compile_path = vim.fn.stdpath('config')..'/lua/packer_compiled.lua',
+    snapshot_path = vim.fn.stdpath('config')..'/snapshots'
+  }
+})
