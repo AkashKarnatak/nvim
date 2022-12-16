@@ -1,5 +1,3 @@
-require('leap').add_default_mappings()
-
 require('leap').setup {
   max_phase_one_targets = nil,
   highlight_unlabeled_phase_one_targets = false,
@@ -41,3 +39,15 @@ require('leap-spooky').setup {
 
 vim.cmd('highlight! LeapMatch guifg=#ff007c gui=underline')
 vim.cmd('highlight! link LeapLabelPrimary Search')
+
+-- Mappings
+vim.api.nvim_set_keymap('n', 's', '<Plug>(leap-forward-to)', {noremap = true, silent=true})
+vim.api.nvim_set_keymap('x', 's', '<Plug>(leap-forward-to)', {noremap = true, silent=true})
+vim.api.nvim_set_keymap('o', 's', '<Plug>(leap-forward-to)', {noremap = true, silent=true})
+vim.api.nvim_set_keymap('n', 'S', '<Plug>(leap-backward-to)', {noremap = true, silent=true})
+vim.api.nvim_set_keymap('x', 'S', '<Plug>(leap-backward-to)', {noremap = true, silent=true})
+vim.api.nvim_set_keymap('o', 'S', '<Plug>(leap-backward-to)', {noremap = true, silent=true})
+vim.api.nvim_set_keymap('n', 'gs', '<Plug>(leap-cross-window)', {noremap = true, silent=true})
+vim.api.nvim_set_keymap('x', 'gs', '<Plug>(leap-cross-window)', {noremap = true, silent=true})
+vim.api.nvim_set_keymap('o', 'gs', '<Plug>(leap-cross-window)', {noremap = true, silent=true})
+vim.api.nvim_set_keymap('o', 'gs', '<Plug>(leap-repeat)', {noremap = true, silent=true})
