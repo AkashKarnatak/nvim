@@ -367,6 +367,10 @@ return packer.startup({
     -- Quick motion
     use {
       'ggandor/leap.nvim',
+    }
+    use {
+      'ggandor/leap-spooky.nvim',
+      after = 'leap.nvim',
       config = function()
         require("plugins.leap")
       end
