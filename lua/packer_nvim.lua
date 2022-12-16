@@ -203,7 +203,6 @@ return packer.startup({
     -- Git integration
     use {
       "nvim-lua/plenary.nvim",
-      after = "packer.nvim",
     }
     use {
       "lewis6991/gitsigns.nvim",

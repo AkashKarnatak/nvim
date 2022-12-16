@@ -40,7 +40,7 @@ vim.g.vsnip_append_final_tabstop = false
 cmp.setup {
   preselect = cmp.PreselectMode.None,
   completion = {
-    keyword_length = 1;
+    keyword_length = 2;
     completeopt = "menuone,noselect",
   },
   snippet = {

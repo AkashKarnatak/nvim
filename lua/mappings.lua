@@ -4,7 +4,6 @@ vim.g.mapleader = ' '
 -- Remap omnicomplete keys
 vim.api.nvim_set_keymap('i', '<C-j>', '<C-n>', {noremap = true, silent = true})
 vim.api.nvim_set_keymap('i', '<C-k>', '<C-p>', {noremap = true, silent = true})
-vim.api.nvim_set_keymap('i', '<CR>', 'pumvisible() ? \'<C-y>\' : \'<CR>\'', {expr = true, noremap = true, silent = true})
 
 -- better window movement
 vim.api.nvim_set_keymap('n', '<C-h>', '<C-w>h', {noremap = true, silent = true})
