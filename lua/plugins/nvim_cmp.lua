@@ -40,7 +40,7 @@ vim.g.vsnip_append_final_tabstop = false
 cmp.setup {
   preselect = cmp.PreselectMode.None,
   completion = {
-    keyword_length = 2;
+    keyword_length = 1;
     completeopt = "menuone,noselect",
   },
   snippet = {
@@ -74,7 +74,7 @@ cmp.setup {
     },
   },
   sources = {
-    { name = 'vsnip' },
+    { name = 'vsnip', keyword_pattern = '\\%([^[:alnum:][:blank:]]\\|\\w\\+\\)' },
     { name = "nvim_lsp" },
     { name = "path" },
     { name = "buffer" },
