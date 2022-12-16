@@ -5,12 +5,13 @@ nvim_treesitter_configs.setup {
   highlight = {
     enable = true,              -- false will disable the whole extension
     disable = { "html" },  -- list of language that will be disabled
-    additional_vim_regex_highlighting = true,
+    additional_vim_regex_highlighting = false,
   },
   indent = {
     enable = true,
     disable = {
-      "python"
+      "python",
+      "html"
     }
   },
   incremental_selection = {

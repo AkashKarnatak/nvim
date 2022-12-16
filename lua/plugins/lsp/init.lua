@@ -41,16 +41,20 @@ local opts = {
   capabilities = require("plugins.lsp.handlers").capabilities
 }
 
+local opts = {}
+
 -- Generic lsp servers
-for _, server_name in ipairs(servers) do
-  if server_name == "sumneko_lua" then
-    local sumneko_opts = require("plugins.lsp.settings.sumneko_lua")
-    opts = vim.tbl_deep_extend("force", sumneko_opts, opts)
+for _, server in pairs(servers) do
+  opts = {
+    on_attach = require("plugins.lsp.handlers").on_attach,
+    capabilities = require("plugins.lsp.handlers").capabilities
+  }
+  server = vim.split(server, "@")[1]
+  local require_ok, conf_opts = pcall(require, "plugins.lsp.settings" .. server)
+  if require_ok then
+    opts = vim.tbl_deep_extend("force", conf_opts, opts)
   end
-  if server_name == "cssls" or server_name == "html" then
-    opts = require("plugins.lsp.settings.vscode-langservers-extracted")
-  end
-  nvim_lsp[server_name].setup(opts)
+  nvim_lsp[server].setup(opts)
 end
 
 -- Special setup

@@ -147,6 +147,10 @@ return packer.startup({
         require("plugins.lsp_signature")
       end
     }
+    use {
+      "RRethy/vim-illuminate",
+      after = "null-ls.nvim",
+    }
     -- use {
     --   "kevinhwang91/nvim-ufo",
     --   requires = "kevinhwang91/promise-async",

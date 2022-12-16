@@ -1,6 +1,5 @@
 local M = {}
 
--- TODO: backfill this to template
 M.setup = function()
   local signs = {
     { name = "DiagnosticSignError", text = "" },
@@ -40,34 +39,6 @@ M.setup = function()
   })
 end
 
-local lsp_highlight_document = function(client)
-  -- Set autocommands conditional on server_capabilities
-  if client.supports_method("textDocument/documentHighlight") then
-    vim.api.nvim_exec(
-      [[
-      augroup lsp_document_highlight
-        autocmd! * <buffer>
-        autocmd CursorHold <buffer> lua vim.lsp.buf.document_highlight()
-        autocmd CursorMoved <buffer> lua vim.lsp.buf.clear_references()
-      augroup END
-    ]] ,
-      false
-    )
-  end
-end
-
-local lsp_formatting = function(bufnr)
-  vim.lsp.buf.format({
-    -- filter = function(clients)
-    --   -- filter out clients that you don't want to use
-    --   return vim.tbl_filter(function(client)
-    --     return client.name ~= "tsserver"
-    --   end, clients)
-    -- end,
-    bufnr = bufnr,
-  })
-end
-
 local lsp_keymaps = function(bufnr)
   local opts = { noremap = true, silent = true }
   vim.api.nvim_buf_set_keymap(bufnr, "n", "gD", "<cmd>lua vim.lsp.buf.declaration()<CR>", opts)
@@ -78,7 +49,7 @@ local lsp_keymaps = function(bufnr)
   vim.api.nvim_buf_set_keymap(bufnr, "i", "<C-n>", "<cmd>lua vim.lsp.buf.signature_help()<CR>", opts)
   vim.api.nvim_buf_set_keymap(bufnr, "n", "<leader>lr", "<cmd>lua vim.lsp.buf.rename()<CR>", opts)
   vim.api.nvim_buf_set_keymap(bufnr, "n", "<leader>la", "<cmd>lua vim.lsp.buf.code_action()<CR>", opts)
-  vim.keymap.set("n", "<leader>lf", lsp_formatting, {buffer = bufnr})
+  vim.api.nvim_buf_set_keymap(bufnr, "n", "<leader>lf", "<cmd>lua vim.lsp.buf.format{ async = true }<CR>", opts)
   vim.api.nvim_buf_set_keymap(bufnr, "n", "<leader>lq", "<cmd>lua vim.diagnostic.setloclist()<CR>", opts)
   vim.api.nvim_buf_set_keymap(bufnr, "n", "[d", '<cmd>lua vim.diagnostic.goto_prev({ border = "rounded" })<CR>', opts)
   vim.api.nvim_buf_set_keymap(bufnr, "n", "]d", '<cmd>lua vim.diagnostic.goto_next({ border = "rounded" })<CR>', opts)
@@ -86,16 +57,23 @@ local lsp_keymaps = function(bufnr)
 end
 
 M.on_attach = function(client, bufnr)
+  if client.name == "tsserver" then
+    client.server_capabilities.documentFormattingProvider = false
+  end
   lsp_keymaps(bufnr)
-  lsp_highlight_document(client)
+  local status_ok, illuminate = pcall(require, "illuminate")
+  if not status_ok then
+    return
+  end
+  illuminate.on_attach(client)
 end
 
 local cmp_nvim_lsp = require "cmp_nvim_lsp"
 
 M.capabilities = cmp_nvim_lsp.default_capabilities()
 M.capabilities.textDocument.foldingRange = {
-    dynamicRegistration = false,
-    lineFoldingOnly = true
+  dynamicRegistration = false,
+  lineFoldingOnly = true
 }
 M.capabilities.textDocument.completion.completionItem.snippetSupport = false
 
