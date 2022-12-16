@@ -4,24 +4,13 @@ nvim_treesitter_configs.setup {
   -- ignore_install = { "javascript" }, -- List of parsers to ignore installing
   highlight = {
     enable = true,              -- false will disable the whole extension
-    disable = { "html", "markdown", "help" },  -- list of language that will be disabled
+    disable = { "html" },  -- list of language that will be disabled
     additional_vim_regex_highlighting = true,
   },
   indent = {
     enable = true,
     disable = {
-      "c",
-      "cpp",
-      "yaml",
-      "lua",
-      "python",
-      "java",
-      "html",
-      "css",
-      "javascript",
-      "go",
-      "norg",
-      "markdown",
+      "python"
     }
   },
   incremental_selection = {
@@ -38,7 +27,6 @@ nvim_treesitter_configs.setup {
   },
   autotag = {
     enable = true,
-    disable = { "markdown" },
   },
   context_commentstring = {
     enable = true,
@@ -47,7 +35,6 @@ nvim_treesitter_configs.setup {
   textobjects = {
     select = {
       enable = true,
-      disable = { "markdown" },
 
       -- Automatically jump forward to textobj, similar to targets.vim
       lookahead = true,
@@ -72,7 +59,6 @@ nvim_treesitter_configs.setup {
     },
     swap = {
       enable = true,
-      disable = { "markdown" },
       swap_next = {
         ["<space>js"] = "@parameter.inner",
       },
@@ -82,7 +68,6 @@ nvim_treesitter_configs.setup {
     },
     move = {
       enable = true,
-      disable = { "markdown" },
       set_jumps = true, -- whether to set jumps in the jumplist
       goto_next_start = {
         ["]m"] = "@function.outer",
@@ -103,7 +88,6 @@ nvim_treesitter_configs.setup {
     },
     lsp_interop = {
       enable = true,
-      disable = { "markdown" },
       border = 'rounded',
       peek_definition_code = {
         ["<space>jf"] = "@function.outer",
