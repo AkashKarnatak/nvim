@@ -14,5 +14,6 @@ require('illuminate').configure({
     "input",
     "output",
     "lspinfo",
+    "toggleterm"
   },
 })
