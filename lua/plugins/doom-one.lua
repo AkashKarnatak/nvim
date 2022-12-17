@@ -90,5 +90,10 @@ vim.cmd [[highlight! IndentBlanklineContextChar guifg=#6d7580 gui=bold]]
 vim.cmd('highlight! CursorLineSign guibg=#21252a')
 vim.cmd('highlight! NvimTreeCursorColumn guibg=#21252a')
 
+-- Indent blankline
+vim.cmd('highlight! IlluminatedWordRead guibg=#274873 gui=NONE')
+vim.cmd('highlight! IlluminatedWordText guibg=#274873 gui=NONE')
+vim.cmd('highlight! IlluminatedWordWrite guibg=#274873 gui=NONE')
+
 -- local hlmap = vim.treesitter.highlighter.hl_map
 -- hlmap.error = nil

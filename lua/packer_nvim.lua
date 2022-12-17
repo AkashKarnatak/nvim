@@ -150,6 +150,9 @@ return packer.startup({
     use {
       "RRethy/vim-illuminate",
       after = "null-ls.nvim",
+      config = function()
+        require("plugins.illuminate")
+      end
     }
     -- use {
     --   "kevinhwang91/nvim-ufo",
