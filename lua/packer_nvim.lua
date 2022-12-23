@@ -1,5 +1,20 @@
--- load packer.nvim
-vim.cmd [[packadd packer.nvim]]
+local ensure_packer = function()
+  local fn = vim.fn
+  local install_path = fn.stdpath('data')..'/site/pack/packer/start/packer.nvim'
+  if fn.empty(fn.glob(install_path)) > 0 then
+    print '=================================='
+    print '   Your plugin manager is being'
+    print '   installed.'
+    print '   Cloning into packer.nvim...'
+    print '=================================='
+    fn.system({'git', 'clone', '--depth', '1', 'https://github.com/wbthomason/packer.nvim', install_path})
+    vim.cmd([[packadd packer.nvim]])
+    return true
+  end
+  return false
+end
+
+local packer_bootstrap = ensure_packer()
 
 local packer = require('packer')
 
@@ -27,7 +42,6 @@ return packer.startup({
     -- This package need to be present as a plugin otherwise packer will prompt to remove itself
     use {
       "wbthomason/packer.nvim",
-      event = "VimEnter"
     }
 
     -- Properly close vim buffer
@@ -44,18 +58,15 @@ return packer.startup({
     -- Repeat commands
     use {
       "tpope/vim-repeat",
-      after = "packer.nvim",
     }
 
     -- Vim actions
     use {
       "tpope/vim-surround",
-      after = "packer.nvim",
     }
 
     use {
       "AkashKarnatak/replacewithregister",
-      after = "packer.nvim",
     }
 
     -- Improves syntax highlighting and indentation
@@ -73,6 +84,13 @@ return packer.startup({
         require "plugins.treesitter"
       end
     }
+    use {
+      "lukas-reineke/indent-blankline.nvim",
+      after = "nvim-ts-context-commentstring",
+      config = function()
+        require("plugins.indent-blankline")
+      end
+    }
     -- comment
     use {
       "numToStr/Comment.nvim",
@@ -85,7 +103,7 @@ return packer.startup({
     -- Autocompletion and LSP
     use {
       "AkashKarnatak/friendly-snippets",
-      after = "nvim-treesitter"
+      after = "nvim-ts-context-commentstring"
     }
     use {
       "hrsh7th/vim-vsnip",
@@ -119,8 +137,16 @@ return packer.startup({
       after = "cmp-vsnip",
     }
     use {
-      "simrat39/rust-tools.nvim",
+      "williamboman/mason.nvim",
       after = "nvim-lspconfig",
+    }
+    use {
+      "williamboman/mason-lspconfig.nvim",
+      after = "mason.nvim",
+    }
+    use {
+      "simrat39/rust-tools.nvim",
+      after = "mason-lspconfig.nvim",
     }
     use {
       "jose-elias-alvarez/null-ls.nvim",
@@ -258,7 +284,7 @@ return packer.startup({
     use({
       'NTBBloodbath/doom-one.nvim',
       commit = "98b23b0eb3d47f908ae2d2b77dd7bad42f566340",
-      after = "packer.nvim",
+      after = { "indent-blankline.nvim" },
       config = function()
         require('plugins.doom-one')
       end,
@@ -285,7 +311,7 @@ return packer.startup({
     -- Statusline
     use({
       "nvim-lualine/lualine.nvim",
-      after = "nvim-web-devicons",
+      after = { "nvim-web-devicons", "plenary.nvim" },
       config = function()
         require("plugins.eviline")
       end,
@@ -301,9 +327,7 @@ return packer.startup({
 
     -- Colorizer
     use {
-      "RRethy/vim-hexokinase",
-      run = "make hexokinase",
-      -- cmd = "HexokinaseToggle",
+      "NvChad/nvim-colorizer.lua",
       config = function()
         require("plugins.nvim_colorizer")
       end
@@ -332,14 +356,6 @@ return packer.startup({
       after = "nvim-dap",
       config = function()
         require("plugins.nvim_dap")
-      end
-    }
-
-    use {
-      "lukas-reineke/indent-blankline.nvim",
-      after = "nvim-treesitter",
-      config = function()
-        require("plugins.indent-blankline")
       end
     }
 
@@ -381,6 +397,10 @@ return packer.startup({
         require("plugins.leap")
       end
     }
+    if packer_bootstrap then
+      vim.api.nvim_set_hl(0, "NormalFloat", { bg = "#282c34" })
+      require('packer').sync()
+    end
   end,
   config = {
     -- Move to lua dir so impatient.nvim can cache it

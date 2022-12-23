@@ -3,9 +3,12 @@
 -- LuaJIT 2.1.0-beta3
 
 ------------ Packer configs ---------------
-require('impatient').enable_profile()
+local status_ok, impatient = pcall(require, "impatient")
+if status_ok then
+  impatient.enable_profile()
+end
 require('packer_nvim')
-require('packer_compiled')
+pcall(require, "packer_compiled")
 
 --------------- Kebindings ------------------
 require('mappings')

@@ -78,7 +78,11 @@ vim.api.nvim_create_autocmd("TextYankPost", {
 })
 
 -- Set cursorline only for active buffers
-local filesToIgnr = { NvimTree = true, TelescopePrompt = true, TelescopeResults = true, [""] = true }
+local filesToIgnr = {
+  ["NvimTree"] = true,
+  ["TelescopePrompt"] = true,
+  ["TelescopeResults"] = true,
+  [""] = true }
 local gid = vim.api.nvim_create_augroup("CursorLine", {
   clear = false
 })

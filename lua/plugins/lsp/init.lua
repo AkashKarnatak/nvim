@@ -6,35 +6,22 @@ require "plugins.lsp.null-ls"
 -- Borders for LspInfo winodw
 require('lspconfig.ui.windows').default_options.border = 'rounded'
 
--- configure servers
-if not configs.ls_emmet then
-  configs.ls_emmet = {
-    default_config = {
-      cmd = { 'ls_emmet', '--stdio' };
-      filetypes = { 'html', 'css', 'scss', 'javascriptreact', 'typescript', 'typescriptreact', 'haml',
-        'xml', 'xsl', 'pug', 'slim', 'sass', 'stylus', 'less', 'sss'};
-      root_dir = function(_)
-        return vim.loop.cwd()
-      end;
-      settings = {};
-    };
-  }
-end
-
 -- list of all servers
 local servers = {
   'clangd',
   'pyright',
   'tsserver',
-  'racket_langserver',
   'cssls',
   'html',
-  'ls_emmet',
+  'emmet_ls',
   'sumneko_lua',
   'gopls',
   -- 'solc',
   'jsonls',
 }
+
+-- Installer for LSP servers, DAP, servers, Linters and Formatters
+require("plugins.lsp.mason").setup(servers)
 
 local opts = {
   on_attach = require("plugins.lsp.handlers").on_attach,

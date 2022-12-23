@@ -123,6 +123,8 @@ local colors = {
   red = "#ff6c6b",
 }
 
+vim.cmd('highlight! CmpItemAbbr             gui=NONE   guibg=NONE    guifg=' .. colors.fg)
+vim.cmd('highlight! CmpItemAbbrDeprecated   gui=NONE   guibg=NONE    guifg=' .. colors.fg_alt)
 vim.cmd('highlight! CmpItemAbbrMatch        gui=bold   guibg=NONE    guifg=' .. colors.blue)
 vim.cmd('highlight! CmpItemAbbrMatchFuzzy   gui=underline   guibg=NONE    guifg=' .. colors.blue)
 vim.cmd('highlight! CmpItemKindText            guibg=NONE    guifg=' .. colors.orange)
