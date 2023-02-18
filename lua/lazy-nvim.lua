@@ -70,6 +70,14 @@ require("lazy").setup(
     -- Autocompletion and LSP
     {
       "hrsh7th/nvim-cmp",
+      dependencies = {
+        "hrsh7th/vim-vsnip",
+        "hrsh7th/cmp-nvim-lsp",
+        "hrsh7th/cmp-path",
+        "hrsh7th/cmp-buffer",
+        "hrsh7th/cmp-vsnip",
+        "AkashKarnatak/friendly-snippets",
+      },
       config = function()
         require "plugins.nvim_cmp"
       end
@@ -161,14 +169,25 @@ require("lazy").setup(
     -- Task builder
     {
       "skywind3000/asyncrun.vim",
-      cmd = "AsyncTask",
-      config = function()
-        require "plugins.asynctasks"
-      end
+      lazy = true,
     },
     {
       "skywind3000/asynctasks.vim",
-      lazy = true,
+      cmd = "AsyncTask",
+      keys = {
+        { '<space>kc', mode = 'n' },
+        { '<space>kr', mode = 'n' },
+        { '<space>ko', mode = 'n' },
+        { '<space>kd', mode = 'n' },
+        { '<space>kb', mode = 'n' },
+        { '<space>kk', mode = 'n' },
+      },
+      dependencies = {
+        "skywind3000/asyncrun.vim",
+      },
+      config = function()
+        require "plugins.asynctasks"
+      end
     },
     {
       "akinsho/toggleterm.nvim",
@@ -290,6 +309,11 @@ require("lazy").setup(
     -- Debugging
     {
       "mfussenegger/nvim-dap",
+      lazy = true,
+    },
+    {
+      "rcarriga/nvim-dap-ui",
+      commit = "ffe3e589fe2861b5ed0486832b0974e94587ae23",
       keys = {
         { '<M-x>', mode = 'n' },
         { '<M-c>', mode = 'n' },
@@ -299,11 +323,6 @@ require("lazy").setup(
       config = function()
         require("plugins.nvim_dap")
       end
-    },
-    {
-      "rcarriga/nvim-dap-ui",
-      commit = "ffe3e589fe2861b5ed0486832b0974e94587ae23",
-      lazy = true,
     },
 
     -- Session manager
