@@ -37,6 +37,16 @@ require("nvim-web-devicons").set_icon {
      color = colors.cyan,
      name = "Dockerfile",
   },
+  [".dockerignore"] = {
+     icon = "",
+     color = colors.fg_alt,
+     name = "dockerignore",
+  },
+  ["docker-compose.yml"] = {
+     icon = "",
+     color = colors.red,
+     name = "DockerCompose",
+  },
   html = {
      icon = "",
      color = colors.orange,

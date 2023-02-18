@@ -4,6 +4,7 @@ local cfg = {
   floating_window = true, -- show hint in a floating window, set to false for virtual text only mode
   floating_window_above_cur_line = true,
   fix_pos = false, -- set to true, the floating window will not auto-close until finish all parameters
+  always_trigger = true, -- sometime show signature on new line or in middle of parameter can be confusing, set it to false for #58
   hint_enable = false, -- virtual hint enable
   -- hint_prefix = "🐼 ", -- Panda for parameter
   hint_prefix = " ",
@@ -25,4 +26,4 @@ local cfg = {
   shadow_blend = 36, -- if you using shadow as border use this set the opacity
   shadow_guibg = "Black", -- if you using shadow as border use this set the color e.g. 'Green' or '#121315'
 }
-require("lsp_signature").setup(cfg)
+return cfg

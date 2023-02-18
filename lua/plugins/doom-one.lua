@@ -27,6 +27,7 @@ require('doom-one').setup({
 })
 
 -- General
+vim.cmd('highlight! Cursor guibg=#f00')
 vim.cmd('highlight! PmenuSbar guibg=#404652')
 vim.cmd('highlight! link NormalFloat Normal')
 vim.cmd('highlight! FloatBorder guifg=#51afef guibg=#282c34')

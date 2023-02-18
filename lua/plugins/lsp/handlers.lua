@@ -58,6 +58,9 @@ end
 M.on_attach = function(client, bufnr)
   if client.name == "tsserver" then
     client.server_capabilities.documentFormattingProvider = false
+  else
+    local cfg = require 'plugins.lsp_signature'
+    require'lsp_signature'.on_attach(cfg, bufnr)
   end
   lsp_keymaps(bufnr)
   local status_ok, illuminate = pcall(require, "illuminate")

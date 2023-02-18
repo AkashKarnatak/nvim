@@ -199,7 +199,7 @@ bufferline.setup {
     },
     duplicate_visible = {
       fg = colors.inactive_tab_fg,
-      bg = colors.active_tab_bg,
+      bg = colors.inactive_tab_bg,
     },
     duplicate = {
       fg = colors.inactive_tab_fg,

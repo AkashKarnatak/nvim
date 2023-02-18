@@ -14,7 +14,7 @@ local servers = {
   'cssls',
   'html',
   'emmet_ls',
-  'sumneko_lua',
+  'lua_ls',
   'gopls',
   -- 'solc',
   'jsonls',

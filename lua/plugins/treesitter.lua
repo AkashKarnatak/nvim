@@ -4,14 +4,16 @@ nvim_treesitter_configs.setup {
   -- ignore_install = { "javascript" }, -- List of parsers to ignore installing
   highlight = {
     enable = true,              -- false will disable the whole extension
-    disable = { "html" },  -- list of language that will be disabled
+    disable = function(lang)
+      return lang == "html" or vim.b.large_buf
+    end,
     additional_vim_regex_highlighting = false,
   },
   indent = {
     enable = true,
     disable = {
       "python",
-      "html"
+      "html",
     }
   },
   incremental_selection = {

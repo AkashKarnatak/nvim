@@ -268,6 +268,7 @@ return packer.startup({
         {'n', '<space>fg'},
         {'n', '<space>fp'},
         {'n', '<space>fr'},
+        {'n', '<space>fb'},
         {'n', 'gd'},
         {'n', 'gi'},
         {'n', 'gr'},
