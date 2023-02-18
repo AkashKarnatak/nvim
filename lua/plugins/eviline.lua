@@ -254,6 +254,28 @@ ins_left {
   color = { fg = colors.violet },
 }
 
+-- vim.cmd([[highlight LspStatusLineLabel guifg=#ffa8ff guibg=#23272e]])
+-- vim.cmd([[highlight LspStatusLineHint guifg=#bbc2cf guibg=#2257a0 gui=bold]])
+-- ins_left {
+--   function()
+--     if vim.fn.mode() ~= 'i' then
+--       return ''
+--     end
+--     local sig = require("lsp_signature").status_line(80)
+--     local i = sig.range['start']
+--     local j = sig.range['end']
+--     return '%#LspStatusLineLabel#'
+--       .. string.sub(sig.label, 1, i-1)
+--       .. "%*"
+--       .. '%#LspStatusLineHint#'
+--       .. string.sub(sig.label, i, j)
+--       .. "%*"
+--       .. '%#LspStatusLineLabel#'
+--       .. string.sub(sig.label, j+1, -1)
+--       .. "%*"
+--   end,
+-- }
+
 -- ins_right {
 --   'fileformat',
 --   fmt = string.upper,
