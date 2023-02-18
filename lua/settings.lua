@@ -24,6 +24,9 @@ vim.o.sw = 2                                                    -- Change the nu
 vim.cmd('command! BD silent! execute "%bd|e#|bd#"')             -- Close all buffers except the active one
 vim.cmd([[command! FilePath execute "echo expand('%:p')"]])     -- Display absolute path of the file opened in current buffer
 
+-- Command to format buffer
+vim.cmd [[ command! Format execute 'lua vim.lsp.buf.format({async = true})' ]]
+
 -- HTML related settings (:h html-indent)
 vim.g.html_indent_inctags = "p"
 vim.g.html_indent_script1 = "inc"
@@ -68,8 +71,12 @@ vim.api.nvim_create_autocmd("BufEnter", {
 vim.api.nvim_create_autocmd("TermOpen", {
   callback = function() vim.o.buflisted = false end
 })
-vim.api.nvim_create_autocmd("QuickFixCmdPost", {
-  callback = function() vim.o.buflisted = false end
+vim.api.nvim_create_autocmd("BufRead", {
+  callback = function()
+    if vim.o.filetype == "qf" then
+      vim.o.buflisted = false
+    end
+  end
 })
 
 -- Highlight yanked text
@@ -103,4 +110,24 @@ vim.api.nvim_create_autocmd({"WinLeave"}, {
       vim.o.cursorline = false
     end
   end
+})
+
+-- Turn off plugins some plugins when opening large files
+local aug = vim.api.nvim_create_augroup("buf_large", { clear = true })
+vim.api.nvim_create_autocmd({ "BufReadPre" }, {
+  callback = function()
+    local ok, stats = pcall(vim.loop.fs_stat, vim.api.nvim_buf_get_name(vim.api.nvim_get_current_buf()))
+    if ok and stats and (stats.size > 100000) then
+      vim.b.large_buf = true
+      vim.cmd("syntax on")
+      vim.cmd("IlluminatePauseBuf") -- disable vim-illuminate
+      vim.cmd("IndentBlanklineDisable") -- disable indent-blankline.nvim
+      vim.opt_local.foldmethod = "manual"
+      vim.opt_local.spell = false
+    else
+      vim.b.large_buf = false
+    end
+  end,
+  group = aug,
+  pattern = "*",
 })

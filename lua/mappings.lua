@@ -139,20 +139,7 @@ vim.api.nvim_create_user_command(
 vim.api.nvim_set_keymap('n', '<leader>cc', ':LoadCompe<CR>', {noremap = true, silent=true})
 vim.api.nvim_set_keymap('n', 'Q', ':Bdelete!<CR>', {noremap = true, silent=true})
 
-vim.api.nvim_set_keymap('v', '*', [[y/\V<C-R>=escape(@",'/\')<CR><CR>]], {noremap = true, silent=true})
-
--- Asynctasks
-vim.api.nvim_set_keymap('n', '<Leader>kc', ':let g:asynctasks_term_rows=winheight(0)*10/25 | AsyncTask file-compile<CR>', {noremap = true, silent = true})
-vim.api.nvim_set_keymap('n', '<Leader>kr', ':let g:asynctasks_term_rows=winheight(0)*10/25 | AsyncTask file-run<CR>', {noremap = true, silent = true})
-vim.api.nvim_set_keymap('n', '<Leader>ko', ':let g:asynctasks_term_rows=winheight(0)*10/25 | AsyncTask open-repl<CR>', {noremap = true, silent = true})
-vim.api.nvim_set_keymap('n', '<Leader>kt', ':let g:asynctasks_term_rows=winheight(0)*10/25 | AsyncTask terminal<CR>', {noremap = true, silent = true})
-vim.api.nvim_set_keymap('n', '<Leader>kd', ':let g:asynctasks_term_rows=winheight(0)*10/25 | AsyncTask file-debug<CR>', {noremap = true, silent = true})
-vim.api.nvim_set_keymap('n', '<Leader>kb', ':let g:asynctasks_term_rows=winheight(0)*10/25 | AsyncTask project-build<CR>', {noremap = true, silent = true})
-vim.api.nvim_set_keymap('n', '<Leader>kk', ':let g:asynctasks_term_rows=winheight(0)*10/25 | AsyncTask live-server<CR>', {noremap = true, silent = true})
-
--- Nvim_tree
-vim.api.nvim_set_keymap('n', '<leader>nn', ':NvimTreeToggle<CR>', {noremap = true, silent=true})
-vim.api.nvim_set_keymap('n', '<leader>nr', ':NvimTreeRefresh<CR>', {noremap = true, silent=true})
+vim.api.nvim_set_keymap('v', '*', [[y:let @/= '\V<C-R>"' <bar> set hls <cr>]], {noremap = true, silent=true})
 
 -- Tab mapping
 vim.api.nvim_set_keymap('n', '<leader>tt', [[:tabnew|Telescope projects<CR>]], {noremap = true, silent=true})
