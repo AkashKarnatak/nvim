@@ -253,7 +253,7 @@ require("lazy").setup(
       name = "catppuccin",
       priority = 1000,
       config = function()
-        require('plugins.doom-one')
+        require('plugins.theme')
       end,
     },
 
