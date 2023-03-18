@@ -37,9 +37,6 @@ require('leap-spooky').setup {
   paste_on_remote_yank = true,
 }
 
-vim.cmd('highlight! LeapMatch guifg=#ff007c gui=underline')
-vim.cmd('highlight! link LeapLabelPrimary Search')
-
 -- Mappings
 vim.api.nvim_set_keymap('n', 's', '<Plug>(leap-forward-to)', {noremap = true, silent=true})
 vim.api.nvim_set_keymap('x', 's', '<Plug>(leap-forward-to)', {noremap = true, silent=true})

@@ -49,8 +49,6 @@ require('telescope').setup {
   }
 }
 
-require('telescope').load_extension('projects')
-
 -- Mappings
 vim.api.nvim_set_keymap('n', '<Leader>ff', ':Telescope find_files no_ignore=true<CR>', {noremap = true, silent = true})
 vim.api.nvim_set_keymap('n', '<Leader>fo', ':Telescope oldfiles no_ignore=true<CR>', {noremap = true, silent = true})

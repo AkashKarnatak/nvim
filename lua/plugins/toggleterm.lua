@@ -15,7 +15,7 @@ require("toggleterm").setup{
   start_in_insert = true,
   highlights = {
     NormalFloat = {
-      link = 'Normal',
+      link = 'NormalFloat',
     },
     FloatBorder = {
       link = 'FloatBorder',

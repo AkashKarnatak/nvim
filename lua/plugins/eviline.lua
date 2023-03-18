@@ -3,19 +3,7 @@ local lualine = require('lualine')
 
 -- Color table for highlights
 -- stylua: ignore
-local colors = {
-  bg = "#23272e",
-  fg = "#bbc2cf",
-  fg_alt = "#5B6268",
-  yellow = "#ECBE7B",
-  cyan = "#46D9FF",
-  green = "#98be65",
-  orange = "#da8548",
-  magenta = "#c678dd",
-  blue = "#51afef",
-  red = "#ff6c6b",
-  violet = "#a9a1e1",
-}
+local colors = require("catppuccin.palettes").get_palette "macchiato"
 
 local short_line_tbl = {
   ["NvimTree"] = true,
@@ -65,13 +53,7 @@ local config = {
     component_separators = '',
     section_separators = '',
     globalstatus = true,
-    theme = {
-      -- We are going to use lualine_c an lualine_x as left and
-      -- right section. Both are highlighted by c theme .  So we
-      -- are just setting default looks o statusline
-      normal = { c = { fg = colors.fg, bg = colors.bg } },
-      inactive = { c = { fg = colors.fg, bg = colors.bg } },
-    },
+    theme = "catppuccin",
     cond = function()
       return not short_line_tbl[vim.bo.filetype]
     end,
@@ -148,19 +130,19 @@ ins_left {
       v = colors.blue,
       [''] = colors.blue,
       V = colors.blue,
-      c = colors.magenta,
+      c = colors.mauve,
       no = colors.red,
-      s = colors.orange,
-      S = colors.orange,
-      [''] = colors.orange,
+      s = colors.peach,
+      S = colors.peach,
+      [''] = colors.peach,
       ic = colors.yellow,
-      R = colors.violet,
-      Rv = colors.violet,
+      R = colors.pink,
+      Rv = colors.pink,
       cv = colors.red,
       ce = colors.red,
-      r = colors.cyan,
-      rm = colors.cyan,
-      ['r?'] = colors.cyan,
+      r = colors.sky,
+      rm = colors.sky,
+      ['r?'] = colors.sky,
       ['!'] = colors.red,
       t = colors.red,
     }
@@ -178,7 +160,7 @@ ins_left {
 ins_left {
   'filename',
   cond = conditions.buffer_not_empty,
-  color = { fg = colors.magenta, gui = 'bold' },
+  color = { fg = colors.mauve, gui = 'bold' },
   symbols = {
     modified = '',      -- Text to show when the file is modified.
     readonly = '',      -- Text to show when the file is non-modifiable or readonly.
@@ -189,13 +171,13 @@ ins_left {
 
 ins_left {
   'location',
-  color = { fg = colors.fg_alt, gui = 'bold' },
+  color = { fg = colors.text, gui = 'bold' },
 }
 
 ins_left {
   'progress',
   padding = { left = 0, right = 1 },
-  color = { fg = colors.fg_alt, gui = 'bold' }
+  color = { fg = colors.text, gui = 'bold' }
 }
 
 ins_left {
@@ -251,7 +233,7 @@ ins_left {
 
     return ""
   end,
-  color = { fg = colors.violet },
+  color = { fg = colors.pink },
 }
 
 -- vim.cmd([[highlight LspStatusLineLabel guifg=#ffa8ff guibg=#23272e]])
@@ -280,7 +262,7 @@ ins_left {
 --   'fileformat',
 --   fmt = string.upper,
 --   padding = { left = 1, right = 0 },
---   color = { fg = colors.fg, gui = 'bold' },
+--   color = { fg = colors.text, gui = 'bold' },
 -- }
 
 -- Add components to right sections
@@ -288,7 +270,7 @@ ins_right {
   'o:encoding', -- option component same as &encoding in viml
   fmt = string.upper, -- I'm not sure why it's upper case either ;)
   cond = conditions.hide_in_width,
-  color = { fg = colors.fg, gui = 'bold' },
+  color = { fg = colors.text, gui = 'bold' },
 }
 
 ins_right {
@@ -296,7 +278,7 @@ ins_right {
   fmt = string.upper,
   icons_enabled = false,
   padding = { left = 0, right = 1 },
-  color = { fg = colors.fg, gui = 'bold' },
+  color = { fg = colors.text, gui = 'bold' },
 }
 
 local Job = require'plenary.job'
@@ -389,7 +371,7 @@ ins_right {
   symbols = { added = ' ', modified = '柳', removed = ' ' },
   diff_color = {
     added = { fg = colors.green },
-    modified = { fg = colors.orange },
+    modified = { fg = colors.peach },
     removed = { fg = colors.red },
   },
   cond = conditions.hide_in_width,

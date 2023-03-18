@@ -11,7 +11,7 @@ vim.o.expandtab = true                                         -- Converts tabs 
 vim.o.smartindent = true                                       -- Makes indenting smart
 vim.wo.number = true                                            -- set numbered lines
 vim.wo.relativenumber = true                                    -- set relative number
-vim.wo.cursorline = true                                        -- Enable highlighting of the current line
+vim.wo.cursorline = false                                       -- Enable highlighting of the current line
 vim.o.clipboard = "unnamedplus"                                 -- Copy paste between vim and everything else
 vim.o.showtabline = 2                                           -- Always show tabs
 vim.wo.signcolumn = "yes"                                       -- Always show the signcolumn, otherwise it would shift the text each time
@@ -69,12 +69,16 @@ vim.api.nvim_create_autocmd("BufEnter", {
 })
 -- Do not add terminal to buffer list
 vim.api.nvim_create_autocmd("TermOpen", {
-  callback = function() vim.o.buflisted = false end
+  callback = function()
+    vim.o.buflisted = false
+    vim.cmd([[set winhighlight=Normal:NormalFloat]])
+  end
 })
 vim.api.nvim_create_autocmd("BufRead", {
   callback = function()
     if vim.o.filetype == "qf" then
       vim.o.buflisted = false
+      vim.cmd([[set winhighlight=Normal:NormalFloat]])
     end
   end
 })
@@ -82,34 +86,6 @@ vim.api.nvim_create_autocmd("BufRead", {
 -- Highlight yanked text
 vim.api.nvim_create_autocmd("TextYankPost", {
   callback = function() vim.highlight.on_yank({higroup="Visual", timeout=150}) end
-})
-
--- Set cursorline only for active buffers
-local filesToIgnr = {
-  ["NvimTree"] = true,
-  ["TelescopePrompt"] = true,
-  ["TelescopeResults"] = true,
-  [""] = true }
-local gid = vim.api.nvim_create_augroup("CursorLine", {
-  clear = false
-})
-vim.api.nvim_create_autocmd({"VimEnter", "WinEnter", "BufWinEnter"}, {
-  pattern = {"*"},
-  group = gid,
-  callback = function()
-    if not filesToIgnr[vim.o.filetype] then
-      vim.o.cursorline = true
-    end
-  end
-})
-vim.api.nvim_create_autocmd({"WinLeave"}, {
-  pattern = {"*"},
-  group = gid,
-  callback = function()
-    if not filesToIgnr[vim.o.filetype] then
-      vim.o.cursorline = false
-    end
-  end
 })
 
 -- Turn off plugins some plugins when opening large files
