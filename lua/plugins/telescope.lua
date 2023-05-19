@@ -1,4 +1,5 @@
 local actions = require('telescope.actions')
+local fb_actions = require "telescope".extensions.file_browser.actions
 -- Global remapping
 local max_size = 100000
 local truncate_large_files = function(filepath, bufnr, opts)
@@ -46,6 +47,15 @@ require('telescope').setup {
     },
     file_ignore_patterns = { "node_modules" },
     buffer_previewer_maker = truncate_large_files,
+  },
+  extensions = {
+    file_browser = {
+      mappings = {
+        ["n"] = {
+          ["<BS>"] = fb_actions.goto_parent_dir
+        }
+      },
+    },
   }
 }
 
@@ -61,6 +71,7 @@ vim.api.nvim_set_keymap('n', '<Leader>fh', ':Telescope highlights no_ignore=true
 vim.api.nvim_set_keymap('n', '<Leader>fp', ':Telescope projects no_ignore=true<CR>', {noremap = true, silent = true})
 vim.api.nvim_set_keymap('n', '<Leader>fr', ':Telescope resume no_ignore=true<CR>', {noremap = true, silent = true})
 vim.api.nvim_set_keymap('n', '<Leader>fb', ':Telescope buffers no_ignore=true<CR>', {noremap = true, silent = true})
+vim.api.nvim_set_keymap('n', '<Leader>fe', ':Telescope file_browser no_ignore=true<CR>', {noremap = true, silent = true})
 vim.api.nvim_set_keymap("n", "gd", ":Telescope lsp_definitions<CR>", {noremap = true, silent = true})
 vim.api.nvim_set_keymap("n", "gi", ":Telescope lsp_implementations<CR>", {noremap = true, silent = true})
 vim.api.nvim_set_keymap("n", "gr", ":Telescope lsp_references<CR>", {noremap = true, silent = true})
@@ -71,3 +82,6 @@ vim.api.nvim_set_keymap("n", "<leader>ls", ":Telescope lsp_document_symbols<CR>"
 vim.cmd([[highlight TelescopeSelection      guibg=#383A42 gui=bold]]) -- selected item
 vim.cmd([[highlight TelescopeSelectionCaret guifg=#D79921]])          -- selection caret
 vim.cmd([[highlight TelescopeMatching       guifg=#D79921]])          -- matched characters
+
+-- Extensions
+require("telescope").load_extension "file_browser"

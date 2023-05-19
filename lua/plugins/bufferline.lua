@@ -61,3 +61,9 @@ bufferline.setup {
     end,
   },
 }
+
+-- Mappings
+vim.api.nvim_set_keymap('n', 'L', ':BufferLineCycleNext<CR>', {noremap = true, silent = true})
+vim.api.nvim_set_keymap('n', 'H', ':BufferLineCyclePrev<CR>', {noremap = true, silent = true})
+vim.api.nvim_set_keymap('n', '<A-l>', ':BufferLineMoveNext<CR>', {noremap = true, silent = true})
+vim.api.nvim_set_keymap('n', '<A-h>', ':BufferLineMovePrev<CR>', {noremap = true, silent = true})
