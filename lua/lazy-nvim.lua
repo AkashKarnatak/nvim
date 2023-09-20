@@ -165,6 +165,15 @@ require("lazy").setup(
         require("plugins.jdtls")
       end
     },
+    -- Show nvim-lsp progress
+    {
+      "j-hui/fidget.nvim",
+      tag = "legacy",
+      event = "LspAttach",
+      opts = {
+        -- options
+      },
+    },
 
     -- Task builder
     {
@@ -193,7 +202,7 @@ require("lazy").setup(
       "akinsho/toggleterm.nvim",
       cmd = "ToggleTerm",
       keys = {
-        { "<C-/>", mode = 'n' },
+        { "<C-/>",     mode = 'n' },
         { "<space>th", mode = 'n' },
         { "<space>tv", mode = 'n' },
       },
@@ -239,9 +248,9 @@ require("lazy").setup(
         { '<space>fb', mode = 'n' },
         { '<space>fe', mode = 'n' },
         { '<space>fs', mode = 'n' },
-        { 'gd', mode = 'n' },
-        { 'gi', mode = 'n' },
-        { 'gr', mode = 'n' },
+        { 'gd',        mode = 'n' },
+        { 'gi',        mode = 'n' },
+        { 'gr',        mode = 'n' },
         { '<space>ld', mode = 'n' },
         { '<space>ls', mode = 'n' },
       },
@@ -323,8 +332,8 @@ require("lazy").setup(
       "rcarriga/nvim-dap-ui",
       commit = "ffe3e589fe2861b5ed0486832b0974e94587ae23",
       keys = {
-        { '<M-x>', mode = 'n' },
-        { '<M-c>', mode = 'n' },
+        { '<M-x>',     mode = 'n' },
+        { '<M-c>',     mode = 'n' },
         { '<space>dc', mode = 'n' },
         { '<space>dl', mode = 'n' },
       },

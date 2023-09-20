@@ -200,71 +200,6 @@ ins_left {
   end,
 }
 
-ins_left {
-  -- Lsp server name .
-  function()
-    local Lsp = vim.lsp.util.get_progress_messages()[1]
-
-    if Lsp then
-      local msg = Lsp.message or ""
-      local percentage = Lsp.percentage or 0
-      local title = Lsp.title or ""
-      local spinners = {
-        "",
-        "",
-        "",
-      }
-
-      local success_icon = {
-        "",
-        "",
-        "",
-      }
-
-      local ms = vim.loop.hrtime() / 1000000
-      local frame = math.floor(ms / 120) % #spinners
-
-      if percentage >= 70 then
-        return string.format(" %%<%s %s %s (%s%%%%) ", success_icon[frame + 1], title, msg, percentage)
-      end
-
-      return string.format(" %%<%s %s %s (%s%%%%) ", spinners[frame + 1], title, msg, percentage)
-    end
-
-    return ""
-  end,
-  color = { fg = colors.pink },
-}
-
--- vim.cmd([[highlight LspStatusLineLabel guifg=#ffa8ff guibg=#23272e]])
--- vim.cmd([[highlight LspStatusLineHint guifg=#bbc2cf guibg=#2257a0 gui=bold]])
--- ins_left {
---   function()
---     if vim.fn.mode() ~= 'i' then
---       return ''
---     end
---     local sig = require("lsp_signature").status_line(80)
---     local i = sig.range['start']
---     local j = sig.range['end']
---     return '%#LspStatusLineLabel#'
---       .. string.sub(sig.label, 1, i-1)
---       .. "%*"
---       .. '%#LspStatusLineHint#'
---       .. string.sub(sig.label, i, j)
---       .. "%*"
---       .. '%#LspStatusLineLabel#'
---       .. string.sub(sig.label, j+1, -1)
---       .. "%*"
---   end,
--- }
-
--- ins_right {
---   'fileformat',
---   fmt = string.upper,
---   padding = { left = 1, right = 0 },
---   color = { fg = colors.text, gui = 'bold' },
--- }
-
 -- Add components to right sections
 ins_right {
   'o:encoding', -- option component same as &encoding in viml
@@ -279,49 +214,6 @@ ins_right {
   icons_enabled = false,
   padding = { left = 0, right = 1 },
   color = { fg = colors.text, gui = 'bold' },
-}
-
-local Job = require'plenary.job'
-local live_server_enabled = false
-local live_server
-
-ins_right {
-  function()
-    return ''
-  end,
-  cond = function()
-    return live_server_support[vim.bo.filetype]
-  end,
-  on_stdout = function(_, line)
-    vim.cmd([[:echo 'hi: ]] .. vim.inspect.inspect(line) .. [[']])
-  end,
-  on_stderr = function(_, line)
-    vim.cmd([[:echo 'hi: ]] .. vim.inspect.inspect(line) .. [[']])
-  end,
-  on_exit = function()
-    vim.cmd([[:echo 'what the fuck']])
-  end,
-  on_click = function()
-    live_server_enabled = not live_server_enabled
-    if live_server_enabled then
-      live_server = Job:new({ command = 'live-server' })
-      live_server:start()
-    else
-      -- TODO: Job:shutdown() doesn't kill the job
-      -- by itself as of now. This will probably
-      -- be fixed later.
-      -- https://github.com/nvim-lua/plenary.nvim/issues/156
-      live_server:shutdown()
-      vim.loop.kill(live_server.pid)
-    end
-  end,
-  color = function()
-    local fg = colors.blue
-    if live_server_enabled then
-      fg = colors.green
-    end
-    return { fg = fg }
-  end,
 }
 
 ins_right {
