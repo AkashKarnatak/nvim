@@ -14,16 +14,8 @@ nvim_treesitter_configs.setup {
     disable = {
       "python",
       "html",
+      "rust",
     }
-  },
-  incremental_selection = {
-    enable = true,
-    keymaps = {
-      init_selection = '<CR>',
-      scope_incremental = '<CR>',
-      node_incremental = '<TAB>',
-      node_decremental = '<S-TAB>',
-    },
   },
   autopairs = {
     enable = true

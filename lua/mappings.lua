@@ -80,6 +80,7 @@ vim.api.nvim_set_keymap('t', '<M-Esc>', '<C-\\><C-n>', {noremap = true})
 vim.api.nvim_set_keymap('i', '<C-h>', '<C-w>', {noremap = true})
 vim.api.nvim_set_keymap('c', '<C-h>', '<C-w>', {noremap = true})
 vim.api.nvim_set_keymap('i', '<C-Bs>', '<C-w>', {noremap = true})
+vim.api.nvim_set_keymap('t', '<C-Bs>', '<C-w>', {noremap = true})
 vim.api.nvim_set_keymap('c', '<C-Bs>', '<C-w>', {noremap = true})
 
 -- Ctrl p to next item in jumplist
@@ -99,7 +100,7 @@ vim.api.nvim_set_keymap('n', '<Leader>wk', '<C-w>K', {noremap = true, silent=tru
 vim.api.nvim_set_keymap('n', '<Leader>wl', '<C-w>L', {noremap = true, silent=true})
 
 -- Show relative file path of the current opened buffer
-vim.api.nvim_set_keymap('n', '<Leader>aa', [[:echo expand('%ph')<CR>]], {noremap = true, silent=true})
+vim.api.nvim_set_keymap('n', '<Leader>aa', [[:echo expand('%:p')<CR>]], {noremap = true, silent=true})
 -- horizontal equivalent of zz
 vim.api.nvim_set_keymap('n', 'ZZ', 'zszH', {noremap = true, silent=true})
 -- Shortcuts for competitive programming

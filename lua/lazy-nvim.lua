@@ -193,7 +193,9 @@ require("lazy").setup(
       "akinsho/toggleterm.nvim",
       cmd = "ToggleTerm",
       keys = {
-        { "<C-_>", mode = 'n' }
+        { "<C-/>", mode = 'n' },
+        { "<space>th", mode = 'n' },
+        { "<space>tv", mode = 'n' },
       },
       config = function()
         require "plugins.toggleterm"
@@ -236,6 +238,7 @@ require("lazy").setup(
         { '<space>fr', mode = 'n' },
         { '<space>fb', mode = 'n' },
         { '<space>fe', mode = 'n' },
+        { '<space>fs', mode = 'n' },
         { 'gd', mode = 'n' },
         { 'gi', mode = 'n' },
         { 'gr', mode = 'n' },
@@ -306,7 +309,6 @@ require("lazy").setup(
     -- nvim-tree
     {
       "kyazdani42/nvim-tree.lua",
-      commit = "08a0aa1a3b7411ee0a7887c8818528b1558cef96",
       config = function()
         require "plugins.nvim_tree"
       end

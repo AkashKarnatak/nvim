@@ -1,3 +1,14 @@
+local function set_nvimtree_when_open_term(terminal)
+  local nvimtree = require "nvim-tree.api".tree
+  local nvimtree_view = require "nvim-tree.view"
+  if nvimtree_view.is_visible() and terminal.direction == "horizontal" then
+    local nvimtree_width = vim.fn.winwidth(nvimtree_view.get_winnr())
+    nvimtree.toggle()
+    nvimtree_view.View.width = nvimtree_width
+    nvimtree.toggle(false, true)
+  end
+end
+
 require("toggleterm").setup{
   -- size can be a number or function which is passed the current terminal
   size = function(term)
@@ -7,7 +18,8 @@ require("toggleterm").setup{
       return vim.o.columns * 0.4
     end
   end,
-  open_mapping = [[<c-_>]],
+  open_mapping = [[<c-/>]],
+  on_open = set_nvimtree_when_open_term,
   hide_numbers = true, -- hide the number column in toggleterm buffers
   shade_filetypes = {},
   shade_terminals = true,
@@ -38,3 +50,7 @@ require("toggleterm").setup{
     winblend = 0,
   }
 }
+
+vim.api.nvim_set_keymap('n', '<leader>tf', ':ToggleTerm direction=float<CR>', {noremap = true, silent=true, desc="Open terminal in horizontal split"})
+vim.api.nvim_set_keymap('n', '<leader>th', ':2ToggleTerm direction=horizontal<CR>', {noremap = true, silent=true, desc="Open terminal in horizontal split"})
+vim.api.nvim_set_keymap('n', '<leader>tv', ':2ToggleTerm direction=vertical<CR>', {noremap = true, silent=true, desc="Open terminal in vertical split"})

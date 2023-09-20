@@ -5,7 +5,6 @@ end
 
 vim.cmd([[
  function! Quit_vim(a,b,c,d)
- qa
  endfunction
 ]])
 

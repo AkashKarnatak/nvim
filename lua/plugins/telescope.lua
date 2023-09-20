@@ -45,7 +45,7 @@ require('telescope').setup {
           ["<esc>"] = actions.close,
       }
     },
-    file_ignore_patterns = { "node_modules" },
+    file_ignore_patterns = { "node_modules", "dist" },
     buffer_previewer_maker = truncate_large_files,
   },
   extensions = {
