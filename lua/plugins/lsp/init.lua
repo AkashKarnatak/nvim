@@ -48,5 +48,15 @@ end
 -- Rust
 local rt = require("rust-tools")
 rt.setup({
-  server = opts
+  tools = {
+    inlay_hints = {
+      auto = false,
+    },
+  },
+  server = {
+    on_attach = require("plugins.lsp.handlers").on_attach,
+    capabilities = require("plugins.lsp.handlers").capabilities
+  }
 })
+
+vim.cmd('highlight! link LspInlayHint Comment')
