@@ -39,6 +39,7 @@ local function on_attach(bufnr)
   vim.keymap.set('n', 'gy', api.fs.copy.absolute_path, opts('Copy Absolute Path'))
   vim.keymap.set('n', '[c', api.node.navigate.git.prev, opts('Prev Git'))
   vim.keymap.set('n', ']c', api.node.navigate.git.next, opts('Next Git'))
+  vim.keymap.set('n', 'I', api.tree.toggle_gitignore_filter, opts('Toggle gitignore filter'))
   vim.keymap.set('n', '-', api.tree.change_root_to_parent, opts('Up'))
   vim.keymap.set('n', 'o', api.node.run.system, opts('Run System'))
   vim.keymap.set('n', 'q', api.tree.close, opts('Close'))
@@ -63,6 +64,9 @@ require'nvim-tree'.setup {
         }
       }
     }
+  },
+  filters = {
+    git_ignored = true
   },
   update_focused_file = {
     enable = true,
