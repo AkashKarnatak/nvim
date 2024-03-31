@@ -32,6 +32,16 @@ require('telescope').setup {
         prompt_position = "top",
       },
     },
+    vimgrep_arguments = {
+      'rg',
+      '--color=never',
+      '--no-heading',
+      '--with-filename',
+      '--line-number',
+      '--column',
+      '--smart-case',
+      '-uu' -- no_ignore=true and hidden=true
+    },
     mappings = {
       i = {
           ["<C-j>"] = actions.move_selection_next,
@@ -45,7 +55,7 @@ require('telescope').setup {
           ["<esc>"] = actions.close,
       }
     },
-    file_ignore_patterns = { "node_modules", "dist" },
+    file_ignore_patterns = { "node_modules/", "dist/", ".git/" },
     buffer_previewer_maker = truncate_large_files,
   },
   extensions = {
@@ -60,15 +70,15 @@ require('telescope').setup {
 }
 
 -- Mappings
-vim.api.nvim_set_keymap('n', '<Leader>ff', ':Telescope find_files no_ignore=true<CR>', {noremap = true, silent = true})
-vim.api.nvim_set_keymap('n', '<Leader>fo', ':Telescope oldfiles no_ignore=true<CR>', {noremap = true, silent = true})
+vim.api.nvim_set_keymap('n', '<Leader>ff', ':Telescope find_files hidden=true no_ignore=true<CR>', {noremap = true, silent = true})
+vim.api.nvim_set_keymap('n', '<Leader>fo', ':Telescope oldfiles hidden=true no_ignore=true<CR>', {noremap = true, silent = true})
 vim.api.nvim_set_keymap('n', '<Leader>fw', ':Telescope live_grep no_ignore=true<CR>', {noremap = true, silent = true})
 vim.api.nvim_set_keymap('n', '<Leader>fm', ':Telescope marks no_ignore=true<CR>', {noremap = true, silent = true})
 vim.api.nvim_set_keymap('n', '<Leader>f/', ':Telescope current_buffer_fuzzy_find<CR>', {noremap = true, silent = true})
-vim.api.nvim_set_keymap('n', '<Leader>fc', [[:Telescope find_files no_ignore=true prompt_title=Nvim\ Config cwd=$HOME/.config/nvim<CR>]], {noremap = true, silent = true})
+vim.api.nvim_set_keymap('n', '<Leader>fc', [[:Telescope find_files hidden=true no_ignore=true prompt_title=Nvim\ Config cwd=$HOME/.config/nvim<CR>]], {noremap = true, silent = true})
 vim.api.nvim_set_keymap('n', '<Leader>fg', ':Telescope git_status no_ignore=true<CR>', {noremap = true, silent = true})
 vim.api.nvim_set_keymap('n', '<Leader>fh', ':Telescope highlights no_ignore=true<CR>', {noremap = true, silent = true})
-vim.api.nvim_set_keymap('n', '<Leader>fp', ':Telescope projects no_ignore=true<CR>', {noremap = true, silent = true})
+vim.api.nvim_set_keymap('n', '<Leader>fp', ':Telescope projects hidden=true no_ignore=true<CR>', {noremap = true, silent = true})
 vim.api.nvim_set_keymap('n', '<Leader>fr', ':Telescope resume no_ignore=true<CR>', {noremap = true, silent = true})
 vim.api.nvim_set_keymap('n', '<Leader>fb', ':Telescope buffers no_ignore=true<CR>', {noremap = true, silent = true})
 vim.api.nvim_set_keymap('n', '<Leader>fe', ':Telescope file_browser no_ignore=true<CR>', {noremap = true, silent = true})
