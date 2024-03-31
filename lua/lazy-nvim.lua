@@ -76,7 +76,7 @@ require("lazy").setup(
         "hrsh7th/cmp-path",
         "hrsh7th/cmp-buffer",
         "hrsh7th/cmp-vsnip",
-        "AkashKarnatak/friendly-snippets",
+        "rafamadriz/friendly-snippets",
       },
       config = function()
         require "plugins.nvim_cmp"
@@ -103,7 +103,7 @@ require("lazy").setup(
       lazy = true,
     },
     {
-      "AkashKarnatak/friendly-snippets",
+      "rafamadriz/friendly-snippets",
       lazy = true,
     },
     {
@@ -378,6 +378,27 @@ require("lazy").setup(
       'ggandor/leap-spooky.nvim',
       lazy = true,
     },
+    -- -- AI autocompletion
+    -- {
+    --   name = "tabby",
+    --   dir = '~/tabby/clients/vim',
+    --   enabled = true,
+    --   config = function()
+    --     require("plugins.tabby")
+    --   end
+    -- },
+    -- {
+    --   "zbirenbaum/copilot.lua",
+    --   event = "LspAttach",
+    --   cmd = "Copilot",
+    --   config = function()
+    --     require("copilot").setup({
+    --       suggestion = {
+    --         auto_trigger = true,
+    --       },
+    --     })
+    --   end
+    -- },
   },
   {
     ui = {
