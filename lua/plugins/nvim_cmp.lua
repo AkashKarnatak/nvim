@@ -35,6 +35,7 @@ local kinds = {
     TypeParameter = "",
 }
 
+vim.g.vsnip_snippet_dir = vim.fn.stdpath("config") .. '/lua/plugins/snippets'
 vim.g.vsnip_append_final_tabstop = false
 
 cmp.setup {

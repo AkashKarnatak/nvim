@@ -1,0 +1,7 @@
+{
+  "if err != nil": {
+    "prefix": "ifer",
+    "body": "if err != nil {\n\tpanic(err)\n}",
+    "description": "Snippet for if err != nil"
+  }
+}
