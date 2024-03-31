@@ -66,7 +66,7 @@ require'nvim-tree'.setup {
     }
   },
   filters = {
-    git_ignored = true
+    git_ignored = false
   },
   update_focused_file = {
     enable = true,
