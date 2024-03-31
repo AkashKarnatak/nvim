@@ -72,6 +72,11 @@ require("nvim-web-devicons").set_icon {
      color = colors.yellow,
      name = "js",
   },
+  launch = {
+    icon = "",
+    color = colors.orange,
+    name = "launch",
+  },
   lock = {
      icon = "",
      color = colors.red,
