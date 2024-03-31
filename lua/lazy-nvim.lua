@@ -53,6 +53,25 @@ require("lazy").setup(
       "JoosepAlviste/nvim-ts-context-commentstring",
       lazy = true,
     },
+    -- Show context
+    {
+      'nvim-treesitter/nvim-treesitter-context',
+    },
+    {
+      'razak17/tailwind-fold.nvim',
+      opts = {},
+      dependencies = { 'nvim-treesitter/nvim-treesitter' },
+      ft = {
+        'html',
+        'svelte',
+        'astro',
+        'vue',
+        'javascriptreact',
+        'typescriptreact',
+        'php',
+        'blade',
+      },
+    },
     {
       "lukas-reineke/indent-blankline.nvim",
       config = function()
@@ -125,7 +144,7 @@ require("lazy").setup(
       lazy = true,
     },
     {
-      "jose-elias-alvarez/null-ls.nvim",
+      "nvimtools/none-ls.nvim",
       lazy = true,
     },
     {
@@ -136,7 +155,14 @@ require("lazy").setup(
     },
     {
       "windwp/nvim-ts-autotag",
-      lazy = true,
+      ft = {
+        "html",
+        "javascriptreact",
+        "typescriptreact",
+      },
+      config = function()
+        require('nvim-ts-autotag').setup()
+      end
     },
     {
       "ray-x/lsp_signature.nvim",
@@ -226,8 +252,12 @@ require("lazy").setup(
     -- Markdown
     {
       "iamcco/markdown-preview.nvim",
-      build = 'cd app && npm install',
-      ft = { 'markdown' }
+      cmd = { "MarkdownPreviewToggle", "MarkdownPreview", "MarkdownPreviewStop" },
+      build = "cd app && npx yarn install",
+      init = function()
+        vim.g.mkdp_filetypes = { "markdown" }
+      end,
+      ft = { "markdown" },
     },
 
     -- Fuzzy search

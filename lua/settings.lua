@@ -21,6 +21,8 @@ vim.o.cpoptions = vim.o.cpoptions .. 'y'                        -- Allows yank a
 vim.o.laststatus = 3                                            -- Global statusline
 vim.o.ts = 2                                                    -- Insert 4 spaces for a tab
 vim.o.sw = 2                                                    -- Change the number of space characters inserted for indentation
+vim.o.so = 10                                                   -- Scroll offset
+vim.o.autoread = true
 vim.cmd('command! BD silent! execute "%bd|e#|bd#"')             -- Close all buffers except the active one
 vim.cmd([[command! FilePath execute "echo expand('%:p')"]])     -- Display absolute path of the file opened in current buffer
 

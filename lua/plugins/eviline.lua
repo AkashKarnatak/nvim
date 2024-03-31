@@ -20,15 +20,6 @@ local short_line_tbl = {
   ["lspinfo"] = true,
 }
 
-local live_server_support = {
-  ["html"] = true,
-  ["css"] = true,
-  ["javascript"] = true,
-  ["javascriptreact"] = true,
-  ["typescript"] = true,
-  ["typescriptreact"] = true,
-}
-
 local conditions = {
   buffer_not_empty = function()
     return vim.fn.empty(vim.fn.expand('%:t')) ~= 1 and not short_line_tbl[vim.bo.filetype]

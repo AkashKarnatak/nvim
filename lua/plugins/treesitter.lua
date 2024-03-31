@@ -1,9 +1,20 @@
 local nvim_treesitter_configs = require('nvim-treesitter.configs')
+local parser_config = require "nvim-treesitter.parsers".get_parser_configs()
+parser_config.embedded_template = {
+  install_info = {
+    url = "https://github.com/tree-sitter/tree-sitter-embedded-template",
+    files = {"src/parser.c"},
+    requires_generate_from_grammar = false,
+  },
+}
+
+vim.treesitter.language.register('embedded_template', 'ejs')
+
 nvim_treesitter_configs.setup {
-  ensure_installed = "all", -- one of "all", "maintained" (parsers with maintainers), or a list of languages
-  -- ignore_install = { "javascript" }, -- List of parsers to ignore installing
+  ensure_installed = "all",                                -- one of "all", "maintained" (parsers with maintainers), or a list of languages
+  ignore_install = { "comment", "javascript", "graphql", "wing" }, -- List of parsers to ignore installing
   highlight = {
-    enable = true,              -- false will disable the whole extension
+    enable = true,                                         -- false will disable the whole extension
     disable = function(lang)
       return lang == "html" or vim.b.large_buf
     end,

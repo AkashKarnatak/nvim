@@ -18,6 +18,8 @@ local servers = {
   'gopls',
   -- 'solc',
   'jsonls',
+  'tailwindcss',
+  'eslint',
 }
 
 -- Installer for LSP servers, DAP, servers, Linters and Formatters

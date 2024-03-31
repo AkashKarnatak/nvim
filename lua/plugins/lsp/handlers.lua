@@ -50,9 +50,10 @@ local lsp_keymaps = function(bufnr)
   vim.api.nvim_buf_set_keymap(bufnr, "n", "<leader>lr", "<cmd>lua vim.lsp.buf.rename()<CR>", opts)
   vim.api.nvim_buf_set_keymap(bufnr, "n", "<leader>la", "<cmd>lua vim.lsp.buf.code_action()<CR>", opts)
   vim.api.nvim_buf_set_keymap(bufnr, "n", "<leader>lf", "<cmd>lua vim.lsp.buf.format{ async = true }<CR>", opts)
+  vim.api.nvim_buf_set_keymap(bufnr, "v", "<leader>lf", "<cmd>lua vim.lsp.buf.format{ async = true }<CR>", opts)
   vim.api.nvim_buf_set_keymap(bufnr, "n", "<leader>lq", "<cmd>lua vim.diagnostic.setloclist()<CR>", opts)
   vim.keymap.set("n", "<leader>lh", function ()
-    vim.lsp.inlay_hint(bufnr, nil)
+    vim.lsp.inlay_hint.enable(bufnr, nil)
   end, {buffer = bufnr, noremap = true, desc="Toggle inlay hints", silent = true})
   vim.keymap.set("n", "<leader>ll", function ()
     if vim.diagnostic.is_disabled() then
@@ -68,11 +69,11 @@ end
 
 M.on_attach = function(client, bufnr)
   if client.server_capabilities.inlayHintProvider then
-    vim.lsp.inlay_hint(bufnr, true)
+    vim.lsp.inlay_hint.enable(bufnr, true)
   end
   if client.name == "tsserver" then
     client.server_capabilities.documentFormattingProvider = false
-    vim.lsp.inlay_hint(bufnr, false)
+    vim.lsp.inlay_hint.enable(bufnr, false)
   else
     local cfg = require 'plugins.lsp_signature'
     require'lsp_signature'.on_attach(cfg, bufnr)

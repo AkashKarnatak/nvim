@@ -151,3 +151,8 @@ vim.api.nvim_set_keymap('n', '*', [[:let @/= '\<' . expand('<cword>') . '\>' <ba
 
 -- Multi replace
 vim.api.nvim_set_keymap('n', '<C-s>', '*cgn', {noremap = false, silent=true})
+
+-- ToggleTerm
+vim.api.nvim_set_keymap('n', '<C-_>', '<C-/>', {noremap = false, silent=true})
+vim.api.nvim_set_keymap('i', '<C-_>', '<C-/>', {noremap = false, silent=true})
+vim.api.nvim_set_keymap('t', '<C-_>', '<C-/>', {noremap = false, silent=true})
