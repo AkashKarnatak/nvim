@@ -9,7 +9,7 @@ require('lspconfig.ui.windows').default_options.border = 'rounded'
 -- list of all servers
 local servers = {
   'clangd',
-  'pyright',
+  'basedpyright',
   'tsserver',
   'cssls',
   'html',
