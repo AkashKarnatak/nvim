@@ -15,7 +15,7 @@ local servers = {
   'html',
   'emmet_ls',
   'lua_ls',
-  'gopls',
+  -- 'gopls',
   -- 'solc',
   'jsonls',
   'tailwindcss',
