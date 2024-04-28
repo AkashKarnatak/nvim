@@ -26,6 +26,12 @@ vim.o.autoread = true
 vim.cmd('command! BD silent! execute "%bd|e#|bd#"')             -- Close all buffers except the active one
 vim.cmd([[command! FilePath execute "echo expand('%:p')"]])     -- Display absolute path of the file opened in current buffer
 
+-- Disable neovim provider
+vim.g.loaded_node_provider = 0
+vim.g.loaded_perl_provider = 0
+vim.g.loaded_python3_provider = 0
+vim.g.loaded_ruby_provider = 0
+
 -- Command to format buffer
 vim.cmd [[ command! Format execute 'lua vim.lsp.buf.format({async = true})' ]]
 
