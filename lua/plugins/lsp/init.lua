@@ -1,5 +1,4 @@
 local nvim_lsp = require "lspconfig"
-local configs = require "lspconfig.configs"
 require("plugins.lsp.handlers").setup()
 require "plugins.lsp.null-ls"
 
@@ -7,9 +6,8 @@ require "plugins.lsp.null-ls"
 require('lspconfig.ui.windows').default_options.border = 'rounded'
 
 -- list of all servers
-local servers = {
+local mason_servers = {
   'clangd',
-  'basedpyright',
   'tsserver',
   'cssls',
   'html',
@@ -22,8 +20,17 @@ local servers = {
   'eslint',
 }
 
+local servers = {
+  'pylance'
+}
+
+-- merge
+for _, v in ipairs(mason_servers) do
+  table.insert(servers, v)
+end
+
 -- Installer for LSP servers, DAP, servers, Linters and Formatters
-require("plugins.lsp.mason").setup(servers)
+require("plugins.lsp.mason").setup(mason_servers)
 
 local opts = {
   on_attach = require("plugins.lsp.handlers").on_attach,

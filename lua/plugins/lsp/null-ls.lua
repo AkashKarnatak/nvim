@@ -13,7 +13,7 @@ null_ls.setup({
     formatting.black.with({ extra_args = { "--fast" } }),
     -- -- formatting.stylua,
     diagnostics.golangci_lint,
-    require('none-ls.diagnostics.ruff'),
+    -- require('none-ls.diagnostics.ruff'),
   },
   -- -- Format on save
   -- -- you can reuse a shared lspconfig on_attach callback here
