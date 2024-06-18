@@ -97,3 +97,37 @@ vim.api.nvim_create_user_command("IPython", function()
       require("toggleterm.terminal").Terminal:new({ cmd = "ipython --no-autoindent", direction = "vertical" })
   terminal:toggle()
 end, { nargs = 0 })
+
+function GetCurrentClassName()
+  local node = vim.treesitter.get_node()
+  while node do
+    if node:type() == "class_definition" then
+      local name_node = node:field("name")[1]
+      if name_node then
+        local class_name = vim.treesitter.get_node_text(name_node, 0)
+        return class_name
+      end
+    end
+    node = node:parent()
+  end
+  return nil
+end
+
+function RunManimOnCurrentClass()
+  local class_name = GetCurrentClassName()
+  if not class_name then
+    print("No class name found at cursor!")
+    return
+  end
+
+  local file_path = vim.fn.expand('%:p')
+  local dir_name = vim.fn.expand('%:p:h')
+  local file_name = vim.fn.expand('%:t:r')
+  local video_path = dir_name .. '/media/videos/' .. file_name .. '/480p15/' .. class_name .. '.mp4'
+
+  local cmd = string.format("manim -ql '%s' '%s' && mpv '%s'", file_path, class_name, video_path)
+
+  require("toggleterm.terminal").Terminal:new({ cmd = cmd }):toggle()
+end
+
+vim.api.nvim_set_keymap("n", "<Leader>mm", ":lua RunManimOnCurrentClass()<CR>", { noremap = false, silent = true })
