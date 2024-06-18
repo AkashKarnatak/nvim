@@ -229,7 +229,7 @@ require("lazy").setup(
     },
     {
       "akinsho/toggleterm.nvim",
-      cmd = "ToggleTerm",
+      cmd = { "ToggleTerm", "IPython"},
       keys = {
         { "<C-/>",     mode = 'n' },
         { "<space>th", mode = 'n' },

@@ -54,3 +54,46 @@ require("toggleterm").setup{
 vim.api.nvim_set_keymap('n', '<leader>tf', ':ToggleTerm direction=float<CR>', {noremap = true, silent=true, desc="Open terminal in horizontal split"})
 vim.api.nvim_set_keymap('n', '<leader>th', ':2ToggleTerm direction=horizontal<CR>', {noremap = true, silent=true, desc="Open terminal in horizontal split"})
 vim.api.nvim_set_keymap('n', '<leader>tv', ':2ToggleTerm direction=vertical<CR>', {noremap = true, silent=true, desc="Open terminal in vertical split"})
+
+local function send_visual_lines()
+  -- This function is copied from:
+  -- https://github.com/akinsho/toggleterm.nvim/issues/425#issuecomment-1854373704
+
+  -- visual markers only update after leaving visual mode
+  local esc = vim.api.nvim_replace_termcodes("<esc>", true, false, true)
+  vim.api.nvim_feedkeys(esc, "x", false)
+
+  -- get selected text
+  local start_line, _ = unpack(vim.api.nvim_buf_get_mark(0, "<"))
+  local end_line, _ = unpack(vim.api.nvim_buf_get_mark(0, ">"))
+  local lines = vim.fn.getline(start_line, end_line)
+
+  -- send selection with trimmed indent
+  local cmd = ""
+  local indent = nil
+  for _, line in ipairs(lines) do
+    if indent == nil and line:find("[^%s]") ~= nil then
+      indent = line:find("[^%s]")
+    end
+    -- (i)python interpreter evaluates sent code on empty lines -> remove
+    if not line:match("^%s*$") then
+      cmd = cmd .. line:sub(indent or 1) .. string.char(13) -- trim indent
+    end
+  end
+  require("toggleterm").exec(cmd, 1)
+end
+
+vim.keymap.set("n", "<S-CR>", function()
+  vim.cmd.normal({ "vap", bang = true })
+  send_visual_lines()
+end)
+
+vim.keymap.set("v", "<S-CR>", function()
+  send_visual_lines()
+end)
+
+vim.api.nvim_create_user_command("IPython", function()
+  local terminal =
+      require("toggleterm.terminal").Terminal:new({ cmd = "ipython --no-autoindent", direction = "vertical" })
+  terminal:toggle()
+end, { nargs = 0 })
