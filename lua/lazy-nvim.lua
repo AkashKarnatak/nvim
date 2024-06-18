@@ -234,6 +234,7 @@ require("lazy").setup(
         { "<C-/>",     mode = 'n' },
         { "<space>th", mode = 'n' },
         { "<space>tv", mode = 'n' },
+        { "<space>mm", mode = 'n' },
       },
       config = function()
         require "plugins.toggleterm"
