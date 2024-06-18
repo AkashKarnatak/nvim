@@ -11,7 +11,7 @@ null_ls.setup({
   sources = {
     formatting.prettier.with({ extra_args = { "--no-semi", "--single-quote", "--jsx-single-quote" } }),
     formatting.black.with({ extra_args = { "--fast" } }),
-    -- -- formatting.stylua,
+    formatting.stylua,
     diagnostics.golangci_lint,
     -- require('none-ls.diagnostics.ruff'),
   },

@@ -93,6 +93,6 @@ M.capabilities.textDocument.foldingRange = {
   dynamicRegistration = false,
   lineFoldingOnly = true
 }
-M.capabilities.textDocument.completion.completionItem.snippetSupport = false
+-- M.capabilities.textDocument.completion.completionItem.snippetSupport = false
 
 return M

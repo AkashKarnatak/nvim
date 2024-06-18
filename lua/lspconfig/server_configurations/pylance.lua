@@ -1,6 +1,7 @@
 local util = require("lspconfig.util")
 
 local root_files = {
+  ".git",
   "pyproject.toml",
   "setup.py",
   "setup.cfg",
