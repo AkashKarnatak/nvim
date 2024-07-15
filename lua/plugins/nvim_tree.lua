@@ -50,6 +50,9 @@ end
 require'nvim-tree'.setup {
   on_attach = on_attach,
   sync_root_with_cwd = true,
+  git = {
+    enable = true,
+  },
   renderer = {
     icons = {
       glyphs = {
@@ -93,4 +96,3 @@ vim.api.nvim_create_autocmd({ "VimEnter" }, { callback = open_nvim_tree })
 -- Keybindings to open NvimTree
 vim.api.nvim_set_keymap('n', '<leader>nn', ':NvimTreeToggle<CR>', {noremap = true, silent=true})
 vim.api.nvim_set_keymap('n', '<leader>nr', ':NvimTreeRefresh<CR>', {noremap = true, silent=true})
-

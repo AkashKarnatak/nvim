@@ -17,7 +17,7 @@ local mason_servers = {
   -- 'solc',
   'jsonls',
   'tailwindcss',
-  -- 'eslint',
+  'eslint',
   'sqlls',
 }
 
