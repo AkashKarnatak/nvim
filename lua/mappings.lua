@@ -111,18 +111,22 @@ end
 vim.api.nvim_create_user_command(
     'LoadCompe',
     function()
-      if not file_exists('./.cvim_cache') then
-        vim.loop.fs_mkdir('./.cvim_cache', 493)
+      local home = os.getenv('HOME')
+      local cvim_dir = home .. '/.cvim_cache'
+      local input_file = home .. '/.cvim_cache/input.txt'
+      local output_file = home .. '/.cvim_cache/output.txt'
+      if not file_exists(cvim_dir) then
+        vim.loop.fs_mkdir(cvim_dir, 493)
       end
-      if not file_exists('./.cvim_cache/input.txt') then
-        local fd = vim.loop.fs_open('./.cvim_cache/input.txt', "w", 420)
+      if not file_exists(input_file) then
+        local fd = vim.loop.fs_open(input_file, "w", 420)
         vim.loop.fs_close(fd)
       end
-      if not file_exists('./.cvim_cache/output.txt') then
-        local fd = vim.loop.fs_open('./.cvim_cache/output.txt', "w", 420)
+      if not file_exists(output_file) then
+        local fd = vim.loop.fs_open(output_file, "w", 420)
         vim.loop.fs_close(fd)
       end
-      vim.cmd([[execute winwidth(0)/3 . "vsp ./.cvim_cache/input.txt|set nobuflisted|setlocal nocursorline|set ft=input|sp ./.cvim_cache/output.txt|set nobuflisted|setlocal nocursorline|set ft=output|:norm \<C-w>h"]])
+      vim.cmd([[execute winwidth(0)/3 . "vsp ]] .. input_file .. [[|set nobuflisted|setlocal nocursorline|set ft=input|sp ]] .. output_file .. [[|set nobuflisted|setlocal nocursorline|set ft=output|:norm \<C-w>h"]])
       vim.api.nvim_create_autocmd("BufEnter", {
         nested = true,
         callback = function()

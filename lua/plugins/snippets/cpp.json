@@ -1,0 +1,29 @@
+{
+  "Competitve Programming Template": {
+    "prefix": "cmp",
+    "body": [
+      "#ifndef _LOCAL_DEBUG",
+      "#include <bits/stdc++.h>",
+      "#endif",
+      "#include <iostream>",
+      "",
+      "using namespace std;",
+      "",
+      "int main() {",
+      "  ios_base::sync_with_stdio(false);",
+      "  cin.tie(nullptr);",
+      "#ifdef _LOCAL_DEBUG",
+      "  freopen((string(getenv(\"HOME\")) + \"/.cvim_cache/input.txt\").c_str(), \"r\",",
+      "          stdin);",
+      "  freopen((string(getenv(\"HOME\")) + \"/.cvim_cache/output.txt\").c_str(), \"w\",",
+      "          stdout);",
+      "#endif",
+      "",
+      "\t$1",
+      "",
+      "  return 0;",
+      "}"
+    ],
+    "description": "Standard starter template for a tiny C++ program"
+  }
+}
