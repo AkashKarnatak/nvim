@@ -8,16 +8,16 @@ require('lspconfig.ui.windows').default_options.border = 'rounded'
 -- list of all servers
 local mason_servers = {
   'clangd',
-  'tsserver',
+  'ts_ls',
   'cssls',
   'html',
   'emmet_ls',
   'lua_ls',
-  -- 'gopls',
+  'gopls',
   -- 'solc',
   'jsonls',
   'tailwindcss',
-  'eslint',
+  -- 'eslint',
   'sqlls',
 }
 
@@ -32,11 +32,6 @@ end
 
 -- Installer for LSP servers, DAP, servers, Linters and Formatters
 require("plugins.lsp.mason").setup(mason_servers)
-
-local opts = {
-  on_attach = require("plugins.lsp.handlers").on_attach,
-  capabilities = require("plugins.lsp.handlers").capabilities
-}
 
 local opts = {}
 
