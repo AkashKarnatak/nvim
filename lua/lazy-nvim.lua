@@ -310,7 +310,7 @@ require("lazy").setup(
 
     -- project manager
     {
-      "ahmedkhalf/project.nvim",
+      "AkashKarnatak/project.nvim",
       config = function()
         require("plugins.project_nvim")
       end
