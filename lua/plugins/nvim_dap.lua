@@ -1,29 +1,60 @@
 local dap, dapui = require('dap'), require("dapui")
 
 -- DapUI config
-dap.listeners.after.event_initialized["dapui_config"] = function()
+dap.listeners.before.attach.dapui_config = function()
   dapui.open()
 end
-dap.listeners.before.event_terminated["dapui_config"] = function()
-  dapui.close()
+dap.listeners.before.launch.dapui_config = function()
+  dapui.open()
 end
-dap.listeners.before.event_exited["dapui_config"] = function()
-  dapui.close()
-end
+-- dap.listeners.before.event_terminated.dapui_config = function()
+--   dapui.close()
+-- end
+-- dap.listeners.before.event_exited.dapui_config = function()
+--   dapui.close()
+-- end
 
 dapui.setup({
   floating = {
     border = "rounded"
   }
 })
+vim.api.nvim_create_user_command("DapToggle", function()
+  dapui.toggle()
+end, { nargs = 0 })
 
 -- Python dap config
+local conda_env = os.getenv("CONDA_PREFIX")
 local venv = os.getenv("VIRTUAL_ENV")
-dap.adapters.python = {
-  type = 'executable';
-  command = vim.fn.executable(string.format("%s/bin/python",venv)) == 1 and string.format("%s/bin/python",venv) or '/usr/bin/python',
-  args = { '-m', 'debugpy.adapter' };
-}
+dap.adapters.python = function(cb, config)
+  if config.request == 'attach' then
+    ---@diagnostic disable-next-line: undefined-field
+    local port = (config.connect or config).port
+    ---@diagnostic disable-next-line: undefined-field
+    local host = (config.connect or config).host or '127.0.0.1'
+    cb({
+      type = 'server',
+      port = assert(port, '`connect.port` is required for a python `attach` configuration'),
+      host = host,
+      options = {
+        source_filetype = 'python',
+      },
+    })
+  else
+    cb({
+      type = "executable",
+      command = (vim.fn.executable(string.format("%s/bin/python", conda_env)) == 1
+          and string.format("%s/bin/python", conda_env))
+          or (vim.fn.executable(string.format("%s/bin/python", venv)) == 1
+          and string.format("%s/bin/python", venv))
+          or "/usr/bin/python",
+      args = { "-m", "debugpy.adapter" },
+      options = {
+        source_filetype = "python",
+      },
+		})
+  end
+end
 
 dap.configurations.python = {
   {
@@ -47,8 +78,8 @@ dap.configurations.python = {
 
 -- C/C++/Rust dap config
 dap.adapters.lldb = {
-  type = 'executable',
-  command = '/usr/bin/lldb-vscode', -- adjust as needed
+  type = "executable",
+  command = "/usr/bin/lldb-dap", -- adjust as needed, must be absolute path
   name = "lldb",
 }
 dap.configurations.cpp = {
@@ -57,11 +88,15 @@ dap.configurations.cpp = {
     type = "lldb",
     request = "launch",
     program = function()
-      return vim.fn.expand('%:r')
+      return vim.fn.input("Path to executable: ", vim.fn.getcwd() .. "/", "file")
     end,
-    cwd = '${workspaceFolder}',
     stopOnEntry = false,
-    args = {},
+    args = function()
+      return vim.split(vim.fn.input('Additional args: '), " ")
+    end,
+    justMyCode = false,
+
+    -- 💀
     -- if you change `runInTerminal` to true, you might need to change the yama/ptrace_scope setting:
     --
     --    echo 0 | sudo tee /proc/sys/kernel/yama/ptrace_scope
@@ -72,9 +107,80 @@ dap.configurations.cpp = {
     --
     -- But you should be aware of the implications:
     -- https://www.kernel.org/doc/html/latest/admin-guide/LSM/Yama.html
-    runInTerminal = false,
+    -- runInTerminal = false,
   },
 }
+-- dap.adapters.codelldb = {
+--   type = 'server',
+--   port = "${port}",
+--   executable = {
+--     -- CHANGE THIS to your path!
+--     command = vim.fn.stdpath("data") .. '/mason/bin/codelldb',
+--     args = {"--port", "${port}"},
+--
+--     -- On windows you may have to uncomment this:
+--     -- detached = false,
+--   }
+-- }
+-- dap.configurations.cpp = {
+--   {
+--     name = "Launch file",
+--     type = "codelldb",
+--     request = "launch",
+--     program = function()
+--       return vim.fn.input('Path to executable: ', vim.fn.getcwd() .. '/', 'file')
+--     end,
+--     args = function()
+--       return vim.split(vim.fn.input('Additional args: '), " ")
+--     end,
+--     cwd = '${workspaceFolder}',
+--     stopOnEntry = false,
+--   },
+-- }
+-- dap.adapters.gdb = {
+--   type = "executable",
+--   command = "gdb",
+--   args = { "--interpreter=dap", "--eval-command", "set print pretty on" }
+-- }
+-- dap.configurations.cpp = {
+--   {
+--     name = "Launch",
+--     type = "gdb",
+--     request = "launch",
+--     program = function()
+--       return vim.fn.input('Path to executable: ', vim.fn.getcwd() .. '/', 'file')
+--     end,
+--     -- args = { "--help" },
+--     args = function()
+--       return vim.split(vim.fn.input('Additional args: '), " ")
+--     end,
+--     cwd = "${workspaceFolder}",
+--     stopAtBeginningOfMainSubprogram = false,
+--   },
+--   {
+--     name = "Select and attach to process",
+--     type = "gdb",
+--     request = "attach",
+--     program = function()
+--        return vim.fn.input('Path to executable: ', vim.fn.getcwd() .. '/', 'file')
+--     end,
+--     pid = function()
+--        local name = vim.fn.input('Executable name (filter): ')
+--        return require("dap.utils").pick_process({ filter = name })
+--     end,
+--     cwd = '${workspaceFolder}'
+--   },
+--   {
+--     name = 'Attach to gdbserver :1234',
+--     type = 'gdb',
+--     request = 'attach',
+--     target = 'localhost:1234',
+--     program = function()
+--        return vim.fn.input('Path to executable: ', vim.fn.getcwd() .. '/', 'file')
+--     end,
+--     cwd = '${workspaceFolder}'
+--   },
+-- }
 dap.configurations.c = dap.configurations.cpp
 -- dap.configurations.rust = dap.configurations.cpp
 
